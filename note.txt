@@ -10,3 +10,11 @@ https://tcharles.developpez.com/Huffman/codecpp.php
 
 Site qui nous permettra de tester l'encodage :
 https://www.dcode.fr/codage-huffman-compression
+
+Idée :
+utiliser une structure avec filsG et filsD pour l'arbre?
+
+Une fois fini : 
+Faire une Makefile plus propre avec des .o
+Faire une arborescence de projet src/.../... pour mieux structurer le projet
+Representation schématique de nos classe/methode dans le rapport
