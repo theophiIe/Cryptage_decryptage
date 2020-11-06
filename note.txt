@@ -1,3 +1,6 @@
 Cours sur Huffman :
 http://www-igm.univ-mlv.fr/~lecroq/cours/huff.pdf
 https://perso.limsi.fr/anne/coursAlgo/Huffman.pdf
+
+Cours + Exemple codé en C (Bien expliqué)
+http://projet.eu.org/pedago/sin/term/5-huffman.pdf
