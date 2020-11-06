@@ -2,5 +2,11 @@ Cours sur Huffman :
 http://www-igm.univ-mlv.fr/~lecroq/cours/huff.pdf
 https://perso.limsi.fr/anne/coursAlgo/Huffman.pdf
 
-Cours + Exemple codé en C (Bien expliqué)
+Cours + Exemple codé en C (Bien expliqué) :
 http://projet.eu.org/pedago/sin/term/5-huffman.pdf
+
+Exemple d'implémentation C++ :
+https://tcharles.developpez.com/Huffman/codecpp.php
+
+Site qui nous permettra de tester l'encodage :
+https://www.dcode.fr/codage-huffman-compression
