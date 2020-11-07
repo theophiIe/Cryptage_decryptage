@@ -11,6 +11,9 @@ https://tcharles.developpez.com/Huffman/codecpp.php
 Site qui nous permettra de tester l'encodage :
 https://www.dcode.fr/codage-huffman-compression
 
+Interface graphique : 
+https://openclassrooms.com/fr/courses/1894236-programmez-avec-le-langage-c/1898935-initiez-vous-a-qt
+
 Idée :
 utiliser une structure avec filsG et filsD pour l'arbre?
 
