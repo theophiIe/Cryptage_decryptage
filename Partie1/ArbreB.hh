@@ -3,7 +3,7 @@
 
     #include "Sommet.hh"
 
-    template<class T>
+    template<typename T>
     class ArbreB
     {   
         private:
@@ -16,20 +16,70 @@
             ArbreB(const ArbreB &arbre) {}
             ~ArbreB() {}
 
+            int getSommet() { return _sCourant->_etiquette; }
             void parcours();
-            int getSommet();
 
             // Ajout d'un sommet à l'arbre
-            void ajoutG(const T &val);
-            void ajoutD(const T &val);
+            void ajoutG(const T &val)
+            {
+                if (_racine == nullptr)
+                {
+                    Sommet<T> *s = new Sommet(val);
+                    _sCourant = s;
+                    _racine = s;
+                    _nbr_sommet++;
+                }
+
+                else
+                {
+                    Sommet<T> *s = new Sommet(val);
+                    _sCourant->_filsG = s;
+                    _sCourant = s;
+                    _nbr_sommet++;
+                }
+            }
+
+            void ajoutD(const T &val)
+            {
+                if (_racine == nullptr)
+                {
+                    Sommet<T> *s = new Sommet(val);
+                    _sCourant = s;
+                    _racine = s;
+                    _nbr_sommet++;
+                }
+
+                else
+                {
+                    Sommet<T> *s = new Sommet(val);
+                    _sCourant->_filsD = s;
+                    _sCourant = s;
+                    _nbr_sommet++;
+                }
+            }
 
             // Pour ce déplacer (le but pouvoir ce deplacer avec les flèches dans l'IG)
-            void deplacementG();
-            void deplacementD();
-            void remonter();
+            void deplacementG()
+            {
+                if (_sCourant->_filsG != nullptr)
+                {
+                    _sCourant = _sCourant->_filsG;
+                }
+                
+            }
+
+            void deplacementD()
+            {
+                if (_sCourant->_filsD != nullptr)
+                {
+                    _sCourant = _sCourant->_filsD;
+                }
+            }
+
+            void remonter() { _sCourant = _racine; }
 
             // Méthode clean
-            void supprimer();
+            void supprimer_sommet();
             void tout_supprimer();
 
             // Surcharge des opérateurs
@@ -44,13 +94,13 @@
             ArbreB &operator+(ArbreB &arbre);
             
             // Ajout d'une valeur à gauche
-            void &operator<(T &val);
+            ArbreB &operator<(T &val);
             
             // Ajout d'une valeur à droite
-            void &operator>(T &val);
+            ArbreB &operator>(T &val);
             
             // Affiche de l'arbre (Objectif afficher dans l'IG)
-            friend std::ostream &operator<<(std::ostream &flux, ArbreB &arbre);
+            //friend std::ostream &operator<<(std::ostream &flux, ArbreB &arbre);
     };    
 
 #endif
