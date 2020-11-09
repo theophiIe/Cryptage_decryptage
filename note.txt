@@ -8,6 +8,9 @@ http://projet.eu.org/pedago/sin/term/5-huffman.pdf
 Exemple d'implémentation C++ :
 https://tcharles.developpez.com/Huffman/codecpp.php
 
+implémentation d'arbre binaire en C++ : 
+https://cours.etsmtl.ca/SEG/FHenri/inf145/Suppl%C3%A9ments/arbres%20binaires.htm#Lien
+
 Site qui nous permettra de tester l'encodage :
 https://www.dcode.fr/codage-huffman-compression
 
