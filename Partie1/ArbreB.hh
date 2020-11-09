@@ -23,7 +23,7 @@
             void ajoutG(const T &val);
             void ajoutD(const T &val);
 
-            // Pour ce déplacer (le but pouvoir ce deplacer avec les flèches dans la partie graphique)
+            // Pour ce déplacer (le but pouvoir ce deplacer avec les flèches dans l'IG)
             void deplacementG();
             void deplacementD();
             void remonter();
@@ -31,6 +31,26 @@
             // Méthode clean
             void supprimer();
             void tout_supprimer();
+
+            // Surcharge des opérateurs
+
+            // Arbre1 = Arbre2
+            ArbreB &operator=(ArbreB &arbre);
+            
+            // Fusion des arbres
+            ArbreB &operator+=(ArbreB &arbre);
+            
+            // Fusion des arbres sans affectation
+            ArbreB &operator+(ArbreB &arbre);
+            
+            // Ajout d'une valeur à gauche
+            void &operator<(T &val);
+            
+            // Ajout d'une valeur à droite
+            void &operator>(T &val);
+            
+            // Affiche de l'arbre (Objectif afficher dans l'IG)
+            friend std::ostream &operator<<(std::ostream &flux, ArbreB &arbre);
     };    
 
 #endif
