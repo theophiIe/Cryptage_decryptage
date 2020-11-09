@@ -6,15 +6,18 @@
     template<class T>
     class Sommet
     {
-        private:
+        //friend class ArbreB<T>;
+        
+        public:
+        //private:
             Sommet<T> *_filsG;
             Sommet<T> *_filsD;
             T _etiquette;
             
-        public:
-            Sommet() : _filsG(nullptr), _filsD(nullptr) {}
+        //public:
+            // Sommet() : _filsG(nullptr), _filsD(nullptr) {}
             Sommet(const T &etiquette) : _filsG(nullptr), _filsD(nullptr), _etiquette(etiquette) {}
-            ~Sommet(){}
+            // ~Sommet(){}
     };
  
 #endif
