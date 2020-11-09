@@ -18,6 +18,19 @@
 
             void parcours();
             int getSommet();
+
+            // Ajout d'un sommet à l'arbre
+            void ajoutG(const T &val);
+            void ajoutD(const T &val);
+
+            // Pour ce déplacer (le but pouvoir ce deplacer avec les flèches dans la partie graphique)
+            void deplacementG();
+            void deplacementD();
+            void remonter();
+
+            // Méthode clean
+            void supprimer();
+            void tout_supprimer();
     };    
 
 #endif
