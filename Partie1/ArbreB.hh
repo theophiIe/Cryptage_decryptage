@@ -17,6 +17,8 @@
             ~ArbreB() {}
 
             int getSommet() { return _sCourant->_etiquette; }
+
+            // Faire un parcours préfixe
             void parcours();
 
             // Ajout d'un sommet à l'arbre
@@ -28,14 +30,21 @@
                     _sCourant = s;
                     _racine = s;
                     _nbr_sommet++;
+                    std::cout << "if" << std::endl;
                 }
 
                 else
                 {
                     Sommet<T> *s = new Sommet(val);
                     _sCourant->_filsG = s;
+                    _sCourant->_parent = _sCourant;
                     _sCourant = s;
                     _nbr_sommet++;
+
+                    
+                    std::cout << "else" << std::endl;
+                    if (_sCourant == nullptr) std::cout << "courant est nul" << std::endl;
+                    if (_sCourant->_parent == nullptr) std::cout << "parent est nul" << std::endl;
                 }
             }
 
@@ -45,6 +54,7 @@
                 {
                     Sommet<T> *s = new Sommet(val);
                     _sCourant = s;
+                    _sCourant->_etiquette = val;
                     _racine = s;
                     _nbr_sommet++;
                 }
@@ -53,6 +63,7 @@
                 {
                     Sommet<T> *s = new Sommet(val);
                     _sCourant->_filsD = s;
+                    _sCourant->_parent = _sCourant;
                     _sCourant = s;
                     _nbr_sommet++;
                 }
@@ -76,7 +87,19 @@
                 }
             }
 
-            void remonter() { _sCourant = _racine; }
+            void remonter() 
+            {
+                if(_sCourant->_parent != nullptr)
+                {
+                    _sCourant = _sCourant->_parent;
+                }
+
+                else
+                {
+                     std::cout << "Vous ne pouvez plus remonter on est à la racine" << std::endl;
+                }
+            }
+            void remonter_racine() { _sCourant = _racine; }
 
             // Méthode clean
             void supprimer_sommet();

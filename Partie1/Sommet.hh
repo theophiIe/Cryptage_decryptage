@@ -12,11 +12,12 @@
         //private:
             Sommet<T> *_filsG;
             Sommet<T> *_filsD;
+            Sommet<T> *_parent;
             T _etiquette;
             
         //public:
             // Sommet() : _filsG(nullptr), _filsD(nullptr) {}
-            Sommet(const T &etiquette) : _filsG(nullptr), _filsD(nullptr), _etiquette(etiquette) {}
+            Sommet(const T &etiquette) : _filsG(nullptr), _filsD(nullptr), _parent(nullptr), _etiquette(etiquette) {}
             // ~Sommet(){}
     };
  
