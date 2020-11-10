@@ -4,8 +4,7 @@
     #include "Sommet.hh"
 
     template<typename T>
-    class ArbreB
-    {   
+    class ArbreB {   
         private:
             Sommet<T> *_racine;
             Sommet<T> *_sCourant;
@@ -21,51 +20,45 @@
 
             // parcours préfixe
             void parcours_prefixe(Sommet<T> *sommetRacine) {
-                
                 std::cout<<"Etiquette : "<<sommetRacine->_etiquette<<std::endl;
 
                 if (sommetRacine->_filsG != nullptr) {
                     parcours_prefixe(sommetRacine->_filsG);
                 }
-                if (sommetRacine->_filsD != nullptr){
+                if (sommetRacine->_filsD != nullptr) {
                     parcours_prefixe(sommetRacine->_filsD);
                 }
             }
 
             //parcours infixe
             void parcours_infixe(Sommet<T> *sommetRacine) {
-                
                 if (sommetRacine->_filsG != nullptr) {
                     parcours_infixe(sommetRacine->_filsG);
                 }
 
                 std::cout<<"Etiquette : "<<sommetRacine->_etiquette<<std::endl;
 
-                if (sommetRacine->_filsD != nullptr){
+                if (sommetRacine->_filsD != nullptr) {
                     parcours_infixe(sommetRacine->_filsD);
                 }
             }
 
             //parcours postfixe
             void parcours_postfixe(Sommet<T> *sommetRacine) {
-                
                 if (sommetRacine->_filsG != nullptr) {
                     parcours_postfixe(sommetRacine->_filsG);
                 }
 
-                if (sommetRacine->_filsD != nullptr){
+                if (sommetRacine->_filsD != nullptr) {
                     parcours_postfixe(sommetRacine->_filsD);
                 }
 
                 std::cout<<"Etiquette : "<<sommetRacine->_etiquette<<std::endl;
-
             }
 
             // Ajout d'un sommet à l'arbre
-            void ajoutG(const T &val)
-            {
-                if (_racine == nullptr)
-                {
+            void ajoutG(const T &val) {
+                if (_racine == nullptr) {
                     Sommet<T> *s = new Sommet(val);
                     _sCourant = s;
                     _racine = s;
@@ -73,8 +66,7 @@
                     std::cout << "if" << std::endl;
                 }
 
-                else
-                {
+                else {
                     Sommet<T> *s = new Sommet(val);
                     s->_parent = _sCourant;
                     _sCourant->_filsG = s;
@@ -84,10 +76,8 @@
                 }
             }
 
-            void ajoutD(const T &val)
-            {
-                if (_racine == nullptr)
-                {
+            void ajoutD(const T &val) {
+                if (_racine == nullptr) {
                     Sommet<T> *s = new Sommet(val);
                     _sCourant = s;
                     _sCourant->_etiquette = val;
@@ -95,8 +85,7 @@
                     _nbr_sommet++;
                 }
 
-                else
-                {
+                else {
                     Sommet<T> *s = new Sommet(val);
                     s->_parent = _sCourant;
                     _sCourant->_filsD = s;
@@ -107,55 +96,52 @@
             }
 
             // Pour ce déplacer (le but pouvoir ce deplacer avec les flèches dans l'IG)
-            void deplacementG()
-            {
-                if (_sCourant->_filsG != nullptr)
-                {
+            void deplacementG() {
+                if (_sCourant->_filsG != nullptr) {
                     _sCourant = _sCourant->_filsG;
                 }
             }
 
-            void deplacementD()
-            {
-                if (_sCourant->_filsD != nullptr)
-                {
+            void deplacementD() {
+                if (_sCourant->_filsD != nullptr) {
                     _sCourant = _sCourant->_filsD;
                 }
             }
 
-            void remonter() 
-            {
-                if(_sCourant->_parent != nullptr)
-                {
+            void remonter() {
+                if(_sCourant->_parent != nullptr) {
                     _sCourant = _sCourant->_parent;
                 }
 
-                else
-                {
+                else {
                      std::cout << "Vous ne pouvez plus remonter on est à la racine" << std::endl;
                 }
             }
             void remonter_racine() { _sCourant = _racine; }
 
-            // Méthode clean
-            void supprimer_sommet();
-            
-            void tout_supprimer(Sommet<T> *racine) {
-                if (racine != nullptr)
-                {
-                    if (racine->_filsG != nullptr)
-                    {
-                        tout_supprimer(racine->_filsG);
+            // Méthode clean METTRE EN PRIVATE
+            void supprimer(Sommet<T> *racine) {
+                if (racine != nullptr) {
+                    if (racine->_filsG != nullptr) {
+                        supprimer(racine->_filsG);
                     }
                     
-                    if (racine->_filsD != nullptr)
-                    {
-                        tout_supprimer(racine->_filsD);
+                    if (racine->_filsD != nullptr) {
+                        supprimer(racine->_filsD);
                     }
 
                     delete racine;
                     racine = nullptr;
                 }
+            }
+
+            void tout_supprimer() {
+                _sCourant = _racine;
+                supprimer(_racine);
+            }
+
+            bool estVide() {
+                return _racine == nullptr && _sCourant == nullptr ? true : false;
             }
 
             // Surcharge des opérateurs
