@@ -1,15 +1,15 @@
 #include <iostream>
-#include "Sommet.hh"
 #include "ArbreB.hh"
 
 int main(int argc, char const *argv[])
 {
-    Sommet<int> S1(10);
-    Sommet<int> S2(89);
+    // On ne peut pas declarer le constructeur Sommet car il private
+    //Sommet<int> S1(10);
+    //Sommet<int> S2(89);
     ArbreB<int> a;
     ArbreB<int> b;
 
-    S1 == S2;
+    //S1 == S2;
 
     a.ajoutG(10);
     std::cout << a.getSommet() << std::endl;
