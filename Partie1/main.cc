@@ -32,6 +32,6 @@ int main(int argc, char const *argv[])
     a.ajoutG(16);
     std::cout << a.getSommet() << std::endl;
 
-    a.parcours(a.getRacine());
+    a.parcours_prefixe(a.getRacine());
     return 0;
 }

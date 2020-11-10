@@ -19,15 +19,21 @@
             int getSommet() { return _sCourant->_etiquette; }
             Sommet<T> *getRacine() { return _racine; }
 
-            // Faire un parcours préfixe
-            void parcours(Sommet<T> *sommetRacine) {
-                std::cout<<"Etiquette : "<<sommetRacine->_etiquette<<std::endl;
+            // parcours préfixe
+            void parcours_prefixe(Sommet<T> *sommetRacine) {
+                std::cout<<"Etiquette parcours préfixe : "<<sommetRacine->_etiquette<<std::endl;
                 if (sommetRacine->_filsG != nullptr) {
                     parcours(sommetRacine->_filsG);
                 }
                 if (sommetRacine->_filsD != nullptr){
                     parcours(sommetRacine->_filsD);
                 }
+            }
+
+            //parcours infixe
+            void parcours_infixe(Sommet<T> *sommetRacine) {
+                std::cout<<"Etiquette parcours Infixe : "<<sommetRacine->_etiquette<<std::endl;
+                
             }
 
             // Ajout d'un sommet à l'arbre
