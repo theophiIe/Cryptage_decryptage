@@ -45,7 +45,7 @@ int main(int argc, char const *argv[])
     std::cout<< "\n\t#### Parcours Postfixe : ####"  << std::endl;
     a.parcours_postfixe(a.getRacine());
     
-
+    a.tout_supprimer(a.getRacine());
 
     // test des différents parcours dans un arbre vide (segfault a regler (probablement au cause du getRacine()))
 
