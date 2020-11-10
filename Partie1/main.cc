@@ -30,7 +30,8 @@ int main(int argc, char const *argv[])
     
     a.remonter();
     std::cout << a.getSommet() << std::endl;
-    a.ajoutG(16);
+    //a.ajoutG(16);
+    a < 16;
     std::cout << a.getSommet() << std::endl;
 
     //test des différents parcours dans un arbre non vide
@@ -48,14 +49,14 @@ int main(int argc, char const *argv[])
 
     // test des différents parcours dans un arbre vide (segfault a regler (probablement au cause du getRacine()))
 
-    std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
-    b.parcours_prefixe(b.getRacine());
+    // std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
+    // b.parcours_prefixe(b.getRacine());
 
-    std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
-    b.parcours_infixe(b.getRacine());
+    // std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
+    // b.parcours_infixe(b.getRacine());
 
-    std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
-    b.parcours_postfixe(b.getRacine());
+    // std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
+    // b.parcours_postfixe(b.getRacine());
 
     return 0;
 }

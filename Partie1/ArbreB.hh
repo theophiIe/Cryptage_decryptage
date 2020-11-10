@@ -113,7 +113,6 @@
                 {
                     _sCourant = _sCourant->_filsG;
                 }
-                
             }
 
             void deplacementD()
@@ -154,10 +153,16 @@
             ArbreB &operator+(ArbreB &arbre);
             
             // Ajout d'une valeur à gauche
-            ArbreB &operator<(T &val);
+            ArbreB &operator<(const T &val) {
+                ajoutG(val);
+                return *this;
+            }
             
             // Ajout d'une valeur à droite
-            ArbreB &operator>(T &val);
+            ArbreB &operator>(const T &val) {
+                ajoutD(val);
+                return *this;
+            }
             
             // Affiche de l'arbre (Objectif afficher dans l'IG)
             //friend std::ostream &operator<<(std::ostream &flux, ArbreB &arbre);
