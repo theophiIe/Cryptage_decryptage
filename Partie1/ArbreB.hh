@@ -36,15 +36,11 @@
                 else
                 {
                     Sommet<T> *s = new Sommet(val);
+                    s->_parent = _sCourant;
                     _sCourant->_filsG = s;
                     _sCourant->_parent = _sCourant;
                     _sCourant = s;
                     _nbr_sommet++;
-
-                    
-                    std::cout << "else" << std::endl;
-                    if (_sCourant == nullptr) std::cout << "courant est nul" << std::endl;
-                    if (_sCourant->_parent == nullptr) std::cout << "parent est nul" << std::endl;
                 }
             }
 
@@ -62,6 +58,7 @@
                 else
                 {
                     Sommet<T> *s = new Sommet(val);
+                    s->_parent = _sCourant;
                     _sCourant->_filsD = s;
                     _sCourant->_parent = _sCourant;
                     _sCourant = s;
