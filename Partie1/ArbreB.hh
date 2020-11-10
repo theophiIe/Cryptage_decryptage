@@ -13,14 +13,24 @@
         public:
             ArbreB() : _racine(nullptr), _sCourant(nullptr), _nbr_sommet(0) {}
             ArbreB(const ArbreB &arbre) {}
-            ~ArbreB() {}
+            
+            ~ArbreB() {
+                if (_nbr_sommet > 0)
+                {
+                    supprimer(_racine->_filsG);
+                    supprimer(_racine->_filsD);
+                    delete _racine;
+                }
+                
+            }
 
             int getSommet() { return _sCourant->_etiquette; }
+            int getNbrSommet() { return _nbr_sommet; }
             Sommet<T> *getRacine() { return _racine; }
 
             // parcours préfixe
             void parcours_prefixe(Sommet<T> *sommetRacine) {
-                std::cout<<"Etiquette : "<<sommetRacine->_etiquette<<std::endl;
+                std::cout << "Etiquette : " << sommetRacine->_etiquette << std::endl;
 
                 if (sommetRacine->_filsG != nullptr) {
                     parcours_prefixe(sommetRacine->_filsG);
@@ -36,7 +46,7 @@
                     parcours_infixe(sommetRacine->_filsG);
                 }
 
-                std::cout<<"Etiquette : "<<sommetRacine->_etiquette<<std::endl;
+                std::cout<< "Etiquette : " << sommetRacine->_etiquette << std::endl;
 
                 if (sommetRacine->_filsD != nullptr) {
                     parcours_infixe(sommetRacine->_filsD);
@@ -53,7 +63,7 @@
                     parcours_postfixe(sommetRacine->_filsD);
                 }
 
-                std::cout<<"Etiquette : "<<sommetRacine->_etiquette<<std::endl;
+                std::cout<< "Etiquette : " << sommetRacine->_etiquette << std::endl;
             }
 
             // Ajout d'un sommet à l'arbre
@@ -63,7 +73,6 @@
                     _sCourant = s;
                     _racine = s;
                     _nbr_sommet++;
-                    std::cout << "if" << std::endl;
                 }
 
                 else {
@@ -114,14 +123,16 @@
                 }
 
                 else {
-                     std::cout << "Vous ne pouvez plus remonter on est à la racine" << std::endl;
+                    std::cout << "Vous ne pouvez plus remonter on est à la racine" << std::endl;
                 }
             }
+
             void remonter_racine() { _sCourant = _racine; }
 
             // Méthode clean METTRE EN PRIVATE
             void supprimer(Sommet<T> *racine) {
-                if (racine != nullptr) {
+                if (racine != nullptr)
+                {
                     if (racine->_filsG != nullptr) {
                         supprimer(racine->_filsG);
                     }
@@ -131,18 +142,30 @@
                     }
 
                     delete racine;
-                    racine = nullptr;
                 }
             }
 
             void tout_supprimer() {
                 _sCourant = _racine;
-                supprimer(_racine);
+                
+                if (_nbr_sommet > 0)
+                {
+                    if (_racine->_filsG != nullptr) {
+                        supprimer(_racine->_filsG);
+                    }
+                    
+                    if (_racine->_filsD != nullptr) {
+                        supprimer(_racine->_filsD);
+                    }
+
+                    delete _racine;
+                    _racine = nullptr;
+                    _sCourant = nullptr;
+                    _nbr_sommet = 0;
+                }
             }
 
-            bool estVide() {
-                return _racine == nullptr && _sCourant == nullptr ? true : false;
-            }
+            bool estVide() { return (_racine == nullptr && _sCourant == nullptr) ? true : false; }
 
             // Surcharge des opérateurs
 
@@ -153,6 +176,7 @@
                     this->_sCourant = arbre._sCourant;
                     this->_nbr_sommet = arbre._nbr_sommet;
                 }
+
                 return *this;
             };
             
