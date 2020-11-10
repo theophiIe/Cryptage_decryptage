@@ -21,7 +21,7 @@
 
             // parcours préfixe
             void parcours_prefixe(Sommet<T> *sommetRacine) {
-                std::cout<<"Etiquette parcours préfixe : "<<sommetRacine->_etiquette<<std::endl;
+                std::cout<<"Etiquette : "<<sommetRacine->_etiquette<<std::endl;
                 if (sommetRacine->_filsG != nullptr) {
                     parcours_prefixe(sommetRacine->_filsG);
                 }
@@ -32,7 +32,30 @@
 
             //parcours infixe
             void parcours_infixe(Sommet<T> *sommetRacine) {
-                std::cout<<"Etiquette parcours Infixe : "<<sommetRacine->_etiquette<<std::endl;
+                
+                if (sommetRacine->_filsG != nullptr) {
+                    parcours_infixe(sommetRacine->_filsG);
+                }
+
+                std::cout<<"Etiquette : "<<sommetRacine->_etiquette<<std::endl;
+
+                if (sommetRacine->_filsD != nullptr){
+                    parcours_infixe(sommetRacine->_filsD);
+                }
+            }
+
+            //parcours postfixe
+            void parcours_postfixe(Sommet<T> *sommetRacine) {
+                
+                if (sommetRacine->_filsG != nullptr) {
+                    parcours_postfixe(sommetRacine->_filsG);
+                }
+
+                if (sommetRacine->_filsD != nullptr){
+                    parcours_postfixe(sommetRacine->_filsD);
+                }
+
+                std::cout<<"Etiquette : "<<sommetRacine->_etiquette<<std::endl;
 
             }
 
