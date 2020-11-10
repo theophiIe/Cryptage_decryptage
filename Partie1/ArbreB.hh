@@ -3,8 +3,7 @@
 
     #include "Sommet.hh"
 
-    template<typename T>
-    class ArbreB {   
+    template<typename T> class ArbreB {   
         private:
             Sommet<T> *_racine;
             Sommet<T> *_sCourant;
