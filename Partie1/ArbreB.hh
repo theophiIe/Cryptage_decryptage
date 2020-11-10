@@ -17,12 +17,17 @@
             ~ArbreB() {}
 
             int getSommet() { return _sCourant->_etiquette; }
+            Sommet<T> *getRacine() { return _racine; }
 
             // Faire un parcours préfixe
-            void parcours(Sommet<T> &sommetRacine) {
+            void parcours(Sommet<T> *sommetRacine) {
                 std::cout<<"Etiquette : "<<sommetRacine->_etiquette<<std::endl;
-                parcours(sommetRacine->_filsG);
-                parcours(sommetRacine->_filsD);
+                if (sommetRacine->_filsG != nullptr) {
+                    parcours(sommetRacine->_filsG);
+                }
+                if (sommetRacine->_filsD != nullptr){
+                    parcours(sommetRacine->_filsD);
+                }
             }
 
             // Ajout d'un sommet à l'arbre
