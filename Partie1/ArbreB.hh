@@ -21,7 +21,9 @@
 
             // parcours préfixe
             void parcours_prefixe(Sommet<T> *sommetRacine) {
+                
                 std::cout<<"Etiquette : "<<sommetRacine->_etiquette<<std::endl;
+
                 if (sommetRacine->_filsG != nullptr) {
                     parcours_prefixe(sommetRacine->_filsG);
                 }
