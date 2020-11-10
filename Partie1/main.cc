@@ -5,8 +5,11 @@
 int main(int argc, char const *argv[])
 {
     Sommet<int> S1(10);
+    Sommet<int> S2(89);
     ArbreB<int> a;
     ArbreB<int> b;
+
+    S1 == S2;
 
     a.ajoutG(10);
     std::cout << a.getSommet() << std::endl;
@@ -48,15 +51,19 @@ int main(int argc, char const *argv[])
     a.tout_supprimer(a.getRacine());
 
     // test des différents parcours dans un arbre vide (segfault a regler (probablement au cause du getRacine()))
+    
+    b.ajoutG(105);
 
-    // std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
-    // b.parcours_prefixe(b.getRacine());
+    a = b ;
 
-    // std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
-    // b.parcours_infixe(b.getRacine());
+    std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
+    b.parcours_prefixe(b.getRacine());
 
-    // std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
-    // b.parcours_postfixe(b.getRacine());
+    std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
+    b.parcours_infixe(b.getRacine());
+
+    std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
+    b.parcours_postfixe(b.getRacine());
 
     return 0;
 }

@@ -161,8 +161,18 @@
             // Surcharge des opérateurs
 
             // Arbre1 = Arbre2
-            ArbreB &operator=(ArbreB &arbre);
+            ArbreB &operator=(ArbreB &arbre) {
+                if (&arbre != this) {
+                    this->_racine = arbre._racine;
+                    this->_sCourant = arbre._sCourant;
+                    this->_nbr_sommet = arbre._nbr_sommet;
+                }
+                return *this;
+            };
             
+            // Arbre1 == Arbre2
+            bool &operator==(ArbreB &arbre);
+
             // Fusion des arbres
             ArbreB &operator+=(ArbreB &arbre);
             
