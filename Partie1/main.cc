@@ -32,5 +32,6 @@ int main(int argc, char const *argv[])
     a.ajoutG(16);
     std::cout << a.getSommet() << std::endl;
 
+    a.parcours(S1);
     return 0;
 }

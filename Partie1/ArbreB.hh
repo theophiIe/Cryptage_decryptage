@@ -19,7 +19,11 @@
             int getSommet() { return _sCourant->_etiquette; }
 
             // Faire un parcours préfixe
-            void parcours();
+            void parcours(Sommet<T> &sommetRacine) {
+                std::cout<<"Etiquette : "<<sommetRacine->_etiquette<<std::endl;
+                parcours(sommetRacine->_filsG);
+                parcours(sommetRacine->_filsD);
+            }
 
             // Ajout d'un sommet à l'arbre
             void ajoutG(const T &val)
