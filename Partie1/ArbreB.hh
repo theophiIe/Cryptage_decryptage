@@ -139,7 +139,24 @@
 
             // Méthode clean
             void supprimer_sommet();
-            void tout_supprimer();
+            
+            void tout_supprimer(Sommet<T> *racine) {
+                if (racine != nullptr)
+                {
+                    if (racine->_filsG != nullptr)
+                    {
+                        tout_supprimer(racine->_filsG);
+                    }
+                    
+                    if (racine->_filsD != nullptr)
+                    {
+                        tout_supprimer(racine->_filsD);
+                    }
+
+                    delete racine;
+                    racine = nullptr;
+                }
+            }
 
             // Surcharge des opérateurs
 
