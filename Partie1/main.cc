@@ -41,13 +41,13 @@ int main(int argc, char const *argv[])
     //test des différents parcours dans un arbre non vide
 
     std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
-    a.parcours_prefixe(a.getRacine());
+    a.parcours_prefixe();
 
     std::cout<< "\n\t#### Parcours Infixe : ####"  << std::endl;
-    a.parcours_infixe(a.getRacine());
+    a.parcours_infixe();
     
     std::cout<< "\n\t#### Parcours Postfixe : ####"  << std::endl;
-    a.parcours_postfixe(a.getRacine());
+    a.parcours_postfixe();
     
     a.tout_supprimer();
     a.estVide() ? std::cout << "est vide" << std::endl : std::cout << "n'est pas vide" << std::endl;
@@ -59,13 +59,13 @@ int main(int argc, char const *argv[])
     // a = b ;
 
     // std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
-    // b.parcours_prefixe(b.getRacine());
+    // b.parcours_prefixe();
 
     // std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
-    // b.parcours_infixe(b.getRacine());
+    // b.parcours_infixe();
 
     // std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
-    // b.parcours_postfixe(b.getRacine());
+    // b.parcours_postfixe();
 
     return 0;
 }
