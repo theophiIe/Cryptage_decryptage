@@ -17,7 +17,8 @@ int main(int argc, char const *argv[])
     a.ajoutG(20);
     std::cout << a.getSommet() << std::endl;
 
-    a.ajoutD(5);
+    //a.ajoutD(5);
+    a > 5;
     std::cout << a.getSommet() << std::endl;
 
     a.remonter_racine();
@@ -49,21 +50,22 @@ int main(int argc, char const *argv[])
     a.parcours_postfixe(a.getRacine());
     
     a.tout_supprimer();
+    a.estVide() ? std::cout << "est vide" << std::endl : std::cout << "n'est pas vide" << std::endl;
 
     // test des différents parcours dans un arbre vide (segfault a regler (probablement au cause du getRacine()))
     
-    b.ajoutG(105);
+    // b.ajoutG(105);
 
-    a = b ;
+    // a = b ;
 
-    std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
-    b.parcours_prefixe(b.getRacine());
+    // std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
+    // b.parcours_prefixe(b.getRacine());
 
-    std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
-    b.parcours_infixe(b.getRacine());
+    // std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
+    // b.parcours_infixe(b.getRacine());
 
-    std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
-    b.parcours_postfixe(b.getRacine());
+    // std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
+    // b.parcours_postfixe(b.getRacine());
 
     return 0;
 }
