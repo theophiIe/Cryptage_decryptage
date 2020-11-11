@@ -6,82 +6,65 @@ int main(int argc, char const *argv[])
 
     ArbreB<int> a;
     ArbreB<int> b;
+    ArbreB<int> c;
 
+    // Replissage arbre A
     a.ajoutG(105);
-    std::cout << a.getSommet() << std::endl;
-
     a.ajoutG(20);
-    std::cout << a.getSommet() << std::endl;
-
-    //a.ajoutD(5);
     a > 5;
-    std::cout << a.getSommet() << std::endl;
-
     a.remonter_racine();
     a.ajoutD(8);
-    std::cout << a.getSommet() << std::endl;
-
     a.remonter_racine();
-    std::cout << a.getSommet() << std::endl;
     a.deplacementG();
-    std::cout << a.getSommet() << std::endl;
-    a.deplacementD();
-    std::cout << a.getSommet() << std::endl;
-    
+    a.deplacementD(); 
     a.remonter();
-    std::cout << a.getSommet() << std::endl;
-    //a.ajoutG(16);
     a < 16;
-    std::cout << a.getSommet() << std::endl;
 
-    b.ajoutG(105);
-    b.ajoutG(20);
+    // Remplissage arbre B
+    b.ajoutG(185);
+    b.ajoutG(25);
     b > 5;
     b.remonter_racine();
-    b.ajoutD(8);
+    b.ajoutD(868);
     b.remonter_racine();
     b.deplacementG();
     b.deplacementD();
     b.remonter();
-    b.ajoutG(16);
+    b.ajoutG(1669);
 
-    std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
-    b.parcours_prefixe();
+    std::cout<< "\n\t#### Parcours Préfixe A : ####"  << std::endl;
+    a.parcours_prefixe();
 
-    std::cout<< "\n\t#### Parcours Infixe : ####"  << std::endl;
-    b.parcours_infixe();
+    // std::cout<< "\n\t#### Parcours Infixe B : ####"  << std::endl;
+    // b.parcours_infixe();
     
-    std::cout<< "\n\t#### Parcours Postfixe : ####"  << std::endl;
-    b.parcours_postfixe();
+    // std::cout<< "\n\t#### Parcours Postfixe B : ####"  << std::endl;
+    // b.parcours_postfixe();
 
     //test des différents parcours dans un arbre non vide
 
-    std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
-    a.parcours_prefixe();
+    std::cout<< "\n\t#### Parcours Préfixe B : ####"  << std::endl;
+    b.parcours_prefixe();
 
-    std::cout<< "\n\t#### Parcours Infixe : ####"  << std::endl;
-    a.parcours_infixe();
+    // std::cout<< "\n\t#### Parcours Infixe A : ####"  << std::endl;
+    // a.parcours_infixe();
     
-    std::cout<< "\n\t#### Parcours Postfixe : ####"  << std::endl;
-    a.parcours_postfixe();
+    // std::cout<< "\n\t#### Parcours Postfixe A : ####"  << std::endl;
+    // a.parcours_postfixe();
     
-    a + b;
+    //c = a + b;
+    b += &a;
 
-    a.tout_supprimer();
-    a.estVide() ? std::cout << "est vide" << std::endl : std::cout << "n'est pas vide" << std::endl;
 
-    // test des différents parcours dans un arbre vide (segfault a regler (probablement au cause du getRacine()))
+
+    std::cout<< "\n\t#### Parcours Préfixe B Fusionné : ####"  << std::endl;
+    b.parcours_prefixe();
+    std::cout<< "ALED"  << std::endl;
+    // c.parcours_infixe();
     
-    
+    // std::cout<< "\n\t#### Parcours Postfixe C : ####"  << std::endl;
+    // c.parcours_postfixe();
 
-    // std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
-    // b.parcours_prefixe();
-
-    // std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
-    // b.parcours_infixe();
-
-    // std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
-    // b.parcours_postfixe();
 
     return 0;
 }

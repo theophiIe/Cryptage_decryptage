@@ -14,7 +14,6 @@
             inline void prefixe(Sommet<T> *sommetRacine);
             inline void infixe(Sommet<T> *sommetRacine);
             inline void postfixe(Sommet<T> *sommetRacine);
-            inline T egaliteArbre(Sommet<T> *sommetRacine);
 
         public:
             ArbreB() : _racine(nullptr), _sCourant(nullptr), _nbr_sommet(0) {}
@@ -26,8 +25,8 @@
                     supprimer(_racine->_filsG);
                     supprimer(_racine->_filsD);
                     delete _racine;
+                    _racine = nullptr;
                 }
-                
             }
 
             int getSommet() { return _sCourant->_etiquette; }
@@ -56,28 +55,39 @@
             // Surcharge des opérateurs
 
             // Arbre1 = Arbre2
-            ArbreB &operator=(ArbreB &arbre) {
-                if (&arbre != this) {
-                    this->_racine = arbre._racine;
-                    this->_sCourant = arbre._sCourant;
-                    this->_nbr_sommet = arbre._nbr_sommet;
-                }
+            // ArbreB &operator=(ArbreB &arbre) {
+            //     tout_supprimer();
 
-                return *this;
-            };
+            //     _racine = arbre._racine;
+            //     _sCourant = arbre._sCourant;
+            //     _nbr_sommet = arbre._nbr_sommet;
+
+            //     return *this;
+            // }
             
 
             // Fusion des arbres
-            ArbreB &operator+=(ArbreB &arbre);
+            ArbreB &operator+=(ArbreB<T> *arbre)
+            {
+                Sommet<T> *nouvRacine = new Sommet(_racine->_etiquette + arbre->_racine->_etiquette);
+                
+                nouvRacine->_filsG = _racine;
+                nouvRacine->_filsD = arbre->_racine;
+                
+                _racine->_parent = nouvRacine;
+                _racine = nouvRacine;
+                
+                return *this;
+            }
             
             // Fusion des arbres sans affectation
-            ArbreB &operator+(ArbreB &arbre) {
-                ArbreB<int> arbreFusionne = new ArbreB();
-                arbreFusionne->_racine->_filsG;
-                arbreFusionne->_racine->_filsD;
+            // ArbreB &operator+(ArbreB &arbre) {
+            //     ArbreB<T> *arbreFusionne;
+            //     arbreFusionne->_racine->_filsG;
+            //     arbreFusionne->_racine->_filsD;
 
-                return *this;
-            };
+            //     return *arbreFusionne;
+            // }
             
             // Ajout d'une valeur à gauche
             ArbreB &operator<(const T &val) {
@@ -92,7 +102,9 @@
             }
             
             // Affiche de l'arbre (Objectif afficher dans l'IG)
-            //friend std::ostream &operator<<(std::ostream &flux, ArbreB &arbre);
+            // friend std::ostream &operator<<(std::ostream &flux, ArbreB &arbre){
+
+            // }
     };    
 
     template<typename T>
@@ -108,6 +120,7 @@
             }
 
             delete racine;
+            racine = NULL;
         }
     }
 
