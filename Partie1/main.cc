@@ -1,36 +1,42 @@
 #include <iostream>
 #include "ArbreB.hh"
 
-int main(int argc, char const *argv[])
-{
-
+int main(int argc, char const *argv[]) {
     ArbreB<int> a;
     ArbreB<int> b;
     ArbreB<int> c;
 
     // Replissage arbre A
-    a.ajoutG(105);
-    a.ajoutG(20);
-    a > 5;
+    // a.ajoutG(105);
+    // a.ajoutG(20);
+    // a > 5;
+    // a.remonter_racine();
+    // a.ajoutD(8);
+    // a.remonter_racine();
+    // a.deplacementG();
+    // a.deplacementD(); 
+    // a.remonter();
+    // a < 16;
+    a.ajoutG(5);
+    a.ajoutG(10);
     a.remonter_racine();
-    a.ajoutD(8);
-    a.remonter_racine();
-    a.deplacementG();
-    a.deplacementD(); 
-    a.remonter();
-    a < 16;
+    a.ajoutD(2);
 
     // Remplissage arbre B
-    b.ajoutG(185);
-    b.ajoutG(25);
-    b > 5;
+    // b.ajoutG(185);
+    // b.ajoutG(25);
+    // b > 5;
+    // b.remonter_racine();
+    // b.ajoutD(868);
+    // b.remonter_racine();
+    // b.deplacementG();
+    // b.deplacementD();
+    // b.remonter();
+    // b.ajoutG(1669);
+    b.ajoutG(4);
+    b.ajoutG(6);
     b.remonter_racine();
-    b.ajoutD(868);
-    b.remonter_racine();
-    b.deplacementG();
-    b.deplacementD();
-    b.remonter();
-    b.ajoutG(1669);
+    b.ajoutD(7);
 
     std::cout<< "\n\t#### Parcours Préfixe A : ####"  << std::endl;
     a.parcours_prefixe();
@@ -53,12 +59,18 @@ int main(int argc, char const *argv[])
     // a.parcours_postfixe();
     
     //c = a + b;
-    b += &a;
+    a += &b;
 
+    std::cout<< "\n\t#### Parcours Préfixe A Fusionné : ####"  << std::endl;
+    a.parcours_prefixe();
+    
+    a.remonter_racine();
+    std::cout<< "Etiquette" << a.getEtiquette() << std::endl;
+    a.deplacementD();
+    std::cout<< "Etiquette" << a.getEtiquette() << std::endl;
+    a.remonter();
+    std::cout<< "Etiquette" << a.getEtiquette() << std::endl;
 
-
-    std::cout<< "\n\t#### Parcours Préfixe B Fusionné : ####"  << std::endl;
-    b.parcours_prefixe();
     std::cout<< "ALED"  << std::endl;
     // c.parcours_infixe();
     

@@ -15,9 +15,7 @@
             T _etiquette;
             
             Sommet(const T &etiquette) : _filsG(nullptr), _filsD(nullptr), _parent(nullptr), _etiquette(etiquette) {}
-
-        public:
-
+            
     };
  
 #endif

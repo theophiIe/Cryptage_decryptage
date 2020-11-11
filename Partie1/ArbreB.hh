@@ -14,6 +14,7 @@
             inline void prefixe(Sommet<T> *sommetRacine);
             inline void infixe(Sommet<T> *sommetRacine);
             inline void postfixe(Sommet<T> *sommetRacine);
+            inline Sommet<T> *copie(Sommet<T> *node);
 
         public:
             ArbreB() : _racine(nullptr), _sCourant(nullptr), _nbr_sommet(0) {}
@@ -29,7 +30,7 @@
                 }
             }
 
-            int getSommet() { return _sCourant->_etiquette; }
+            int getEtiquette() { return _sCourant->_etiquette; }
             int getNbrSommet() { return _nbr_sommet; }
             Sommet<T> *getRacine() { return _racine; }
 
@@ -64,18 +65,17 @@
 
             //     return *this;
             // }
-            
 
             // Fusion des arbres
             ArbreB &operator+=(ArbreB<T> *arbre)
             {
                 Sommet<T> *nouvRacine = new Sommet(_racine->_etiquette + arbre->_racine->_etiquette);
                 
-                nouvRacine->_filsG = _racine;
-                nouvRacine->_filsD = arbre->_racine;
-                
+                nouvRacine->_filsG = _racine;  
+                nouvRacine->_filsD = copie(arbre->_racine);          
                 _racine->_parent = nouvRacine;
                 _racine = nouvRacine;
+                _nbr_sommet += arbre->_nbr_sommet + 1;
                 
                 return *this;
             }
@@ -162,6 +162,24 @@
         std::cout<< "Etiquette : " << sommetRacine->_etiquette << std::endl;
     }
     
+    template<typename T>
+    Sommet<T> *ArbreB<T>::copie(Sommet<T> *node) {
+        if (node == nullptr) {
+            return nullptr;
+        }
+        
+        else {
+            Sommet<T> *newGauche = copie(node->_filsG);
+            Sommet<T> *newDroit = copie(node->_filsD);
+            Sommet<T> *newSommet = new Sommet(node->_etiquette);
+
+            newSommet->_filsG = newGauche;
+            newSommet->_filsD= newDroit;
+
+            return newSommet;
+        }
+    }
+
     template<typename T>
     void ArbreB<T>::ajoutG(const T &val) {
         if (_racine == nullptr) {
