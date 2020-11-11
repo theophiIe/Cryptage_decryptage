@@ -15,6 +15,7 @@
             inline void infixe(Sommet<T> *sommetRacine);
             inline void postfixe(Sommet<T> *sommetRacine);
             inline Sommet<T> *copie(Sommet<T> *node);
+            inline bool recherche(Sommet<T> *sommetRacine, const T &val, bool &existe);
 
         public:
             ArbreB() : _racine(nullptr), _sCourant(nullptr), _nbr_sommet(0) {}
@@ -50,6 +51,8 @@
             inline void remonter();
             void remonter_racine() { _sCourant = _racine; }
 
+            bool estPrensent(const T &val) { bool existe = false; return recherche(_racine, val, existe) ? true : false; }
+
             inline void tout_supprimer();
             bool estVide() { return (_racine == nullptr && _sCourant == nullptr) ? true : false; }
 
@@ -59,10 +62,6 @@
             ArbreB &operator=(ArbreB *arbre) {
                 tout_supprimer();
 
-                // _racine = arbre._racine;
-                // _sCourant = arbre._sCourant;
-                // _nbr_sommet = arbre._nbr_sommet;
-                
                 _racine = copie(arbre->_racine);
 
                 return *this;
@@ -180,6 +179,24 @@
 
             return newSommet;
         }
+    }
+
+    template<typename T>
+    bool ArbreB<T>::recherche(Sommet<T> *sommetRacine, const T &val, bool &existe) {
+        if (sommetRacine->_filsG != nullptr) {
+            recherche(sommetRacine->_filsG, val, existe);
+        }
+
+        if (sommetRacine->_filsD != nullptr) {
+            recherche(sommetRacine->_filsD, val, existe);
+        }
+
+        if (sommetRacine->_etiquette == val)
+        {
+            existe = true;
+        }
+        
+        return existe;
     }
 
     template<typename T>

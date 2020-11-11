@@ -68,6 +68,9 @@ int main(int argc, char const *argv[]) {
     std::cout<< "\n\t#### Parcours Préfixe A = B : ####"  << std::endl;
     a.parcours_prefixe();
 
+    a.estPrensent(7) ? std::cout<< "TRUE" << std::endl : std::cout<< "FALSE"  << std::endl;
+    a.estPrensent(8) ? std::cout<< "TRUE" << std::endl : std::cout<< "FALSE"  << std::endl;
+    
     std::cout<< "ALED"  << std::endl;
     // c.parcours_infixe();
     
