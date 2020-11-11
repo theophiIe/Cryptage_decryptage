@@ -64,12 +64,9 @@ int main(int argc, char const *argv[]) {
     std::cout<< "\n\t#### Parcours Préfixe A Fusionné : ####"  << std::endl;
     a.parcours_prefixe();
     
-    a.remonter_racine();
-    std::cout<< "Etiquette" << a.getEtiquette() << std::endl;
-    a.deplacementD();
-    std::cout<< "Etiquette" << a.getEtiquette() << std::endl;
-    a.remonter();
-    std::cout<< "Etiquette" << a.getEtiquette() << std::endl;
+    a = &b;
+    std::cout<< "\n\t#### Parcours Préfixe A = B : ####"  << std::endl;
+    a.parcours_prefixe();
 
     std::cout<< "ALED"  << std::endl;
     // c.parcours_infixe();

@@ -56,15 +56,17 @@
             // Surcharge des opérateurs
 
             // Arbre1 = Arbre2
-            // ArbreB &operator=(ArbreB &arbre) {
-            //     tout_supprimer();
+            ArbreB &operator=(ArbreB *arbre) {
+                tout_supprimer();
 
-            //     _racine = arbre._racine;
-            //     _sCourant = arbre._sCourant;
-            //     _nbr_sommet = arbre._nbr_sommet;
+                // _racine = arbre._racine;
+                // _sCourant = arbre._sCourant;
+                // _nbr_sommet = arbre._nbr_sommet;
+                
+                _racine = copie(arbre->_racine);
 
-            //     return *this;
-            // }
+                return *this;
+            }
 
             // Fusion des arbres
             ArbreB &operator+=(ArbreB<T> *arbre)
