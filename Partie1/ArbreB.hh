@@ -14,6 +14,7 @@
             inline void prefixe(Sommet<T> *sommetRacine);
             inline void infixe(Sommet<T> *sommetRacine);
             inline void postfixe(Sommet<T> *sommetRacine);
+            inline T egaliteArbre(Sommet<T> *sommetRacine);
 
         public:
             ArbreB() : _racine(nullptr), _sCourant(nullptr), _nbr_sommet(0) {}
@@ -65,14 +66,18 @@
                 return *this;
             };
             
-            // Arbre1 == Arbre2
-            bool &operator==(ArbreB &arbre);
 
             // Fusion des arbres
             ArbreB &operator+=(ArbreB &arbre);
             
             // Fusion des arbres sans affectation
-            ArbreB &operator+(ArbreB &arbre);
+            ArbreB &operator+(ArbreB &arbre) {
+                ArbreB<int> arbreFusionne = new ArbreB();
+                arbreFusionne->_racine->_filsG;
+                arbreFusionne->_racine->_filsD;
+
+                return *this;
+            };
             
             // Ajout d'une valeur à gauche
             ArbreB &operator<(const T &val) {
@@ -143,7 +148,7 @@
 
         std::cout<< "Etiquette : " << sommetRacine->_etiquette << std::endl;
     }
-
+    
     template<typename T>
     void ArbreB<T>::ajoutG(const T &val) {
         if (_racine == nullptr) {

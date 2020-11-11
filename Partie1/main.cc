@@ -3,15 +3,11 @@
 
 int main(int argc, char const *argv[])
 {
-    // On ne peut pas declarer le constructeur Sommet car il private
-    //Sommet<int> S1(10);
-    //Sommet<int> S2(89);
+
     ArbreB<int> a;
     ArbreB<int> b;
 
-    //S1 == S2;
-
-    a.ajoutG(10);
+    a.ajoutG(105);
     std::cout << a.getSommet() << std::endl;
 
     a.ajoutG(20);
@@ -38,6 +34,26 @@ int main(int argc, char const *argv[])
     a < 16;
     std::cout << a.getSommet() << std::endl;
 
+    b.ajoutG(105);
+    b.ajoutG(20);
+    b > 5;
+    b.remonter_racine();
+    b.ajoutD(8);
+    b.remonter_racine();
+    b.deplacementG();
+    b.deplacementD();
+    b.remonter();
+    b.ajoutG(16);
+
+    std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
+    b.parcours_prefixe();
+
+    std::cout<< "\n\t#### Parcours Infixe : ####"  << std::endl;
+    b.parcours_infixe();
+    
+    std::cout<< "\n\t#### Parcours Postfixe : ####"  << std::endl;
+    b.parcours_postfixe();
+
     //test des différents parcours dans un arbre non vide
 
     std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
@@ -49,14 +65,14 @@ int main(int argc, char const *argv[])
     std::cout<< "\n\t#### Parcours Postfixe : ####"  << std::endl;
     a.parcours_postfixe();
     
+    a + b;
+
     a.tout_supprimer();
     a.estVide() ? std::cout << "est vide" << std::endl : std::cout << "n'est pas vide" << std::endl;
 
     // test des différents parcours dans un arbre vide (segfault a regler (probablement au cause du getRacine()))
     
-    // b.ajoutG(105);
-
-    // a = b ;
+    
 
     // std::cout<< "\n\t#### Parcours Préfixe : ####"  << std::endl;
     // b.parcours_prefixe();

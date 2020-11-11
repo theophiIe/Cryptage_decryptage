@@ -17,16 +17,7 @@
             Sommet(const T &etiquette) : _filsG(nullptr), _filsD(nullptr), _parent(nullptr), _etiquette(etiquette) {}
 
         public:
-            // SommetA == SommetB
-            bool operator==(Sommet const& sommet) {
-                if (sommet._etiquette == this->_etiquette) {
-                    std::cout<<"fga = fgb";
-                    return true;
-                }
-                else
-                std::cout<<"fga != fgb";
-                return false;
-            }
+
     };
  
 #endif
