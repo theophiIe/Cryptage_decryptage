@@ -1,98 +1,139 @@
 #include <iostream>
 #include "ArbreB.hh"
 
-int main(int argc, char const *argv[]) {
+// déplacer les fonctions test dans un fichiers dédié
+
+void testParcoursArbre() {
+    std::cout<< "\n\t#### Test parcours d'arbre : ####"  << std::endl;
     ArbreB<int> a;
-    ArbreB<int> b;
-    ArbreB<int> c;
-
-    // Replissage arbre A
-    // a.ajoutG(105);
-    // a.ajoutG(20);
-    // a > 5;
-    // a.remonter_racine();
-    // a.ajoutD(8);
-    // a.remonter_racine();
-    // a.deplacementG();
-    // a.deplacementD(); 
-    // a.remonter();
-    // a < 16;
-    a.ajoutG(5);
-    a.ajoutG(10);
-    a.setEtiquette(8);
+    a.ajoutG(8);
+    a < 5;
+    a > 7;
     a.remonter_racine();
-    a.ajoutD(2);
+    a.ajoutD(6);
+    a.ajoutD(1);
+    a.remonter_racine();
+    a.deplacementG();
+    a.ajoutG(4);
 
-    // Remplissage arbre B
-    // b.ajoutG(185);
-    // b.ajoutG(25);
-    // b > 5;
-    // b.remonter_racine();
-    // b.ajoutD(868);
-    // b.remonter_racine();
-    // b.deplacementG();
-    // b.deplacementD();
-    // b.remonter();
-    // b.ajoutG(1669);
-    b.ajoutG(4);
-    b.ajoutG(6);
-    b.remonter_racine();
-    b.ajoutD(7);
-
-    std::cout<< "\n\t#### Parcours Préfixe A : ####"  << std::endl;
+    std::cout<< "\nParcours Préfixe A :"  << std::endl;
     a.parcours_prefixe();
 
-    // std::cout<< "\n\t#### Parcours Infixe B : ####"  << std::endl;
-    // b.parcours_infixe();
+    std::cout<< "\nParcours Postfixe A :"  << std::endl;
+    a.parcours_postfixe();
+
+    std::cout<< "\nParcours Infixe A :"  << std::endl;
+    a.parcours_infixe();
+}
+
+void testSuppresionArbre() {
+    std::cout<< "\n\t#### Test de la suppresion d'un arbre : ####"  << std::endl;
+    ArbreB<int> a;
+    a.estVide() ? std::cout << "L'arbre est vide" << std::endl : std::cout << "L'arbre n'est pas vide" << std::endl;
+
+    a.ajoutG(8);
+    a.ajoutG(5);
+    a.ajoutD(7);
+    a.remonter_racine();
+    a.ajoutD(6);
+    a.ajoutD(1);
+
+    std::cout<< "\nParcours Préfixe A :"  << std::endl;
+    a.parcours_prefixe();
+
+    a.estVide() ? std::cout << "L'arbre est vide" << std::endl : std::cout << "L'arbre n'est pas vide" << std::endl;
+
+    a.tout_supprimer();
+    a.estVide() ? std::cout << "L'arbre est vide" << std::endl : std::cout << "L'arbre n'est pas vide" << std::endl;
+}
+
+void testCopieArbre() {
+    std::cout<< "\n\t#### Test de la copie d'arbre : ####"  << std::endl;
+    ArbreB<int> a;
+    a.ajoutG(8);
+    a.ajoutG(5);
+    a.ajoutD(7);
+    a.remonter_racine();
+    a.ajoutD(6);
+    a.ajoutD(1);
+
+    std::cout<< "\nParcours Infixe A :"  << std::endl;
+    a.parcours_infixe();
+
+    ArbreB<int> b;
+    b = a;
+
+    std::cout<< "\nParcours Infixe B :"  << std::endl;
+    b.parcours_infixe();
+
+    ArbreB<int> c(b);
+
+    std::cout<< "\nParcours Infixe C :"  << std::endl;
+    c.parcours_infixe();
+}
+
+void testFusionArbre() {
+    std::cout<< "\n\t#### Test de la fusion d'arbre : ####"  << std::endl;
+    ArbreB<int> a;
+    a < 8;
+    a < 5;
+    a.remonter_racine();
+    a > 7;
     
-    // std::cout<< "\n\t#### Parcours Postfixe B : ####"  << std::endl;
-    // b.parcours_postfixe();
+    std::cout<< "\nParcours Postfixe A :"  << std::endl;
+    a.parcours_prefixe();
 
-    //test des différents parcours dans un arbre non vide
+    ArbreB<int> b;
+    b > 6;
+    b > 4;
+    b.remonter_racine();
+    b < 9;
+    b.remonter_racine();
+    b.deplacementD();
+    b < 7;
 
-    std::cout<< "\n\t#### Parcours Préfixe B : ####"  << std::endl;
+    std::cout<< "\nParcours Prefixe B :"  << std::endl;
     b.parcours_prefixe();
 
-    // std::cout<< "\n\t#### Parcours Infixe A : ####"  << std::endl;
-    // a.parcours_infixe();
-    
-    // std::cout<< "\n\t#### Parcours Postfixe A : ####"  << std::endl;
-    // a.parcours_postfixe();
-    
-    //c = a + b;
     a += b;
 
-    std::cout<< "\n\t#### Parcours Préfixe A Fusionné : ####"  << std::endl;
+    std::cout<< "\nParcours Prefixe A :"  << std::endl;
     a.parcours_prefixe();
-    
-    // a = b;
-    // std::cout<< "\n\t#### Parcours Préfixe A = B : ####"  << std::endl;
-    // a.parcours_prefixe();
+}
 
-    // a.estPrensent(7) ? std::cout<< "TRUE" << std::endl : std::cout<< "FALSE"  << std::endl;
-    // a.estPrensent(8) ? std::cout<< "TRUE" << std::endl : std::cout<< "FALSE"  << std::endl;
-
-    // ArbreB<int> d(a);
-    // std::cout<< "\n\t#### Parcours Préfixe D = A : ####"  << std::endl;
-    // d.parcours_prefixe();
-    
+void testEtiquette() {
+    std::cout<< "\n\t#### Test de la modification d'une étiquette et de sa présence : ####"  << std::endl;
+    ArbreB<int> a;
+    a < 8;
+    a < 5;
     a.remonter_racine();
-    std::cout << a.getEtiquette() << std::endl;
-    a.deplacementG();
-    std::cout << a.getEtiquette() << std::endl;
-    
-    a.decomposition(b);
-    std::cout<< "\n\t#### Parcours Préfixe A apres decomp : ####"  << std::endl;
+    a > 7;
+
+    std::cout<< "\nParcours Prefixe A :"  << std::endl;
     a.parcours_prefixe();
-    std::cout<< "\n\t#### Parcours Préfixe B apres decomp : ####"  << std::endl;
-    b.parcours_prefixe();
 
-    std::cout<< "ALED"  << std::endl;
-    // c.parcours_infixe();
-    
-    // std::cout<< "\n\t#### Parcours Postfixe C : ####"  << std::endl;
-    // c.parcours_postfixe();
+    a.remonter_racine();
+    a.deplacementD();
+    a.setEtiquette(14);
 
+    std::cout<< "\nParcours Prefixe A :"  << std::endl;
+    a.parcours_prefixe();
+
+    a.estPrensent(14) ? std::cout<< "14 est dans l'arbre" << std::endl : std::cout<< "14 n'est pas dans l'arbre" << std::endl;
+    a.estPrensent(2) ? std::cout<< "2 est dans l'arbre" << std::endl : std::cout<< "2 n'est pas dans l'arbre" << std::endl;
+    a.estPrensent(7) ? std::cout<< "7 est dans l'arbre" << std::endl : std::cout<< "7 n'est pas dans l'arbre" << std::endl;
+}
+
+void testDecompositionArbre() {
+    std::cout<< "\n\t#### Test de la décomposition d'un arbre : ####"  << std::endl;
+}
+
+int main(int argc, char const *argv[]) {
+    testParcoursArbre();
+    testSuppresionArbre();
+    testCopieArbre();
+    testFusionArbre();
+    testEtiquette();
 
     return 0;
 }
