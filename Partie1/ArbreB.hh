@@ -19,11 +19,15 @@
 
         public:
             ArbreB() : _racine(nullptr), _sCourant(nullptr), _nbr_sommet(0) {}
-            ArbreB(const ArbreB &arbre) {}
+            
+            ArbreB(const ArbreB<T> &arbre) { 
+                _racine = copie(arbre._racine);
+                _sCourant = _racine;
+                _nbr_sommet = arbre._nbr_sommet;
+            }
             
             ~ArbreB() {
-                if (_nbr_sommet > 0)
-                {
+                if (_nbr_sommet > 0) {
                     supprimer(_racine->_filsG);
                     supprimer(_racine->_filsD);
                     delete _racine;
@@ -59,24 +63,27 @@
             // Surcharge des opérateurs
 
             // Arbre1 = Arbre2
-            ArbreB &operator=(ArbreB *arbre) {
-                tout_supprimer();
-
-                _racine = copie(arbre->_racine);
+            ArbreB<T> &operator=(const ArbreB<T> &arbre) {
+                if (_racine != nullptr) {
+                    tout_supprimer();
+                }
+                
+                _racine = copie(arbre._racine);
+                _sCourant = _racine;
+                _nbr_sommet = arbre._nbr_sommet;
 
                 return *this;
             }
 
             // Fusion des arbres
-            ArbreB &operator+=(ArbreB<T> *arbre)
-            {
-                Sommet<T> *nouvRacine = new Sommet(_racine->_etiquette + arbre->_racine->_etiquette);
+            ArbreB<T> &operator+=(ArbreB<T> &arbre) {
+                Sommet<T> *nouvRacine = new Sommet(_racine->_etiquette + arbre._racine->_etiquette);
                 
                 nouvRacine->_filsG = _racine;  
-                nouvRacine->_filsD = copie(arbre->_racine);          
+                nouvRacine->_filsD = copie(arbre._racine);          
                 _racine->_parent = nouvRacine;
                 _racine = nouvRacine;
-                _nbr_sommet += arbre->_nbr_sommet + 1;
+                _nbr_sommet += arbre._nbr_sommet + 1;
                 
                 return *this;
             }
@@ -91,13 +98,13 @@
             // }
             
             // Ajout d'une valeur à gauche
-            ArbreB &operator<(const T &val) {
+            ArbreB<T> &operator<(const T &val) {
                 ajoutG(val);
                 return *this;
             }
             
             // Ajout d'une valeur à droite
-            ArbreB &operator>(const T &val) {
+            ArbreB<T> &operator>(const T &val) {
                 ajoutD(val);
                 return *this;
             }
@@ -121,7 +128,7 @@
             }
 
             delete racine;
-            racine = NULL;
+            racine = nullptr;
         }
     }
 
@@ -191,8 +198,7 @@
             recherche(sommetRacine->_filsD, val, existe);
         }
 
-        if (sommetRacine->_etiquette == val)
-        {
+        if (sommetRacine->_etiquette == val) {
             existe = true;
         }
         
@@ -267,8 +273,7 @@
     void ArbreB<T>::tout_supprimer() {
         _sCourant = _racine;
         
-        if (_nbr_sommet > 0)
-        {
+        if (_nbr_sommet > 0) {
             if (_racine->_filsG != nullptr) {
                 supprimer(_racine->_filsG);
             }
