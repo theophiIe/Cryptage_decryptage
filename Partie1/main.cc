@@ -65,16 +65,27 @@ int main(int argc, char const *argv[]) {
     std::cout<< "\n\t#### Parcours Préfixe A Fusionné : ####"  << std::endl;
     a.parcours_prefixe();
     
-    a = b;
-    std::cout<< "\n\t#### Parcours Préfixe A = B : ####"  << std::endl;
-    a.parcours_prefixe();
+    // a = b;
+    // std::cout<< "\n\t#### Parcours Préfixe A = B : ####"  << std::endl;
+    // a.parcours_prefixe();
 
-    a.estPrensent(7) ? std::cout<< "TRUE" << std::endl : std::cout<< "FALSE"  << std::endl;
-    a.estPrensent(8) ? std::cout<< "TRUE" << std::endl : std::cout<< "FALSE"  << std::endl;
+    // a.estPrensent(7) ? std::cout<< "TRUE" << std::endl : std::cout<< "FALSE"  << std::endl;
+    // a.estPrensent(8) ? std::cout<< "TRUE" << std::endl : std::cout<< "FALSE"  << std::endl;
 
     // ArbreB<int> d(a);
     // std::cout<< "\n\t#### Parcours Préfixe D = A : ####"  << std::endl;
     // d.parcours_prefixe();
+    
+    a.remonter_racine();
+    std::cout << a.getEtiquette() << std::endl;
+    a.deplacementG();
+    std::cout << a.getEtiquette() << std::endl;
+    
+    a.decomposition(b);
+    std::cout<< "\n\t#### Parcours Préfixe A apres decomp : ####"  << std::endl;
+    a.parcours_prefixe();
+    std::cout<< "\n\t#### Parcours Préfixe B apres decomp : ####"  << std::endl;
+    b.parcours_prefixe();
 
     std::cout<< "ALED"  << std::endl;
     // c.parcours_infixe();

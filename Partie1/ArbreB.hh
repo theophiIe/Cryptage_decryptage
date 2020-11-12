@@ -10,7 +10,6 @@
             int _nbr_sommet;
 
             inline void supprimer(Sommet<T> *racine);
-            inline void decomposition(Sommet<T> *racine);
             inline void prefixe(Sommet<T> *sommetRacine);
             inline void infixe(Sommet<T> *sommetRacine);
             inline void postfixe(Sommet<T> *sommetRacine);
@@ -59,6 +58,8 @@
             void remonter_racine() { _sCourant = _racine; }
 
             bool estPrensent(const T &val) { bool existe = false; return recherche(_racine, val, existe) ? true : false; }
+
+            inline void decomposition(ArbreB<T> &arbre);
 
             inline void tout_supprimer();
             bool estVide() { return (_racine == nullptr && _sCourant == nullptr) ? true : false; }
@@ -141,18 +142,6 @@
             std::cout<<"La racine est vide, on ne peut la supprimer"<<std::endl;
         }
     }
-    
-    // suppression dans le père du sommet pointé du lien vers le sommet fils donné
-    
-    template<typename T>
-    void decomposition(Sommet<T> *racine) {
-        if (racine != nullptr) {
-            //remonter();
-            //c'est super chiant, remonter s'utilise avec un arbre, or il faut
-            //prendre un sommet en paramettre
-        }
-
-    }
 
     //parcours préfixe d'un arbre donné
 
@@ -213,6 +202,7 @@
 
             newSommet->_filsG = newGauche;
             newSommet->_filsD= newDroit;
+            _nbr_sommet++;
 
             return newSommet;
         }
@@ -309,6 +299,33 @@
 
         else {
             std::cout << "Vous ne pouvez plus remonter on est à la racine" << std::endl;
+        }
+    }
+
+    // suppression dans le père du sommet pointé du lien vers le sommet fils donné
+    
+    template<typename T>
+    void ArbreB<T>::decomposition(ArbreB<T> &arbre) {
+        if (_racine == nullptr) {
+            std::cout << "L'arbre est vide impossible de faire une décomposition" << std::endl;
+            return;
+        }
+
+        // Probleme de leak à corriger
+        if (_sCourant->_etiquette != _racine->_etiquette) {
+            arbre.tout_supprimer();
+            arbre._racine = copie(_sCourant);
+            arbre._sCourant = arbre._racine;
+
+            supprimer(_sCourant);
+            
+            _sCourant = _racine;
+            _racine->_filsG = nullptr;
+        }
+
+        else {
+            std::cout << "Impossible de faire une decomposition depuis la racine" << std::endl;
+            return;
         }
     }
 
