@@ -19,6 +19,7 @@ int main(int argc, char const *argv[]) {
     // a < 16;
     a.ajoutG(5);
     a.ajoutG(10);
+    a.setEtiquette(8);
     a.remonter_racine();
     a.ajoutD(2);
 

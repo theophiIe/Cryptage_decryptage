@@ -35,8 +35,11 @@
                 }
             }
 
-            int getEtiquette() { return _sCourant->_etiquette; }
-            int getNbrSommet() { return _nbr_sommet; }
+            int getEtiquette() const { return _sCourant->_etiquette; }
+            void setEtiquette(const T &val) { _sCourant->_etiquette = val; }
+            int getNbrSommet() const { return _nbr_sommet; }
+
+            // Ne pas garder ou mettre en privé
             Sommet<T> *getRacine() { return _racine; }
 
             // parcours de l'arbre
@@ -149,7 +152,7 @@
             //prendre un sommet en paramettre
         }
 
-    };
+    }
 
     //parcours préfixe d'un arbre donné
 
