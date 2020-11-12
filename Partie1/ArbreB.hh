@@ -10,7 +10,7 @@
             int _nbr_sommet;
 
             inline void supprimer(Sommet<T> *racine);
-
+            inline void decomposition(Sommet<T> *racine);
             inline void prefixe(Sommet<T> *sommetRacine);
             inline void infixe(Sommet<T> *sommetRacine);
             inline void postfixe(Sommet<T> *sommetRacine);
@@ -115,6 +115,8 @@
             // }
     };    
 
+    //Suppression d'un sommet 
+
     template<typename T>
     void ArbreB<T>::supprimer(Sommet<T> *racine) {
         if (racine != nullptr)
@@ -130,7 +132,26 @@
             delete racine;
             racine = nullptr;
         }
+
+        //gestion d'erreur a ajouter ?
+        else {
+            std::cout<<"La racine est vide, on ne peut la supprimer"<<std::endl;
+        }
     }
+    
+    // suppression dans le père du sommet pointé du lien vers le sommet fils donné
+    
+    template<typename T>
+    void decomposition(Sommet<T> *racine) {
+        if (racine != nullptr) {
+            //remonter();
+            //c'est super chiant, remonter s'utilise avec un arbre, or il faut
+            //prendre un sommet en paramettre
+        }
+
+    };
+
+    //parcours préfixe d'un arbre donné
 
     template<typename T>
     void ArbreB<T>::prefixe(Sommet<T> *sommetRacine) {
@@ -143,6 +164,8 @@
             prefixe(sommetRacine->_filsD);
         }
     }
+
+    //parcours infixe d'un arbre donné
 
     template<typename T>
     void ArbreB<T>::infixe(Sommet<T> *sommetRacine) {
@@ -157,6 +180,8 @@
         }
     }
 
+    //parcours postfixe/sufixe d'un arbre donné
+
     template<typename T>
     void ArbreB<T>::postfixe(Sommet<T> *sommetRacine) {
         if (sommetRacine->_filsG != nullptr) {
@@ -170,6 +195,8 @@
         std::cout<< "Etiquette : " << sommetRacine->_etiquette << std::endl;
     }
     
+    //Copie d'un arbre donné, on retourne le sommet du nouvel arbre
+
     template<typename T>
     Sommet<T> *ArbreB<T>::copie(Sommet<T> *node) {
         if (node == nullptr) {
@@ -188,6 +215,8 @@
         }
     }
 
+    //Fonction de recherche d'un etiquette, retourne un booléen en fonction du résultat
+
     template<typename T>
     bool ArbreB<T>::recherche(Sommet<T> *sommetRacine, const T &val, bool &existe) {
         if (sommetRacine->_filsG != nullptr) {
@@ -204,6 +233,8 @@
         
         return existe;
     }
+
+    //ajoute un sommet fils gauche à la racine donnée
 
     template<typename T>
     void ArbreB<T>::ajoutG(const T &val) {
@@ -223,6 +254,8 @@
             _nbr_sommet++;
         }
     }
+
+    //ajoute un sommet fils droit à la racine donné
 
     template<typename T>
     void ArbreB<T>::ajoutD(const T &val) {
@@ -244,6 +277,8 @@
         }
     }
 
+    //Permet de se rendre dans le fils gauche si celui-ci existe
+
     template<typename T>
     void ArbreB<T>::deplacementG() {
         if (_sCourant->_filsG != nullptr) {
@@ -251,12 +286,17 @@
         }
     }
 
+    //Permet de se rendre dans le fils droit si celui-ci existe
+
+
     template<typename T>
     void ArbreB<T>::deplacementD() {
         if (_sCourant->_filsD != nullptr) {
             _sCourant = _sCourant->_filsD;
         }
     }
+
+    //Permet de se rendre dans le père si le sommet n'est pas une racine
 
     template<typename T>
     void ArbreB<T>::remonter() {
@@ -268,6 +308,8 @@
             std::cout << "Vous ne pouvez plus remonter on est à la racine" << std::endl;
         }
     }
+
+    //supression totale de l'arbre
 
     template<typename T>
     void ArbreB<T>::tout_supprimer() {
