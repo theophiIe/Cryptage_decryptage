@@ -92,15 +92,6 @@
                 return *this;
             }
             
-            // Fusion des arbres sans affectation
-            // ArbreB &operator+(ArbreB &arbre) {
-            //     ArbreB<T> *arbreFusionne;
-            //     arbreFusionne->_racine->_filsG;
-            //     arbreFusionne->_racine->_filsD;
-
-            //     return *arbreFusionne;
-            // }
-            
             // Ajout d'une valeur à gauche
             ArbreB<T> &operator<(const T &val) {
                 ajoutG(val);
@@ -112,11 +103,6 @@
                 ajoutD(val);
                 return *this;
             }
-            
-            // Affiche de l'arbre (Objectif afficher dans l'IG)
-            // friend std::ostream &operator<<(std::ostream &flux, ArbreB &arbre){
-
-            // }
     };    
 
     //Suppression d'un sommet 
@@ -316,11 +302,6 @@
             arbre.tout_supprimer();
             arbre._racine = copie(_sCourant);
             arbre._sCourant = arbre._racine;
-
-            supprimer(_sCourant);
-            
-            _sCourant = _racine;
-            _racine->_filsG = nullptr;
         }
 
         else {
