@@ -145,3 +145,24 @@ void testDecompositionArbre() {
     std::cout<< "\nParcours Prefixe B :"  << std::endl;
     b.parcours_prefixe();
 }
+
+void testAjoutAuto() {
+    std::cout<< "\n\t#### Test ajout automatiquement par rapport au poid de l'étiquette : ####"  << std::endl;
+    ArbreB<int> a;
+    a.ajoutAuto(5);
+    a.ajoutAuto(9);
+    a.ajoutAuto(3);
+    a.ajoutAuto(2);
+    a.ajoutAuto(4);
+    a.ajoutAuto(15);
+    a.ajoutAuto(7);
+
+    std::cout<< "\nParcours Préfixe A :"  << std::endl;
+    a.parcours_prefixe();
+
+    std::cout<< "\nParcours Postfixe A :"  << std::endl;
+    a.parcours_postfixe();
+
+    std::cout<< "\nParcours Infixe A :"  << std::endl;
+    a.parcours_infixe();
+}

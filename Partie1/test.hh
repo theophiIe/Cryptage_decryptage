@@ -7,5 +7,6 @@ void testCopieArbre();
 void testFusionArbre();
 void testEtiquette();
 void testDecompositionArbre();
+void testAjoutAuto();
 
 #endif

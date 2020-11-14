@@ -9,6 +9,7 @@
             Sommet<T> *_sCourant;
             int _nbr_sommet;
 
+            inline void ajout(const T &val);
             inline void supprimer(Sommet<T> *racine);
             inline void prefixe(Sommet<T> *sommetRacine);
             inline void infixe(Sommet<T> *sommetRacine);
@@ -49,6 +50,7 @@
             // Ajout d'un sommet à l'arbre
             inline void ajoutG(const T &val);
             inline void ajoutD(const T &val);
+            inline void ajoutAuto(const T &val);
 
             // Pour ce déplacer (le but pouvoir ce deplacer avec les flèches dans l'IG)
             inline void deplacementG();
@@ -102,6 +104,47 @@
                 return *this;
             }
     };    
+
+    template<typename T>
+    void ArbreB<T>::ajout(const T &val) {
+        if (_racine == nullptr) {
+            Sommet<T> *s = new Sommet(val);
+            _sCourant = s;
+            _sCourant->_etiquette = val;
+            _racine = s;
+            _nbr_sommet++;
+        }
+
+        else if (val < _sCourant->_etiquette) {
+            if (_sCourant->_filsG != nullptr) {
+                deplacementG();
+                ajout(val);
+            }
+            
+            else {
+                ajoutG(val);
+            }
+        }
+
+        else if (val > _sCourant->_etiquette) {
+            if (_sCourant->_filsD != nullptr) {
+                deplacementD();
+                ajout(val);
+            }
+            
+            else {
+                ajoutD(val);
+            }
+        }
+        
+        else if (_sCourant->_etiquette == val) {
+            std::cout << "Valeur deja implémenté dans l'arbre" << std::endl;
+        }
+        
+        else {
+            std::cout << "Erreur lors de l'ajout de la valeur" << std::endl;
+        }
+    }
 
     //Suppression d'un sommet 
 
@@ -259,6 +302,18 @@
             else {
                 std::cout << "Vous ne pouvez pas créer une branche ici, une branche existe déjà" << std::endl;
             }
+        }
+    }
+
+    template<typename T>
+    void ArbreB<T>::ajoutAuto(const T &val) {
+        if (_sCourant != nullptr) {
+            remonter_racine();
+            ajout(val);
+        }
+
+        else {
+            ajout(val);
         }
     }
 

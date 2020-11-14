@@ -8,6 +8,7 @@ int main(int argc, char const *argv[]) {
     testFusionArbre();
     testEtiquette();
     //testDecompositionArbre();
+    testAjoutAuto();
     
     return 0;
 }
