@@ -225,12 +225,18 @@
         }
 
         else {
-            Sommet<T> *s = new Sommet(val);
-            s->_parent = _sCourant;
-            _sCourant->_filsG = s;
-            _sCourant->_parent = _sCourant;
-            _sCourant = s;
-            _nbr_sommet++;
+            if (_sCourant->_filsG == nullptr) {
+                Sommet<T> *s = new Sommet(val);
+                s->_parent = _sCourant;
+                _sCourant->_filsG = s;
+                _sCourant->_parent = _sCourant;
+                _sCourant = s;
+                _nbr_sommet++;
+            }
+
+            else {
+                std::cout << "Vous ne pouvez pas créer une branche ici, une branche existe déjà" << std::endl;
+            }
         }
     }
 
@@ -247,12 +253,18 @@
         }
 
         else {
-            Sommet<T> *s = new Sommet(val);
-            s->_parent = _sCourant;
-            _sCourant->_filsD = s;
-            _sCourant->_parent = _sCourant;
-            _sCourant = s;
-            _nbr_sommet++;
+            if (_sCourant->_filsD == nullptr) {
+                Sommet<T> *s = new Sommet(val);
+                s->_parent = _sCourant;
+                _sCourant->_filsD = s;
+                _sCourant->_parent = _sCourant;
+                _sCourant = s;
+                _nbr_sommet++;
+            }
+            
+            else {
+                std::cout << "Vous ne pouvez pas créer une branche ici, une branche existe déjà" << std::endl;
+            }
         }
     }
 
@@ -263,6 +275,11 @@
         if (_sCourant->_filsG != nullptr) {
             _sCourant = _sCourant->_filsG;
         }
+
+        else
+        {
+            std::cout << "Impossible de ce déplacer à gauche vous êtes sur une feuille" << std::endl;
+        }
     }
 
     //Permet de se rendre dans le fils droit si celui-ci existe
@@ -272,6 +289,11 @@
     void ArbreB<T>::deplacementD() {
         if (_sCourant->_filsD != nullptr) {
             _sCourant = _sCourant->_filsD;
+        }
+
+        else
+        {
+            std::cout << "Impossible de ce déplacer à droite vous êtes sur une feuille" << std::endl;
         }
     }
 

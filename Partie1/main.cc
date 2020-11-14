@@ -7,7 +7,7 @@ int main(int argc, char const *argv[]) {
     testCopieArbre();
     testFusionArbre();
     testEtiquette();
-    testDecompositionArbre();
+    //testDecompositionArbre();
     
     return 0;
 }
