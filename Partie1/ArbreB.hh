@@ -54,7 +54,6 @@
             inline void deplacementG();
             inline void deplacementD();
 
-            inline void remonter();
             void remonter_racine() { _sCourant = _racine; }
 
             bool estPrensent(const T &val) { bool existe = false; return recherche(_racine, val, existe) ? true : false; }
@@ -84,8 +83,7 @@
                 Sommet<T> *nouvRacine = new Sommet(_racine->_etiquette + arbre._racine->_etiquette);
                 
                 nouvRacine->_filsG = _racine;  
-                nouvRacine->_filsD = copie(arbre._racine);          
-                _racine->_parent = nouvRacine;
+                nouvRacine->_filsD = copie(arbre._racine);
                 _racine = nouvRacine;
                 _nbr_sommet += arbre._nbr_sommet + 1;
                 
@@ -227,9 +225,7 @@
         else {
             if (_sCourant->_filsG == nullptr) {
                 Sommet<T> *s = new Sommet(val);
-                s->_parent = _sCourant;
                 _sCourant->_filsG = s;
-                _sCourant->_parent = _sCourant;
                 _sCourant = s;
                 _nbr_sommet++;
             }
@@ -255,9 +251,7 @@
         else {
             if (_sCourant->_filsD == nullptr) {
                 Sommet<T> *s = new Sommet(val);
-                s->_parent = _sCourant;
                 _sCourant->_filsD = s;
-                _sCourant->_parent = _sCourant;
                 _sCourant = s;
                 _nbr_sommet++;
             }
@@ -276,8 +270,7 @@
             _sCourant = _sCourant->_filsG;
         }
 
-        else
-        {
+        else {
             std::cout << "Impossible de ce déplacer à gauche vous êtes sur une feuille" << std::endl;
         }
     }
@@ -291,22 +284,8 @@
             _sCourant = _sCourant->_filsD;
         }
 
-        else
-        {
-            std::cout << "Impossible de ce déplacer à droite vous êtes sur une feuille" << std::endl;
-        }
-    }
-
-    //Permet de se rendre dans le père si le sommet n'est pas une racine
-
-    template<typename T>
-    void ArbreB<T>::remonter() {
-        if(_sCourant->_parent != nullptr) {
-            _sCourant = _sCourant->_parent;
-        }
-
         else {
-            std::cout << "Vous ne pouvez plus remonter on est à la racine" << std::endl;
+            std::cout << "Impossible de ce déplacer à droite vous êtes sur une feuille" << std::endl;
         }
     }
 

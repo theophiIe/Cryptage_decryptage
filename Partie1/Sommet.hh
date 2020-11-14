@@ -11,10 +11,9 @@
         private:
             Sommet<T> *_filsG;
             Sommet<T> *_filsD;
-            Sommet<T> *_parent;
             T _etiquette;
             
-            Sommet(const T &etiquette) : _filsG(nullptr), _filsD(nullptr), _parent(nullptr), _etiquette(etiquette) {}
+            Sommet(const T &etiquette) : _filsG(nullptr), _filsD(nullptr), _etiquette(etiquette) {}
             
     };
  
