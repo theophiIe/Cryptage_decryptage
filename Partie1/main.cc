@@ -1,7 +1,7 @@
 #include <iostream>
 #include "test.hh"
 
-int main(int argc, char const *argv[]) {
+int main() {
     testParcoursArbre();
     testSuppresionArbre();
     testCopieArbre();

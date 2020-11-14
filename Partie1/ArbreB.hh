@@ -82,7 +82,7 @@
 
             // Fusion des arbres
             ArbreB<T> &operator+=(ArbreB<T> &arbre) {
-                Sommet<T> *nouvRacine = new Sommet(_racine->_etiquette + arbre._racine->_etiquette);
+                Sommet<T> *nouvRacine = new Sommet<T>(_racine->_etiquette + arbre._racine->_etiquette);
                 
                 nouvRacine->_filsG = _racine;  
                 nouvRacine->_filsD = copie(arbre._racine);
@@ -108,7 +108,7 @@
     template<typename T>
     void ArbreB<T>::ajout(const T &val) {
         if (_racine == nullptr) {
-            Sommet<T> *s = new Sommet(val);
+            Sommet<T> *s = new Sommet<T>(val);
             _sCourant = s;
             _sCourant->_etiquette = val;
             _racine = s;
@@ -225,7 +225,7 @@
         else {
             Sommet<T> *newGauche = copie(node->_filsG);
             Sommet<T> *newDroit = copie(node->_filsD);
-            Sommet<T> *newSommet = new Sommet(node->_etiquette);
+            Sommet<T> *newSommet = new Sommet<T>(node->_etiquette);
 
             newSommet->_filsG = newGauche;
             newSommet->_filsD= newDroit;
@@ -259,7 +259,7 @@
     template<typename T>
     void ArbreB<T>::ajoutG(const T &val) {
         if (_racine == nullptr) {
-            Sommet<T> *s = new Sommet(val);
+            Sommet<T> *s = new Sommet<T>(val);
             _sCourant = s;
             _racine = s;
             _nbr_sommet++;
@@ -267,7 +267,7 @@
 
         else {
             if (_sCourant->_filsG == nullptr) {
-                Sommet<T> *s = new Sommet(val);
+                Sommet<T> *s = new Sommet<T>(val);
                 _sCourant->_filsG = s;
                 _sCourant = s;
                 _nbr_sommet++;
@@ -284,7 +284,7 @@
     template<typename T>
     void ArbreB<T>::ajoutD(const T &val) {
         if (_racine == nullptr) {
-            Sommet<T> *s = new Sommet(val);
+            Sommet<T> *s = new Sommet<T>(val);
             _sCourant = s;
             _sCourant->_etiquette = val;
             _racine = s;
@@ -293,7 +293,7 @@
 
         else {
             if (_sCourant->_filsD == nullptr) {
-                Sommet<T> *s = new Sommet(val);
+                Sommet<T> *s = new Sommet<T>(val);
                 _sCourant->_filsD = s;
                 _sCourant = s;
                 _nbr_sommet++;

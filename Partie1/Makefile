@@ -1,7 +1,7 @@
 #Makefile tmp à refaire plus tard avec des .o
 CC = g++
 EXEC = main
-CFLAGS = -std=c++17 -Wall -g
+CFLAGS = -std=c++17 -Wall -W -g
 
 all : clean compile
 	./$(EXEC)
