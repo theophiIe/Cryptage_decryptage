@@ -250,34 +250,51 @@ void testSuppressionSommet() {
     // std::cout<< "\nParcours Préfixe A apres suppression n°1"  << std::endl;
     // a.parcours_prefixe();
 
-    ArbreB<int> b;
-    b << 1;
-    b << 2;
-    b << 3;
-    b.remonter_racine();
-    b.deplacementG();
-    b >> 4;
-    b.remonter_racine();
-    b >> 5;
-    b >> 9;
-    b >> 10;
-    b.remonter_racine();
-    b.deplacementD();
-    b << 6;
-    b << 7;
-    b.remonter_racine();
-    b.deplacementD();
-    b.deplacementG();
-    b >> 8;
+    // ArbreB<int> b;
+    // b << 1;
+    // b << 2;
+    // b << 3;
+    // b.remonter_racine();
+    // b.deplacementG();
+    // b >> 4;
+    // b.remonter_racine();
+    // b >> 5;
+    // b >> 9;
+    // b >> 10;
+    // b.remonter_racine();
+    // b.deplacementD();
+    // b << 6;
+    // b << 7;
+    // b.remonter_racine();
+    // b.deplacementD();
+    // b.deplacementG();
+    // b >> 8;
 
-    b.remonter_racine();
-    b.deplacementD();
+    // b.remonter_racine();
+    // b.deplacementD();
 
-    std::cout<< "\nParcours Préfixe B :"  << std::endl;
-    b.parcours_prefixe();
+    // std::cout<< "\nParcours Préfixe B :"  << std::endl;
+    // b.parcours_prefixe();
 
-    b.supprimer_sommet();
+    // b.supprimer_sommet();
 
-    std::cout<< "\nParcours Préfixe B apres suppression n°1"  << std::endl;
-    b.parcours_prefixe();
+    // std::cout<< "\nParcours Préfixe B apres suppression n°1"  << std::endl;
+    // b.parcours_prefixe();
+
+    ArbreB<int> c;
+    c >> 1;
+    c >> 2;
+    c >> 3;
+    c.remonter_racine();
+    c << 4;
+    c << 6;
+
+    std::cout<< "\nParcours Préfixe C : "  << std::endl;
+    c.parcours_prefixe();
+
+    c.remonter_racine();
+    c.supprimer_sommet();
+
+    std::cout<< "\nParcours Préfixe C apres suppression n°1"  << std::endl;
+    c.parcours_prefixe();
 }

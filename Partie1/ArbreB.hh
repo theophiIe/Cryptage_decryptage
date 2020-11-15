@@ -488,7 +488,71 @@
     template<typename T>
     void ArbreB<T>::supprimer_sommet() {
         if (_sCourant == _racine) {
+            if (_sCourant->_filsG != nullptr && _sCourant->_filsD == nullptr) {
+                ArbreB<T> tmp;
+                tmp._racine = copie(_racine->_filsG);
+                
+                tout_supprimer();
+                _racine = tmp._racine;
+                _sCourant = _racine;
+
+                int *val{ new int(0) };
+                nbrSommet(_racine, val);
+                _nbr_sommet = *val;
+                
+                tmp.tout_supprimer();
+
+                delete val;
+            }
+
+            else if (_sCourant->_filsD != nullptr && _sCourant->_filsG == nullptr) {
+                ArbreB<T> tmp;
+                tmp._racine = copie(_racine->_filsD);
+                
+                tout_supprimer();
+                _racine = tmp._racine;
+                _sCourant = _racine;
+
+                int *val{ new int(0) };
+                nbrSommet(_racine, val);
+                _nbr_sommet = *val;
+                
+                tmp.tout_supprimer();
+
+                delete val;
+            }
             
+            else if (_sCourant->_filsG != nullptr && _sCourant->_filsD != nullptr) {
+                ArbreB<T> tmpG;
+                ArbreB<T> tmpD;
+
+                tmpG._racine = copie(_racine->_filsG);
+                tmpD._racine = copie(_racine->_filsD);
+                
+                tout_supprimer();
+                _racine = tmpG._racine;
+                _sCourant = _racine;
+
+                while (_sCourant->_filsD != nullptr)
+                {
+                    _sCourant = _sCourant->_filsD;
+                }
+                
+                _sCourant->_filsD = tmpD._racine;
+
+                int *val{ new int(0) };
+                nbrSommet(tmpG._racine, val);
+                nbrSommet(tmpD._racine, val);
+                _nbr_sommet = *val;
+                
+                tmpG.tout_supprimer();
+
+                delete val;
+            }
+
+            else {
+                std::cout << "ERR : suppression impossible l'arbre est vide" << std::endl;
+            }
         }
 
         else if (_sCourant->_filsG != nullptr && _sCourant->_filsD == nullptr) {
