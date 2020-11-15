@@ -64,6 +64,7 @@
 
             inline void decomposition(ArbreB<T> &arbre);
 
+            inline void supprimer_feuille();
             inline void tout_supprimer();
             bool estVide() { return (_racine == nullptr && _sCourant == nullptr) ? true : false; }
 
