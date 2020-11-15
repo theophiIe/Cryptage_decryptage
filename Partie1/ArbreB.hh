@@ -432,6 +432,33 @@
         }
     }
 
+    template<typename T>
+    void ArbreB<T>::supprimer_feuille() {
+        if (_sCourant->_filsG == nullptr && _sCourant->_filsD == nullptr) {
+            Sommet <T> *tmp = _racine;
+            Sommet <T> *pere = _racine;
+
+            recherchePere(tmp, _sCourant, pere);
+            
+            if (pere->_filsG->_etiquette == _sCourant->_etiquette) {
+                pere->_filsG = nullptr;
+            }
+
+            else if (pere->_filsD->_etiquette == _sCourant->_etiquette) {
+                pere->_filsD = nullptr;
+            }
+
+            delete _sCourant;
+            _nbr_sommet -= 1;
+
+        }
+        
+        else {
+            std::cout << "Ce sommet n'est pas une feuille" << std::endl;
+        }
+        
+    }
+
     //supression totale de l'arbre
 
     template<typename T>

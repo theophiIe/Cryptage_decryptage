@@ -9,6 +9,7 @@ int main() {
     testFusionArbre();
     testEtiquette();
     testDecompositionArbre();
+    testSuppressionFeuille();
     
     return 0;
 }

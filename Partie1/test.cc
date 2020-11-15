@@ -171,3 +171,32 @@ void testAjoutAuto() {
     std::cout<< "\nParcours Infixe A :"  << std::endl;
     a.parcours_infixe();
 }
+
+void testSuppressionFeuille() {
+    std::cout<< "\n\t#### Test de la suppression d'une feuille dans l'arbre : ####"  << std::endl;
+    ArbreB<int> a;
+    a.ajoutAuto(5);
+    a.ajoutAuto(3);
+    a.ajoutAuto(15);
+    a.ajoutAuto(7);
+
+    std::cout<< "\nParcours Préfixe A :"  << std::endl;
+    a.parcours_prefixe();
+
+    a.remonter_racine();
+    a.deplacementG();
+
+    // on supprime la feuille : 3
+    a.supprimer_feuille();
+    std::cout<< "\nParcours Préfixe A :"  << std::endl;
+    a.parcours_prefixe();
+
+    a.remonter_racine();
+    a.deplacementD();
+    a.deplacementG();
+
+    // on supprime la feuille : 7
+    a.supprimer_feuille();
+    std::cout<< "\nParcours Préfixe A :"  << std::endl;
+    a.parcours_prefixe();
+}

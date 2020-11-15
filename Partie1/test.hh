@@ -8,5 +8,6 @@ void testFusionArbre();
 void testEtiquette();
 void testDecompositionArbre();
 void testAjoutAuto();
+void testSuppressionFeuille();
 
 #endif
