@@ -3,12 +3,12 @@
 
 int main() {
     testParcoursArbre();
+    testAjoutAuto();
     testSuppresionArbre();
     testCopieArbre();
     testFusionArbre();
     testEtiquette();
-    //testDecompositionArbre();
-    testAjoutAuto();
+    testDecompositionArbre();
     
     return 0;
 }

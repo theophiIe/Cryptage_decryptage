@@ -16,6 +16,7 @@
             inline void postfixe(Sommet<T> *sommetRacine);
             inline Sommet<T> *copie(Sommet<T> *node);
             inline bool recherche(Sommet<T> *sommetRacine, const T &val, bool &existe);
+            inline void nbrSommet(Sommet<T> *sommetRacine, int *&val);
 
         public:
             ArbreB() : _racine(nullptr), _sCourant(nullptr), _nbr_sommet(0) {}
@@ -254,6 +255,19 @@
         return existe;
     }
 
+    template<typename T>
+    void ArbreB<T>::nbrSommet(Sommet<T> *sommetRacine, int *&val) {
+        *val += 1;
+
+        if (sommetRacine->_filsG != nullptr) {
+            nbrSommet(sommetRacine->_filsG, val);
+        }
+
+        if (sommetRacine->_filsD != nullptr) {
+            nbrSommet(sommetRacine->_filsD, val);
+        }        
+    }
+
     //ajoute un sommet fils gauche à la racine donnée
 
     template<typename T>
@@ -358,6 +372,14 @@
             arbre.tout_supprimer();
             arbre._racine = copie(_sCourant);
             arbre._sCourant = arbre._racine;
+            
+            int *val{new int(0)};
+
+            arbre.nbrSommet(arbre._racine, val);
+            arbre._nbr_sommet = *val;
+
+            delete val;
+            val = nullptr;
         }
 
         else {
