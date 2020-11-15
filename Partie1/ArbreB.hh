@@ -95,13 +95,13 @@
             }
             
             // Ajout d'une valeur à gauche
-            ArbreB<T> &operator<(const T &val) {
+            ArbreB<T> &operator<<(const T &val) {
                 ajoutG(val);
                 return *this;
             }
             
             // Ajout d'une valeur à droite
-            ArbreB<T> &operator>(const T &val) {
+            ArbreB<T> &operator>>(const T &val) {
                 ajoutD(val);
                 return *this;
             }
