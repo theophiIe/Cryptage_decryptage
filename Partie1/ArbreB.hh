@@ -14,9 +14,10 @@
             inline void prefixe(Sommet<T> *sommetRacine);
             inline void infixe(Sommet<T> *sommetRacine);
             inline void postfixe(Sommet<T> *sommetRacine);
-            inline Sommet<T> *copie(Sommet<T> *node);
+            inline Sommet<T> *copie(Sommet<T> *sommet);
             inline bool recherche(Sommet<T> *sommetRacine, const T &val, bool &existe);
             inline void nbrSommet(Sommet<T> *sommetRacine, int *&val);
+            inline void recherchePere(Sommet<T> *courant, Sommet<T> *recherche, Sommet<T> *&pere);
 
         public:
             ArbreB() : _racine(nullptr), _sCourant(nullptr), _nbr_sommet(0) {}
@@ -218,15 +219,15 @@
     //Copie d'un arbre donné, on retourne le sommet du nouvel arbre
 
     template<typename T>
-    Sommet<T> *ArbreB<T>::copie(Sommet<T> *node) {
-        if (node == nullptr) {
+    Sommet<T> *ArbreB<T>::copie(Sommet<T> *sommet) {
+        if (sommet == nullptr) {
             return nullptr;
         }
         
         else {
-            Sommet<T> *newGauche = copie(node->_filsG);
-            Sommet<T> *newDroit = copie(node->_filsD);
-            Sommet<T> *newSommet = new Sommet<T>(node->_etiquette);
+            Sommet<T> *newGauche = copie(sommet->_filsG);
+            Sommet<T> *newDroit = copie(sommet->_filsD);
+            Sommet<T> *newSommet = new Sommet<T>(sommet->_etiquette);
 
             newSommet->_filsG = newGauche;
             newSommet->_filsD= newDroit;
@@ -267,6 +268,32 @@
             nbrSommet(sommetRacine->_filsD, val);
         }        
     }
+
+    template<typename T>
+    void ArbreB<T>::recherchePere(Sommet<T> *courant, Sommet<T> *recherche, Sommet<T> *&pere) {
+        if (courant->_filsG != nullptr) {
+            if (courant->_filsG->_etiquette != recherche->_etiquette) {
+                recherchePere(courant->_filsG, recherche, pere);
+            }
+
+            else {
+                pere = courant;
+            }
+            
+        }
+
+        if (courant->_filsD != nullptr) {
+            if (courant->_filsD->_etiquette != recherche->_etiquette) {
+                recherchePere(courant->_filsD, recherche, pere);
+            }
+            
+            else {
+                pere = courant;
+            }
+            
+        }
+    }
+    
 
     //ajoute un sommet fils gauche à la racine donnée
 
@@ -367,7 +394,6 @@
             return;
         }
 
-        // Probleme de leak à corriger
         if (_sCourant->_etiquette != _racine->_etiquette) {
             arbre.tout_supprimer();
             arbre._racine = copie(_sCourant);
@@ -377,6 +403,23 @@
 
             arbre.nbrSommet(arbre._racine, val);
             arbre._nbr_sommet = *val;
+
+            Sommet <T> *tmp = _racine;
+            Sommet <T> *pere = _racine;
+
+            recherchePere(tmp, _sCourant, pere);
+            
+            if (pere->_filsG->_etiquette == _sCourant->_etiquette) {
+                pere->_filsG = nullptr;
+            }
+
+            else if (pere->_filsD->_etiquette == _sCourant->_etiquette) {
+                pere->_filsD = nullptr;
+            }
+            
+            supprimer(_sCourant);
+            _sCourant = _racine;
+            _nbr_sommet -= *val;
 
             delete val;
             val = nullptr;
