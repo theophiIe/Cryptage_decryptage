@@ -199,4 +199,19 @@ void testSuppressionFeuille() {
     a.supprimer_feuille();
     std::cout<< "\nParcours Préfixe A :"  << std::endl;
     a.parcours_prefixe();
+
+    a.remonter_racine();
+    a.deplacementD();
+
+    // on supprime la feuille : 15
+    a.supprimer_feuille();
+    std::cout<< "\nParcours Préfixe A :"  << std::endl;
+    a.parcours_prefixe();
+
+    a.remonter_racine();
+
+    // on supprime la feuille : racine : 5
+    a.supprimer_feuille();
+    std::cout<< "\nParcours Préfixe A :"  << std::endl;
+    a.parcours_prefixe();
 }

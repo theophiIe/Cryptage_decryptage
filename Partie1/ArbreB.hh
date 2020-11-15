@@ -177,13 +177,19 @@
 
     template<typename T>
     void ArbreB<T>::prefixe(Sommet<T> *sommetRacine) {
-        std::cout << "Etiquette : " << sommetRacine->_etiquette << std::endl;
+        if (sommetRacine != nullptr) {
+            std::cout << "Etiquette : " << sommetRacine->_etiquette << std::endl;
 
-        if (sommetRacine->_filsG != nullptr) {
-            prefixe(sommetRacine->_filsG);
+            if (sommetRacine->_filsG != nullptr) {
+                prefixe(sommetRacine->_filsG);
+            }
+            if (sommetRacine->_filsD != nullptr) {
+                prefixe(sommetRacine->_filsD);
+            }
         }
-        if (sommetRacine->_filsD != nullptr) {
-            prefixe(sommetRacine->_filsD);
+
+        else {
+            std::cout << "ERR : parcours impossible l'arbre est vide" << std::endl;
         }
     }
 
@@ -191,30 +197,42 @@
 
     template<typename T>
     void ArbreB<T>::infixe(Sommet<T> *sommetRacine) {
-        if (sommetRacine->_filsG != nullptr) {
-            infixe(sommetRacine->_filsG);
+        if (sommetRacine != nullptr) {
+            if (sommetRacine->_filsG != nullptr) {
+                infixe(sommetRacine->_filsG);
+            }
+
+            std::cout<< "Etiquette : " << sommetRacine->_etiquette << std::endl;
+
+            if (sommetRacine->_filsD != nullptr) {
+                infixe(sommetRacine->_filsD);
+            }
         }
 
-        std::cout<< "Etiquette : " << sommetRacine->_etiquette << std::endl;
-
-        if (sommetRacine->_filsD != nullptr) {
-            infixe(sommetRacine->_filsD);
-        }
+        else {
+            std::cout << "ERR : parcours impossible l'arbre est vide" << std::endl;
+        }        
     }
 
     //parcours postfixe/sufixe d'un arbre donné
 
     template<typename T>
     void ArbreB<T>::postfixe(Sommet<T> *sommetRacine) {
-        if (sommetRacine->_filsG != nullptr) {
-            postfixe(sommetRacine->_filsG);
+        if (sommetRacine != nullptr) {
+            if (sommetRacine->_filsG != nullptr) {
+                postfixe(sommetRacine->_filsG);
+            }
+
+            if (sommetRacine->_filsD != nullptr) {
+                postfixe(sommetRacine->_filsD);
+            }
+
+            std::cout<< "Etiquette : " << sommetRacine->_etiquette << std::endl;
         }
 
-        if (sommetRacine->_filsD != nullptr) {
-            postfixe(sommetRacine->_filsD);
+        else {
+            std::cout << "ERR : parcours impossible l'arbre est vide" << std::endl;
         }
-
-        std::cout<< "Etiquette : " << sommetRacine->_etiquette << std::endl;
     }
     
     //Copie d'un arbre donné, on retourne le sommet du nouvel arbre
@@ -434,17 +452,24 @@
 
     template<typename T>
     void ArbreB<T>::supprimer_feuille() {
-        if (_sCourant->_filsG == nullptr && _sCourant->_filsD == nullptr) {
+        if (_sCourant == _racine && (_sCourant->_filsG == nullptr && _sCourant->_filsD == nullptr)) {
+            delete _racine;
+            _racine = nullptr;
+
+            _nbr_sommet = 0;
+        }
+        
+        else if (_sCourant->_filsG == nullptr && _sCourant->_filsD == nullptr) {
             Sommet <T> *tmp = _racine;
             Sommet <T> *pere = _racine;
 
             recherchePere(tmp, _sCourant, pere);
             
-            if (pere->_filsG->_etiquette == _sCourant->_etiquette) {
+            if (pere->_filsG != nullptr && pere->_filsG->_etiquette == _sCourant->_etiquette) {
                 pere->_filsG = nullptr;
             }
 
-            else if (pere->_filsD->_etiquette == _sCourant->_etiquette) {
+            else if (pere->_filsD != nullptr && pere->_filsD->_etiquette == _sCourant->_etiquette) {
                 pere->_filsD = nullptr;
             }
 
