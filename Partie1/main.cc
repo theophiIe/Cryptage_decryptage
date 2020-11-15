@@ -10,6 +10,7 @@ int main() {
     testEtiquette();
     testDecompositionArbre();
     testSuppressionFeuille();
+    testSuppressionSommet();
     
     return 0;
 }

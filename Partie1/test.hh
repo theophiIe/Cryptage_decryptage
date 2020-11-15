@@ -9,5 +9,6 @@ void testEtiquette();
 void testDecompositionArbre();
 void testAjoutAuto();
 void testSuppressionFeuille();
+void testSuppressionSommet();
 
 #endif

@@ -65,6 +65,7 @@
             inline void decomposition(ArbreB<T> &arbre);
 
             inline void supprimer_feuille();
+            inline void supprimer_sommet();
             inline void tout_supprimer();
             bool estVide() { return (_racine == nullptr && _sCourant == nullptr) ? true : false; }
 
@@ -482,6 +483,82 @@
             std::cout << "Ce sommet n'est pas une feuille" << std::endl;
         }
         
+    }
+
+    template<typename T>
+    void ArbreB<T>::supprimer_sommet() {
+        if (_sCourant == _racine) {
+            
+        }
+
+        else if (_sCourant->_filsG != nullptr && _sCourant->_filsD == nullptr) {
+            Sommet <T> *tmp = _racine;
+            Sommet <T> *pere = _racine;
+
+            recherchePere(tmp, _sCourant, pere);
+            
+            if (pere->_filsG != nullptr && pere->_filsG->_etiquette == _sCourant->_etiquette) {
+                pere->_filsG = _sCourant->_filsG;
+            }
+
+            else if (pere->_filsD != nullptr && pere->_filsD->_etiquette == _sCourant->_etiquette) {
+                pere->_filsD = _sCourant->_filsG;
+            }
+
+            _sCourant = _racine;
+            _nbr_sommet -= 1;
+        }
+
+        else if (_sCourant->_filsD != nullptr && _sCourant->_filsG == nullptr) {
+            Sommet <T> *tmp = _racine;
+            Sommet <T> *pere = _racine;
+
+            recherchePere(tmp, _sCourant, pere);
+            
+            if (pere->_filsG != nullptr && pere->_filsG->_etiquette == _sCourant->_etiquette) {
+                pere->_filsG = _sCourant->_filsD;
+            }
+
+            else if (pere->_filsD != nullptr && pere->_filsD->_etiquette == _sCourant->_etiquette) {
+                pere->_filsD = _sCourant->_filsD;
+            }
+
+            delete _sCourant;
+            _sCourant = _racine;
+            _nbr_sommet -= 1;
+        }
+        
+        else if (_sCourant->_filsD == nullptr && _sCourant->_filsG == nullptr) {
+            supprimer_feuille();
+        }
+        
+        else {
+            Sommet <T> *tmp = _racine;
+            Sommet <T> *pere = _racine;
+
+            recherchePere(tmp, _sCourant, pere);
+
+            if (pere->_filsG != nullptr && pere->_filsG->_etiquette == _sCourant->_etiquette) {
+                pere->_filsG = _sCourant->_filsG;
+            }
+
+            else if (pere->_filsD != nullptr && pere->_filsD->_etiquette == _sCourant->_etiquette) {
+                pere->_filsD = _sCourant->_filsG;
+            }
+
+            tmp = _sCourant->_filsD;
+            Sommet <T> *tmpCourant = _sCourant->_filsG;
+
+            while (tmpCourant->_filsD != nullptr) {
+                tmpCourant = tmpCourant->_filsD;
+            }
+
+            tmpCourant->_filsD = tmp;            
+
+            delete _sCourant;
+            _sCourant = _racine;
+            _nbr_sommet -= 1;
+        }
     }
 
     //supression totale de l'arbre

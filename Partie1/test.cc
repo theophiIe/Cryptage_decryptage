@@ -215,3 +215,69 @@ void testSuppressionFeuille() {
     std::cout<< "\nParcours Préfixe A :"  << std::endl;
     a.parcours_prefixe();
 }
+
+void testSuppressionSommet() {
+    // std::cout<< "\n\t#### Test de la suppression d'un Sommet dans l'arbre : ####"  << std::endl;
+    // ArbreB<int> a;
+    // a << 1;
+    // a << 2;
+    // a.remonter_racine();
+    // a >> 3;
+
+    // std::cout<< "\nParcours Préfixe A :" << std::endl;
+    // a.parcours_prefixe();
+
+    // a.remonter_racine();
+    // a.deplacementG();
+    // a.supprimer_sommet();
+
+    // std::cout<< "\nParcours Préfixe A apres suppression n°1"  << std::endl;
+    // a.parcours_prefixe();
+
+    // a.remonter_racine();
+    // a << 2;
+    // a.remonter_racine();
+    // a.deplacementD();
+    // a >> 5;
+
+    // std::cout<< "\nParcours Préfixe A apres suppression n°1"  << std::endl;
+    // a.parcours_prefixe();
+
+    // a.remonter_racine();
+    // a.deplacementD();
+    // a.supprimer_sommet();
+
+    // std::cout<< "\nParcours Préfixe A apres suppression n°1"  << std::endl;
+    // a.parcours_prefixe();
+
+    ArbreB<int> b;
+    b << 1;
+    b << 2;
+    b << 3;
+    b.remonter_racine();
+    b.deplacementG();
+    b >> 4;
+    b.remonter_racine();
+    b >> 5;
+    b >> 9;
+    b >> 10;
+    b.remonter_racine();
+    b.deplacementD();
+    b << 6;
+    b << 7;
+    b.remonter_racine();
+    b.deplacementD();
+    b.deplacementG();
+    b >> 8;
+
+    b.remonter_racine();
+    b.deplacementD();
+
+    std::cout<< "\nParcours Préfixe B :"  << std::endl;
+    b.parcours_prefixe();
+
+    b.supprimer_sommet();
+
+    std::cout<< "\nParcours Préfixe B apres suppression n°1"  << std::endl;
+    b.parcours_prefixe();
+}
