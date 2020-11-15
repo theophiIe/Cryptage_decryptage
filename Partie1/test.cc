@@ -7,8 +7,8 @@ void testParcoursArbre() {
     std::cout<< "\n\t#### Test parcours d'arbre : ####"  << std::endl;
     ArbreB<int> a;
     a.ajoutG(8);
-    a < 5;
-    a > 7;
+    a << 5;
+    a >> 7;
     a.remonter_racine();
     a.ajoutD(6);
     a.ajoutD(1);
@@ -75,22 +75,22 @@ void testCopieArbre() {
 void testFusionArbre() {
     std::cout<< "\n\t#### Test de la fusion d'arbre : ####"  << std::endl;
     ArbreB<int> a;
-    a < 8;
-    a < 5;
+    a << 8;
+    a << 5;
     a.remonter_racine();
-    a > 7;
+    a >> 7;
     
     std::cout<< "\nParcours Postfixe A :"  << std::endl;
     a.parcours_prefixe();
 
     ArbreB<int> b;
-    b > 6;
-    b > 4;
+    b >> 6;
+    b >> 4;
     b.remonter_racine();
-    b < 9;
+    b << 9;
     b.remonter_racine();
     b.deplacementD();
-    b < 7;
+    b << 7;
 
     std::cout<< "\nParcours Prefixe B :"  << std::endl;
     b.parcours_prefixe();
@@ -104,10 +104,10 @@ void testFusionArbre() {
 void testEtiquette() {
     std::cout<< "\n\t#### Test de la modification d'une étiquette et de sa présence : ####"  << std::endl;
     ArbreB<int> a;
-    a < 8;
-    a < 5;
+    a << 8;
+    a << 5;
     a.remonter_racine();
-    a > 7;
+    a >> 7;
 
     std::cout<< "\nParcours Prefixe A :"  << std::endl;
     a.parcours_prefixe();
@@ -127,20 +127,25 @@ void testEtiquette() {
 void testDecompositionArbre() {
     std::cout<< "\n\t#### Test de la décomposition d'un arbre : ####"  << std::endl;
     ArbreB<int> a;
-    a < 8;
-    a < 5;
-    a < 3;
+    a << 8;
+    a << 5;
+    a << 3;
+    a << 9;
     a.remonter_racine();
-    a > 7;
+    a >> 7;
 
     std::cout<< "\nParcours Prefixe A :"  << std::endl;
     a.parcours_prefixe();
     
     a.remonter_racine();
+    //a.deplacementD();
     a.deplacementG();
 
     ArbreB<int> b;
     a.decomposition(b);
+
+    std::cout<< "\nParcours Prefixe A :"  << std::endl;
+    a.parcours_prefixe();
 
     std::cout<< "\nParcours Prefixe B :"  << std::endl;
     b.parcours_prefixe();
