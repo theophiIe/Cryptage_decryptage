@@ -276,6 +276,7 @@
         return existe;
     }
 
+    //Fonction qui compte la nombre de sommets dans l'arbre
     template<typename T>
     void ArbreB<T>::nbrSommet(Sommet<T> *sommetRacine, int *&val) {
         *val += 1;
@@ -289,6 +290,7 @@
         }        
     }
 
+    // Fonction utilisée pour la suppression de sommet uniquement
     template<typename T>
     void ArbreB<T>::recherchePere(Sommet<T> *courant, Sommet<T> *recherche, Sommet<T> *&pere) {
         if (courant->_filsG != nullptr) {
@@ -484,10 +486,18 @@
         }
         
     }
-
+    
+    //Fonction de suppression d'un sommet dans l'arbre (gestion de tous les cas possibles)
     template<typename T>
     void ArbreB<T>::supprimer_sommet() {
+
+        //si le sommet est la racine de l'arbre
         if (_sCourant == _racine) {
+            //si le fils gauche est non null et le droit est null, on crée un arbre
+            //tmp, on copie la racine dans le fils gauche, on supprime l'arbre initial
+            //puis on reatribut les valeur de l'abre tmp dans l'arbre initial;
+            //on réajuste la valeur de val pour pouvoir liberer la mémoire correctement
+            // et on finit par supprimer l'arbre tmp puis on libère val.
             if (_sCourant->_filsG != nullptr && _sCourant->_filsD == nullptr) {
                 ArbreB<T> tmp;
                 tmp._racine = copie(_racine->_filsG);
@@ -504,7 +514,8 @@
 
                 delete val;
             }
-
+            
+            // pareil que le if au dessus, mais avec fils droit non null
             else if (_sCourant->_filsD != nullptr && _sCourant->_filsG == nullptr) {
                 ArbreB<T> tmp;
                 tmp._racine = copie(_racine->_filsD);
@@ -522,6 +533,10 @@
                 delete val;
             }
             
+            //si les deux sommets sont non vides on creer une copie de chaque arbre
+            //on supprime l'arbre initial et on link l'arbre gauche a la racine.
+
+
             else if (_sCourant->_filsG != nullptr && _sCourant->_filsD != nullptr) {
                 ArbreB<T> tmpG;
                 ArbreB<T> tmpD;
@@ -551,10 +566,15 @@
             }
 
             else {
-                std::cout << "ERR : suppression impossible l'arbre est vide" << std::endl;
+                std::cout j'écris ici pcq t'es con mdr (je deconne mdr, tu as du te faire chier a faire tout cette fonction
+                mais le problème c'est que la suppression est possible ici, c'est juste que l'arbre est vide a là fin.
+                du coup go appeller suppression plutot que de faire une erreur. bisous :)<< "ERR : suppression impossible l'arbre est vide" << std::endl;
             }
         }
 
+
+        //si le sommet courant n'est pas la racine de l'arbre, que fils gauche est non
+        //null, et que fils droit est null alors ta fonction a l'air bien trop compliqué
         else if (_sCourant->_filsG != nullptr && _sCourant->_filsD == nullptr) {
             Sommet <T> *tmp = _racine;
             Sommet <T> *pere = _racine;
