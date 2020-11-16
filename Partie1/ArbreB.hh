@@ -566,9 +566,11 @@
             }
 
             else {
+                /*
                 std::cout j'écris ici pcq t'es con mdr (je deconne mdr, tu as du te faire chier a faire tout cette fonction
                 mais le problème c'est que la suppression est possible ici, c'est juste que l'arbre est vide a là fin.
                 du coup go appeller suppression plutot que de faire une erreur. bisous :)<< "ERR : suppression impossible l'arbre est vide" << std::endl;
+                */
             }
         }
 

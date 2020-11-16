@@ -5,15 +5,27 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
+if(CMAKE_VERSION VERSION_LESS "3.7.0")
+    set(CMAKE_INCLUDE_CURRENT_DIR ON)
+endif()
+
 find_package(Qt5 COMPONENTS Widgets Core Gui REQUIRED)
 
 set(SRC
-    main.cpp
+    src/ImageDisplayer.cpp
+    src/main.cpp
+    src/MainMenu.cpp
+    src/MainWindow.cpp
+    src/PrenomDisplayer.cpp
+    
 )
 
 set(HEADER
-    fenetre.hpp
-
+    headers/Context.hpp
+    headers/ImageDisplayer.hpp
+    headers/MainMenu.hpp
+    headers/MainWindow.hpp
+    headers/PrenomDisplayer.hpp
 )
 
 add_executable(main ${SRC} ${HEADER})
