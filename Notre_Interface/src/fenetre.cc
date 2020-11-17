@@ -3,24 +3,22 @@
 Fenetre::Fenetre() {
     layout = new  QGridLayout();
     setLayout(layout);
-    layout->setAlignment(Qt::AlignBottom);
-
+    
     boutons = new Bouton();
     boutons->show();
-    layout->addWidget(boutons, 0, 0);
+    layout->addWidget(boutons, 1, 0);
 
-    // MARCHE PAS C'EST NUL QT
     dessin = new Affichage();
     dessin->show();
-    layout->addWidget(dessin, 1, 0);
+    layout->addWidget(dessin, 0, 0);
 
     zone_scoll = new QScrollArea();
-    // zone_scoll->setWidget();
+    zone_scoll->setWidget(dessin);
+    zone_scoll->show();
+    layout->addWidget(zone_scoll, 0, 1);
 
     
-    setMinimumSize(500, 500);
-    //dessin = new Affichage();
-    
+    setMinimumSize(500, 500);    
 }
 
 Fenetre::~Fenetre() {

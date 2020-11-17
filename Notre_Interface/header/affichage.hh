@@ -1,16 +1,13 @@
 #if !defined(__AFFICHAGE__)
 #define __AFFICHAGE__
 
+#include <QtWidgets/QWidget>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QFrame>
 #include <QtWidgets/QGridLayout>
-#include <QtWidgets/QLabel>
 #include <QtGui/QPainter>
 
-class Affichage : QFrame {
+class Affichage : public QWidget {
     private:
-        QPixmap *png;
-        QLabel *image;
 
     public:
         Affichage();
