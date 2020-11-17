@@ -1,7 +1,6 @@
 #include "../header/bouton.hh"
 
 Bouton::Bouton() {
-    setFixedSize(800, 500);
     layout = new QGridLayout();
     setLayout(layout);
     layout->setAlignment(Qt::AlignBottom);

@@ -2,22 +2,22 @@
 #define __FENETRE__
 
 #include <QtWidgets/QWidget>
-#include <QtWidgets/QLayout>
-#include <QtGui/QPainter>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QScrollArea>
+
 #include "bouton.hh"
 #include "affichage.hh"
 
 class Fenetre : public QWidget {
     private:
         Bouton *boutons;
-        //Affichage *dessin;
+        Affichage *dessin;
+        QScrollArea *zone_scoll;
         QGridLayout* layout;
 
     public:
         Fenetre();
         ~Fenetre();
-
-        void paintEvent(QPaintEvent *event);
 };
 
 #endif
