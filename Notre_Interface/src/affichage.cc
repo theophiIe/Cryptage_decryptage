@@ -5,7 +5,7 @@ Affichage::Affichage() {
 }
 
 QSize Affichage::sizeHint() const {
-    return QSize(800, 500);
+    return QSize(3000, 1500);
 }
 
 void Affichage::paintEvent(QPaintEvent* event) {
@@ -15,13 +15,11 @@ void Affichage::paintEvent(QPaintEvent* event) {
     paint.drawEllipse(300,100,10,10);
 
     paint.drawLine(150,150,260,150);
-    paint.drawLine(300,120,260,150);
 
     paint.drawLine(150,150,110,160);
     paint.drawLine(300,160,260,150);
 
     paint.drawLine(110,80,90,90);
-    paint.drawLine(310,110,110,120);
 }
 
 Affichage::~Affichage() {
