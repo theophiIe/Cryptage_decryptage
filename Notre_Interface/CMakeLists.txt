@@ -14,10 +14,14 @@ find_package(Qt5 COMPONENTS Widgets Core Gui REQUIRED)
 set(SRC
     src/main.cc
     src/fenetre.cc
+    src/bouton.cc
+    src/affichage.cc
 )
 
 set(HEADER
     header/fenetre.hh
+    header/bouton.hh
+    header/affichage.hh
 )
 
 add_executable(main ${SRC} ${HEADER})
