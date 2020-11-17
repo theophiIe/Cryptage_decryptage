@@ -1,15 +1,20 @@
 #if !defined(__AFFICHAGE__)
 #define __AFFICHAGE__
 
-#include <QtWidgets/QFrame>
-#include <QtWidgets/QScrollArea>
+// #include <QtWidgets/QWidget>
+// #include <QtWidgets/QScrollArea>
+// #include <QtGui/QPainter>
 
-class Affichage : QFrame {
-    private:
-        QScrollArea *scrollbar;
-    public:
-        Affichage();
-        ~Affichage();
-};
+// class Affichage : QWidget {
+//     Q_OBJECT
+
+//     private:
+
+//     public:
+//         Affichage();
+//         ~Affichage();
+        
+//         void paintEvent(QPaintEvent *event);
+// };
 
 #endif
