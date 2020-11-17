@@ -34,3 +34,11 @@ main
 
 # Vscode
 .vscode/
+
+#CMake
+CMakeCache.txt
+cmake_install.cmake
+CMakeFiles
+main_autogen
+Notre_Interface/Makefile
+
