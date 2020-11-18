@@ -45,3 +45,5 @@ Notre_Interface/Makefile
 Notre_Interface/header/moc_bouton.cpp
 Notre_Interface/header/moc_bouton.cpp_parameters
 
+#fichier de log
+log.txt
