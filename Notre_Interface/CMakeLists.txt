@@ -13,12 +13,16 @@ find_package(Qt5 COMPONENTS Widgets Core Gui REQUIRED)
 
 set(SRC
     src/main.cc
+    src/test.cc
     src/fenetre.cc
     src/bouton.cc
     src/affichage.cc
 )
 
 set(HEADER
+    header/ArbreB.hh
+    header/Sommet.hh
+    header/test.hh
     header/fenetre.hh
     header/bouton.hh
     header/affichage.hh
