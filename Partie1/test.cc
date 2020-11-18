@@ -217,84 +217,94 @@ void testSuppressionFeuille() {
 }
 
 void testSuppressionSommet() {
-    // std::cout<< "\n\t#### Test de la suppression d'un Sommet dans l'arbre : ####"  << std::endl;
-    // ArbreB<int> a;
-    // a << 1;
-    // a << 2;
-    // a.remonter_racine();
-    // a >> 3;
-
-    // std::cout<< "\nParcours Préfixe A :" << std::endl;
-    // a.parcours_prefixe();
-
-    // a.remonter_racine();
-    // a.deplacementG();
-    // a.supprimer_sommet();
-
-    // std::cout<< "\nParcours Préfixe A apres suppression n°1"  << std::endl;
-    // a.parcours_prefixe();
-
-    // a.remonter_racine();
-    // a << 2;
-    // a.remonter_racine();
-    // a.deplacementD();
-    // a >> 5;
-
-    // std::cout<< "\nParcours Préfixe A apres suppression n°1"  << std::endl;
-    // a.parcours_prefixe();
-
-    // a.remonter_racine();
-    // a.deplacementD();
-    // a.supprimer_sommet();
-
-    // std::cout<< "\nParcours Préfixe A apres suppression n°1"  << std::endl;
-    // a.parcours_prefixe();
-
-    // ArbreB<int> b;
-    // b << 1;
-    // b << 2;
-    // b << 3;
-    // b.remonter_racine();
-    // b.deplacementG();
-    // b >> 4;
-    // b.remonter_racine();
-    // b >> 5;
-    // b >> 9;
-    // b >> 10;
-    // b.remonter_racine();
-    // b.deplacementD();
-    // b << 6;
-    // b << 7;
-    // b.remonter_racine();
-    // b.deplacementD();
-    // b.deplacementG();
-    // b >> 8;
-
-    // b.remonter_racine();
-    // b.deplacementD();
-
-    // std::cout<< "\nParcours Préfixe B :"  << std::endl;
-    // b.parcours_prefixe();
-
-    // b.supprimer_sommet();
-
-    // std::cout<< "\nParcours Préfixe B apres suppression n°1"  << std::endl;
-    // b.parcours_prefixe();
+    std::cout<< "\n\t#### Test de la suppression d'un Sommet dans l'arbre : ####"  << std::endl;
 
     ArbreB<int> c;
-    c >> 1;
-    c >> 2;
-    c >> 3;
+    c << 1 << 2<< 4;
     c.remonter_racine();
-    c << 4;
-    c << 6;
+    c >> 3 >> 6;
+    c.remonter_racine();
+    c.deplacementG();
+    c >> 5 >> 8;
+    c.remonter_racine();
+    c.deplacementG();
+    c.deplacementD();
+    c << 7;
 
     std::cout<< "\nParcours Préfixe C : "  << std::endl;
     c.parcours_prefixe();
 
     c.remonter_racine();
+    c.deplacementG();
     c.supprimer_sommet();
 
-    std::cout<< "\nParcours Préfixe C apres suppression n°1"  << std::endl;
+    std::cout<< "\nParcours Préfixe C apres suppression de 2 : "  << std::endl;
+    c.parcours_prefixe();
+
+    c.remonter_racine();
+    c.deplacementD();
+    c.supprimer_sommet();
+
+    std::cout<< "\nParcours Préfixe C apres suppression de 3 : "  << std::endl;
+    c.parcours_prefixe();
+
+    c.remonter_racine();
+    c.supprimer_sommet();
+
+    std::cout<< "\nParcours Préfixe C apres suppression de 1 : "  << std::endl;
+    c.parcours_prefixe();
+
+    c.remonter_racine();
+    c.deplacementD();
+    c.deplacementD();
+    c.deplacementD();
+    c << 80;
+
+    std::cout<< "\nParcours Préfixe C apres ajout de 80 : "  << std::endl;
+    c.parcours_prefixe();
+
+    c.remonter_racine();
+    c.deplacementD();
+    c.deplacementD();
+    c.deplacementD();
+    c.supprimer_sommet();
+
+    std::cout<< "\nParcours Préfixe C apres suppression de 6 : "  << std::endl;
+    c.parcours_prefixe();
+
+    c.remonter_racine();
+    c.supprimer_sommet();
+
+    std::cout<< "\nParcours Préfixe C apres suppression de 4 : "  << std::endl;
+    c.parcours_prefixe();
+
+    c.remonter_racine();
+    c.deplacementD();
+    c.deplacementD();
+    c.supprimer_sommet();
+
+    std::cout<< "\nParcours Préfixe C apres suppression de 80 : "  << std::endl;
+    c.parcours_prefixe();
+    
+    c.remonter_racine();
+    c.deplacementD();
+    c.supprimer_sommet();
+
+    std::cout<< "\nParcours Préfixe C apres suppression de 8 : "  << std::endl;
+    c.parcours_prefixe();
+
+    c.remonter_racine();
+    c.deplacementG();
+    c.supprimer_sommet();
+
+    std::cout<< "\nParcours Préfixe C apres suppression de 7 : "  << std::endl;
+    c.parcours_prefixe();
+
+
+    // Modifer pour supprimer la racine dernier seul sommet du l'arbre
+    c.remonter_racine();
+    c.supprimer_sommet();
+
+    std::cout<< "\nParcours Préfixe C apres suppression de 5 : "  << std::endl;
     c.parcours_prefixe();
 }
