@@ -10,14 +10,32 @@ Bouton::Bouton() {
     layout->addWidget(bQuitter, 0, 0);
     connect(bQuitter, SIGNAL(clicked()), qApp, SLOT(quit()));
     
-    bTest = new QPushButton(tr("Choisir un test"));
-    QMenu *menu = new QMenu(this);
-    menu->addAction(tr("Test 1"));
-    menu->addAction(tr("Test 2"));
-    menu->addAction(tr("Test 3"));
-    menu->addAction(tr("Test 4"));
-    bTest->setMenu(menu);
+    // bTest = new QPushButton(tr("Choisir un test"));
+    // QMenu *bMenu = new QMenu(this);
+    
+    // test1 = new QAction(tr("Test1"));
+    // connect(test1, SIGNAL(clicked()), qApp, SLOT(quit()));
+
+    // test2 = new QAction(tr("Test2"));
+    // connect(test2, SIGNAL(clicked()), qApp, SLOT(quit()));
+
+    // test3 = new QAction(tr("Test3"));
+    // connect(test3, SIGNAL(clicked()), qApp, SLOT(quit()));
+
+    // test4 = new QAction(tr("Test4"));
+    // connect(test4, SIGNAL(clicked()), qApp, SLOT(quit()));
+    
+    // bMenu->addAction(test1);
+    // bMenu->addAction(test2);
+    // bMenu->addAction(test3);
+    // bMenu->addAction(test4);
+    // bTest->setMenu(bMenu);
+    // layout->addWidget(bTest, 0, 1);
+
+    bTest = new QPushButton("Test", this);
+    bTest->show();
     layout->addWidget(bTest, 0, 1);
+    connect(bTest, SIGNAL(clicked()), this, SLOT(aff_test1()));
 
     // faire la connexion avec les boutons    
 
@@ -32,16 +50,4 @@ Bouton::~Bouton() {
 
 void Bouton::aff_test1() {
     std::cout << "test1 :" << std::endl;
-}
-
-void Bouton::aff_test2() {
-    std::cout << "test2 :" << std::endl;
-}
-
-void Bouton::aff_test3() {
-    std::cout << "test3 :" << std::endl;
-}
-
-void Bouton::aff_test4() {
-    std::cout << "test4 :" << std::endl;
 }

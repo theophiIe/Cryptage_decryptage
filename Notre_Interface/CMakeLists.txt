@@ -24,5 +24,11 @@ set(HEADER
     header/affichage.hh
 )
 
-add_executable(main ${SRC} ${HEADER})
+set(ImageFileReader_HEADERS 
+    header/bouton.hh
+)
+
+QT5_WRAP_CPP(ImageFileReader_HEADERS_MOC ${ImageFileReader_HEADERS})
+
+add_executable(main ${SRC} ${HEADER} ${ImageFileReader_HEADERS_MOC})
 target_link_libraries(main Qt5::Widgets Qt5::Core Qt5::Gui)
