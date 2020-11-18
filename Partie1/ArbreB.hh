@@ -2,6 +2,8 @@
 #define __ARBREB__
 
     #include "Sommet.hh"
+    #include <fstream>
+
 
     template<typename T> class ArbreB {   
         private:
@@ -26,6 +28,7 @@
             inline ArbreB(const ArbreB<T> &arbre);
             inline ~ArbreB();
 
+            inline static void ecrire_log(const std::string &log);
             int getEtiquette() const { return _sCourant->_etiquette; }
             void setEtiquette(const T &val) { _sCourant->_etiquette = val; }
             int getNbrSommet() const { return _nbr_sommet; }
@@ -56,16 +59,9 @@
             bool estVide() { return (_racine == nullptr && _sCourant == nullptr) ? true : false; }
 
             /* Surcharge des opérateurs */
-
             inline ArbreB<T> &operator=(const ArbreB<T> &arbre);
-
-            /* Fusion des arbres */
             inline ArbreB<T> &operator+=(ArbreB<T> &arbre);
-            
-            /*Ajout d'une valeur à gauche */
             inline ArbreB<T> &operator<<(const T &val);
-            
-            /* Ajout d'une valeur à droite */
             inline ArbreB<T> &operator>>(const T &val);
     };    
 
@@ -85,6 +81,22 @@
             supprimer(_racine->_filsD);
             delete _racine;
             _racine = nullptr;
+        }
+    }
+
+    template<typename T>
+    void ArbreB<T>::ecrire_log(const std::string &log) {
+        std::string const nomFichier("log.txt");
+        std::fstream monFlux(nomFichier.c_str());
+        monFlux.seekp(0, std::ios::end);
+
+        if(monFlux) {
+            monFlux << log << std::endl;
+            monFlux.close();
+        }
+
+        else {
+            std::cout << "ERREUR: Impossible d'ouvrir le fichier." << std::endl;
         }
     }
 
@@ -123,10 +135,12 @@
         
         else if (_sCourant->_etiquette == val) {
             std::cout << "Valeur deja implémenté dans l'arbre" << std::endl;
+            ecrire_log("Valeur deja implémenté dans l'arbre");
         }
         
         else {
             std::cout << "Erreur lors de l'ajout de la valeur" << std::endl;
+            ecrire_log("Erreur lors de l'ajout de la valeur");
         }
     }
 
@@ -192,6 +206,7 @@
     void ArbreB<T>::prefixe(Sommet<T> *sommetRacine) {
         if (sommetRacine != nullptr) {
             std::cout << "Etiquette : " << sommetRacine->_etiquette << std::endl;
+            ecrire_log("Etiquette : " + std::to_string(sommetRacine->_etiquette));
 
             if (sommetRacine->_filsG != nullptr) {
                 prefixe(sommetRacine->_filsG);
@@ -203,6 +218,7 @@
 
         else {
             std::cout << "ERR : parcours impossible l'arbre est vide" << std::endl;
+            ecrire_log("ERR : parcours impossible l'arbre est vide");
         }
     }
 
@@ -215,6 +231,7 @@
             }
 
             std::cout<< "Etiquette : " << sommetRacine->_etiquette << std::endl;
+            ecrire_log("Etiquette : " + std::to_string(sommetRacine->_etiquette));
 
             if (sommetRacine->_filsD != nullptr) {
                 infixe(sommetRacine->_filsD);
@@ -223,6 +240,7 @@
 
         else {
             std::cout << "ERR : parcours impossible l'arbre est vide" << std::endl;
+            ecrire_log("ERR : parcours impossible l'arbre est vide");
         }        
     }
 
@@ -239,10 +257,12 @@
             }
 
             std::cout<< "Etiquette : " << sommetRacine->_etiquette << std::endl;
+            ecrire_log("Etiquette : " + std::to_string(sommetRacine->_etiquette));
         }
 
         else {
             std::cout << "ERR : parcours impossible l'arbre est vide" << std::endl;
+            ecrire_log("ERR : parcours impossible l'arbre est vide");
         }
     }
     
@@ -344,6 +364,7 @@
 
             else {
                 std::cout << "Vous ne pouvez pas créer une branche ici, une branche existe déjà" << std::endl;
+                ecrire_log("Vous ne pouvez pas créer une branche ici, une branche existe déjà");
             }
         }
     }
@@ -370,6 +391,7 @@
             
             else {
                 std::cout << "Vous ne pouvez pas créer une branche ici, une branche existe déjà" << std::endl;
+                ecrire_log("Vous ne pouvez pas créer une branche ici, une branche existe déjà");
             }
         }
     }
@@ -396,6 +418,7 @@
 
         else {
             std::cout << "Impossible de ce déplacer à gauche vous êtes sur une feuille" << std::endl;
+            ecrire_log("Impossible de ce déplacer à gauche vous êtes sur une feuille");
         }
     }
 
@@ -408,6 +431,7 @@
 
         else {
             std::cout << "Impossible de ce déplacer à droite vous êtes sur une feuille" << std::endl;
+            ecrire_log("Impossible de ce déplacer à droite vous êtes sur une feuille");
         }
     }
 
@@ -416,6 +440,7 @@
     void ArbreB<T>::decomposition(ArbreB<T> &arbre) {
         if (_racine == nullptr) {
             std::cout << "L'arbre est vide impossible de faire une décomposition" << std::endl;
+            ecrire_log("L'arbre est vide impossible de faire une décomposition");
             return;
         }
 
@@ -452,6 +477,7 @@
 
         else {
             std::cout << "Impossible de faire une decomposition depuis la racine" << std::endl;
+            ecrire_log("Impossible de faire une decomposition depuis la racine");
             return;
         }
     }
@@ -487,6 +513,7 @@
         
         else {
             std::cout << "Ce sommet n'est pas une feuille" << std::endl;
+            ecrire_log("Ce sommet n'est pas une feuille");
         }
     }
     
@@ -495,6 +522,7 @@
     void ArbreB<T>::supprimer_sommet() {
         if (_racine == nullptr) {
             std::cout << "l'arbre est vide aucune suppresion possible" << std::endl;
+            ecrire_log("L'arbre est vide aucune suppresion possible");
             return;
         }
 
