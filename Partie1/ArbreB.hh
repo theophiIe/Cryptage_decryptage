@@ -145,12 +145,9 @@
             delete racine;
             racine = nullptr;
         }
-
-        else {
-            std::cout<<"La racine est vide, on ne peut la supprimer"<<std::endl;
-        }
     }
 
+    /* Supprime un sommet avec seulement un fils */
     template<typename T>
     void ArbreB<T>::suppression_un_fils(Sommet<T> *sommet) {
         ArbreB<T> tmp;
@@ -169,6 +166,7 @@
         delete val;
     }
 
+    /* Supprime un sommet avec deux fils */
     template<typename T>
     void ArbreB<T>::suppression_deux_fils(Sommet<T> *sommet) {
         Sommet <T> *tmp = _racine;
@@ -500,24 +498,14 @@
             return;
         }
 
-        //si le sommet est la racine de l'arbre
         if (_sCourant == _racine) {
-            //si le fils gauche est non null et le droit est null, on crée un arbre
-            //tmp, on copie la racine dans le fils gauche, on supprime l'arbre initial
-            //puis on reatribut les valeur de l'abre tmp dans l'arbre initial;
-            //on réajuste la valeur de val pour pouvoir liberer la mémoire correctement
-            // et on finit par supprimer l'arbre tmp puis on libère val.
             if (_sCourant->_filsG != nullptr && _sCourant->_filsD == nullptr) {
                 suppression_un_fils(_racine->_filsG);
             }
             
-            // pareil que le if au dessus, mais avec fils droit non null
             else if (_sCourant->_filsD != nullptr && _sCourant->_filsG == nullptr) {
                 suppression_un_fils(_racine->_filsD);
             }
-            
-            //si les deux sommets sont non vides on creer une copie de chaque arbre
-            //on supprime l'arbre initial et on link l'arbre gauche a la racine.
 
             else if (_sCourant->_filsG != nullptr && _sCourant->_filsD != nullptr) {
                 ArbreB<T> tmpG;
@@ -551,8 +539,6 @@
             }
         }
 
-        //si le sommet courant n'est pas la racine de l'arbre, que fils gauche est non
-        //null, et que fils droit est null alors ta fonction a l'air bien trop compliqué
         else if (_sCourant->_filsG != nullptr && _sCourant->_filsD == nullptr) {
             suppression_deux_fils(_sCourant->_filsG);
         }
