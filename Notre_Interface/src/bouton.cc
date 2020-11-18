@@ -7,41 +7,26 @@ Bouton::Bouton() {
 
     bQuitter = new QPushButton("Quitter", this);
     bQuitter->show();
-    layout->addWidget(bQuitter, 0, 0);
+    layout->addWidget(bQuitter, 0, 1);
     connect(bQuitter, SIGNAL(clicked()), qApp, SLOT(quit()));
-    
-    // bTest = new QPushButton(tr("Choisir un test"));
-    // QMenu *bMenu = new QMenu(this);
-    
-    // test1 = new QAction(tr("Test1"));
-    // connect(test1, SIGNAL(clicked()), qApp, SLOT(quit()));
 
-    // test2 = new QAction(tr("Test2"));
-    // connect(test2, SIGNAL(clicked()), qApp, SLOT(quit()));
+    texte = new QTextEdit(this);
+    //layout->addWidget(texte);
 
-    // test3 = new QAction(tr("Test3"));
-    // connect(test3, SIGNAL(clicked()), qApp, SLOT(quit()));
-
-    // test4 = new QAction(tr("Test4"));
-    // connect(test4, SIGNAL(clicked()), qApp, SLOT(quit()));
+    scoller = new QScrollArea();
+    scoller->setWidget(texte);
+    scoller->show();
+    layout->addWidget(scoller, 0, 0);
     
-    // bMenu->addAction(test1);
-    // bMenu->addAction(test2);
-    // bMenu->addAction(test3);
-    // bMenu->addAction(test4);
-    // bTest->setMenu(bMenu);
-    // layout->addWidget(bTest, 0, 1);
 
     bTest = new QPushButton("Test", this);
     bTest->show();
-    layout->addWidget(bTest, 0, 1);
-    connect(bTest, SIGNAL(clicked()), this, SLOT(aff_test1()));
-
-    // faire la connexion avec les boutons    
+    layout->addWidget(bTest, 0, 2);
+    connect(bTest, SIGNAL(clicked()), this, SLOT(aff_test1()));  
 
     bArbre = new QPushButton("Arbre", this);
     bArbre->show();
-    layout->addWidget(bArbre, 0, 2);
+    layout->addWidget(bArbre, 0, 3);
 }
 
 Bouton::~Bouton() {
@@ -49,5 +34,11 @@ Bouton::~Bouton() {
 }
 
 void Bouton::aff_test1() {
-    std::cout << "test1 :" << std::endl;
+    QString chemin = "log.txt";
+    QFile fichier(chemin);
+    fichier.open(QIODevice::ReadOnly);
+    QTextStream lire_log(&fichier);
+    QString test = lire_log.readAll();
+    texte->setText(test);
+    texte->show();
 }
