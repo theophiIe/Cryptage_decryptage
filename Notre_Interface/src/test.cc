@@ -23,11 +23,11 @@ void testParcoursArbre() {
     a.parcours_prefixe();
 
     std::cout<< "\nParcours Postfixe A :"  << std::endl;
-    ArbreB<int>::ecrire_log("\nParcours Préfixe A :");
+    ArbreB<int>::ecrire_log("\nParcours Postfixe A :");
     a.parcours_postfixe();
 
     std::cout<< "\nParcours Infixe A :"  << std::endl;
-    ArbreB<int>::ecrire_log("\nParcours Préfixe A :");
+    ArbreB<int>::ecrire_log("\nParcours Infixe A :");
     a.parcours_infixe();
 }
 
