@@ -40,5 +40,8 @@ CMakeCache.txt
 cmake_install.cmake
 CMakeFiles
 main_autogen
+test/Makefile
 Notre_Interface/Makefile
+Notre_Interface/header/moc_bouton.cpp
+Notre_Interface/header/moc_bouton.cpp_parameters
 
