@@ -11,6 +11,8 @@
 
             inline void ajout(const T &val);
             inline void supprimer(Sommet<T> *racine);
+            inline void suppression_un_fils(Sommet<T> *sommet);
+            inline void suppression_deux_fils(Sommet<T> *sommet);
             inline void prefixe(Sommet<T> *sommetRacine);
             inline void infixe(Sommet<T> *sommetRacine);
             inline void postfixe(Sommet<T> *sommetRacine);
@@ -21,28 +23,12 @@
 
         public:
             ArbreB() : _racine(nullptr), _sCourant(nullptr), _nbr_sommet(0) {}
-            
-            ArbreB(const ArbreB<T> &arbre) { 
-                _racine = copie(arbre._racine);
-                _sCourant = _racine;
-                _nbr_sommet = arbre._nbr_sommet;
-            }
-            
-            ~ArbreB() {
-                if (_nbr_sommet > 0) {
-                    supprimer(_racine->_filsG);
-                    supprimer(_racine->_filsD);
-                    delete _racine;
-                    _racine = nullptr;
-                }
-            }
+            inline ArbreB(const ArbreB<T> &arbre);
+            inline ~ArbreB();
 
             int getEtiquette() const { return _sCourant->_etiquette; }
             void setEtiquette(const T &val) { _sCourant->_etiquette = val; }
             int getNbrSommet() const { return _nbr_sommet; }
-
-            // Ne pas garder ou mettre en privé
-            Sommet<T> *getRacine() { return _racine; }
 
             // parcours de l'arbre
             void parcours_prefixe() { prefixe(_racine); };
@@ -54,11 +40,11 @@
             inline void ajoutD(const T &val);
             inline void ajoutAuto(const T &val);
 
-            // Pour ce déplacer (le but pouvoir ce deplacer avec les flèches dans l'IG)
+            // Pour ce déplacer dans l'arbre
+            void remonter_racine() { _sCourant = _racine; }
             inline void deplacementG();
             inline void deplacementD();
 
-            void remonter_racine() { _sCourant = _racine; }
 
             bool estPrensent(const T &val) { bool existe = false; return recherche(_racine, val, existe) ? true : false; }
 
@@ -69,46 +55,40 @@
             inline void tout_supprimer();
             bool estVide() { return (_racine == nullptr && _sCourant == nullptr) ? true : false; }
 
-            // Surcharge des opérateurs
+            /* Surcharge des opérateurs */
 
-            // Arbre1 = Arbre2
-            ArbreB<T> &operator=(const ArbreB<T> &arbre) {
-                if (_racine != nullptr) {
-                    tout_supprimer();
-                }
-                
-                _racine = copie(arbre._racine);
-                _sCourant = _racine;
-                _nbr_sommet = arbre._nbr_sommet;
+            inline ArbreB<T> &operator=(const ArbreB<T> &arbre);
 
-                return *this;
-            }
-
-            // Fusion des arbres
-            ArbreB<T> &operator+=(ArbreB<T> &arbre) {
-                Sommet<T> *nouvRacine = new Sommet<T>(_racine->_etiquette + arbre._racine->_etiquette);
-                
-                nouvRacine->_filsG = _racine;  
-                nouvRacine->_filsD = copie(arbre._racine);
-                _racine = nouvRacine;
-                _nbr_sommet += arbre._nbr_sommet + 1;
-                
-                return *this;
-            }
+            /* Fusion des arbres */
+            inline ArbreB<T> &operator+=(ArbreB<T> &arbre);
             
-            // Ajout d'une valeur à gauche
-            ArbreB<T> &operator<<(const T &val) {
-                ajoutG(val);
-                return *this;
-            }
+            /*Ajout d'une valeur à gauche */
+            inline ArbreB<T> &operator<<(const T &val);
             
-            // Ajout d'une valeur à droite
-            ArbreB<T> &operator>>(const T &val) {
-                ajoutD(val);
-                return *this;
-            }
+            /* Ajout d'une valeur à droite */
+            inline ArbreB<T> &operator>>(const T &val);
     };    
 
+    /* Constructeur de copie de la classe ArbreB */
+    template<typename T>
+    ArbreB<T>::ArbreB(const ArbreB<T> &arbre) { 
+        _racine = copie(arbre._racine);
+        _sCourant = _racine;
+        _nbr_sommet = arbre._nbr_sommet;
+    }
+
+    /* Destructeur de la classe ArbreB */
+    template<typename T>
+    ArbreB<T>::~ArbreB() {
+        if (_nbr_sommet > 0) {
+            supprimer(_racine->_filsG);
+            supprimer(_racine->_filsD);
+            delete _racine;
+            _racine = nullptr;
+        }
+    }
+
+    /* Ajout d'une valeur à l'arbre en fonction de son étiquette */
     template<typename T>
     void ArbreB<T>::ajout(const T &val) {
         if (_racine == nullptr) {
@@ -150,12 +130,10 @@
         }
     }
 
-    //Suppression d'un sommet 
-
+    /* Suppression d'un sommet */
     template<typename T>
     void ArbreB<T>::supprimer(Sommet<T> *racine) {
-        if (racine != nullptr)
-        {
+        if (racine != nullptr) {
             if (racine->_filsG != nullptr) {
                 supprimer(racine->_filsG);
             }
@@ -168,14 +146,50 @@
             racine = nullptr;
         }
 
-        //gestion d'erreur a ajouter ?
         else {
             std::cout<<"La racine est vide, on ne peut la supprimer"<<std::endl;
         }
     }
 
-    //parcours préfixe d'un arbre donné
+    template<typename T>
+    void ArbreB<T>::suppression_un_fils(Sommet<T> *sommet) {
+        ArbreB<T> tmp;
+        tmp._racine = copie(sommet);
+        
+        tout_supprimer();
+        _racine = tmp._racine;
+        _sCourant = _racine;
 
+        int *val{ new int(0) };
+        nbrSommet(_racine, val);
+        _nbr_sommet = *val;
+        
+        tmp.tout_supprimer();
+
+        delete val;
+    }
+
+    template<typename T>
+    void ArbreB<T>::suppression_deux_fils(Sommet<T> *sommet) {
+        Sommet <T> *tmp = _racine;
+        Sommet <T> *pere = _racine;
+
+        recherchePere(tmp, _sCourant, pere);
+        
+        if (pere->_filsG != nullptr && pere->_filsG->_etiquette == _sCourant->_etiquette) {
+            pere->_filsG = sommet;
+        }
+
+        else if (pere->_filsD != nullptr && pere->_filsD->_etiquette == _sCourant->_etiquette) {
+            pere->_filsD = sommet;
+        }
+
+        delete _sCourant;
+        _sCourant = _racine;
+        _nbr_sommet -= 1;
+    }
+
+    /* Parcours préfixe de l'arbre, on doit passer la racine en parametre */
     template<typename T>
     void ArbreB<T>::prefixe(Sommet<T> *sommetRacine) {
         if (sommetRacine != nullptr) {
@@ -194,8 +208,7 @@
         }
     }
 
-    //parcours infixe d'un arbre donné
-
+    /* Parcours infixe de l'arbre, on doit passer la racine en parametre */
     template<typename T>
     void ArbreB<T>::infixe(Sommet<T> *sommetRacine) {
         if (sommetRacine != nullptr) {
@@ -215,8 +228,7 @@
         }        
     }
 
-    //parcours postfixe/sufixe d'un arbre donné
-
+    /* Parcours postfixe de l'arbre, on doit passer la racine en parametre */
     template<typename T>
     void ArbreB<T>::postfixe(Sommet<T> *sommetRacine) {
         if (sommetRacine != nullptr) {
@@ -236,8 +248,7 @@
         }
     }
     
-    //Copie d'un arbre donné, on retourne le sommet du nouvel arbre
-
+    /* Permet de copier un arbre à partir d'un sommet passé en parametre et renvoi la racine de l'arbre copié */
     template<typename T>
     Sommet<T> *ArbreB<T>::copie(Sommet<T> *sommet) {
         if (sommet == nullptr) {
@@ -257,8 +268,8 @@
         }
     }
 
-    //Fonction de recherche d'un etiquette, retourne un booléen en fonction du résultat
-
+    /*  La méthode recherche va rechercher à partir du sommet passé en parametre une valeur
+     *   elle aussi passé en parametre et renvoir true si la valeur et trouvé sinon false */
     template<typename T>
     bool ArbreB<T>::recherche(Sommet<T> *sommetRacine, const T &val, bool &existe) {
         if (sommetRacine->_filsG != nullptr) {
@@ -276,7 +287,7 @@
         return existe;
     }
 
-    //Fonction qui compte la nombre de sommets dans l'arbre
+    /* La méthode va incrémenter la valeur val passé en parametre en fonction du nombre de sommet dans l'arbre*/
     template<typename T>
     void ArbreB<T>::nbrSommet(Sommet<T> *sommetRacine, int *&val) {
         *val += 1;
@@ -290,7 +301,7 @@
         }        
     }
 
-    // Fonction utilisée pour la suppression de sommet uniquement
+    /* Permet de récuperer le sommet père du sommet courant */
     template<typename T>
     void ArbreB<T>::recherchePere(Sommet<T> *courant, Sommet<T> *recherche, Sommet<T> *&pere) {
         if (courant->_filsG != nullptr) {
@@ -301,7 +312,6 @@
             else {
                 pere = courant;
             }
-            
         }
 
         if (courant->_filsD != nullptr) {
@@ -312,13 +322,11 @@
             else {
                 pere = courant;
             }
-            
         }
     }
-    
 
-    //ajoute un sommet fils gauche à la racine donnée
-
+    /* Si la racine n'existe pas on la créer et on lui affecte la valeur passé en parametre 
+     * sinon on ajoute val aux fils gauche du sommet courant */
     template<typename T>
     void ArbreB<T>::ajoutG(const T &val) {
         if (_racine == nullptr) {
@@ -342,8 +350,8 @@
         }
     }
 
-    //ajoute un sommet fils droit à la racine donné
-
+    /* Si la racine n'existe pas on la créer et on lui affecte la valeur passé en parametre 
+     * sinon on ajoute val aux fils gauche du sommet courant */
     template<typename T>
     void ArbreB<T>::ajoutD(const T &val) {
         if (_racine == nullptr) {
@@ -368,6 +376,7 @@
         }
     }
 
+    /* Ajout d'une valeur en utilisant la méthode ajout qui va remplir l'arbre comme si c'étais un ABR */
     template<typename T>
     void ArbreB<T>::ajoutAuto(const T &val) {
         if (_sCourant != nullptr) {
@@ -380,8 +389,7 @@
         }
     }
 
-    //Permet de se rendre dans le fils gauche si celui-ci existe
-
+    /* Permet de ce déplacer sur le fils gauche du sommet courant */
     template<typename T>
     void ArbreB<T>::deplacementG() {
         if (_sCourant->_filsG != nullptr) {
@@ -393,9 +401,7 @@
         }
     }
 
-    //Permet de se rendre dans le fils droit si celui-ci existe
-
-
+    /* Permet de ce déplacer sur le fils droit du sommet courant */
     template<typename T>
     void ArbreB<T>::deplacementD() {
         if (_sCourant->_filsD != nullptr) {
@@ -407,8 +413,7 @@
         }
     }
 
-    // suppression dans le père du sommet pointé du lien vers le sommet fils donné
-    
+    /* Permet de décomposer l'arbre this la partie décomposé va être supprimé de l'arbre this et va être mis dans l'arbre passé en parametre */
     template<typename T>
     void ArbreB<T>::decomposition(ArbreB<T> &arbre) {
         if (_racine == nullptr) {
@@ -453,6 +458,7 @@
         }
     }
 
+    /* Permet de supprimer une une feuille de l'arbre */
     template<typename T>
     void ArbreB<T>::supprimer_feuille() {
         if (_sCourant == _racine && (_sCourant->_filsG == nullptr && _sCourant->_filsD == nullptr)) {
@@ -484,12 +490,15 @@
         else {
             std::cout << "Ce sommet n'est pas une feuille" << std::endl;
         }
-        
     }
     
     //Fonction de suppression d'un sommet dans l'arbre (gestion de tous les cas possibles)
     template<typename T>
     void ArbreB<T>::supprimer_sommet() {
+        if (_racine == nullptr) {
+            std::cout << "l'arbre est vide aucune suppresion possible" << std::endl;
+            return;
+        }
 
         //si le sommet est la racine de l'arbre
         if (_sCourant == _racine) {
@@ -499,43 +508,16 @@
             //on réajuste la valeur de val pour pouvoir liberer la mémoire correctement
             // et on finit par supprimer l'arbre tmp puis on libère val.
             if (_sCourant->_filsG != nullptr && _sCourant->_filsD == nullptr) {
-                ArbreB<T> tmp;
-                tmp._racine = copie(_racine->_filsG);
-                
-                tout_supprimer();
-                _racine = tmp._racine;
-                _sCourant = _racine;
-
-                int *val{ new int(0) };
-                nbrSommet(_racine, val);
-                _nbr_sommet = *val;
-                
-                tmp.tout_supprimer();
-
-                delete val;
+                suppression_un_fils(_racine->_filsG);
             }
             
             // pareil que le if au dessus, mais avec fils droit non null
             else if (_sCourant->_filsD != nullptr && _sCourant->_filsG == nullptr) {
-                ArbreB<T> tmp;
-                tmp._racine = copie(_racine->_filsD);
-                
-                tout_supprimer();
-                _racine = tmp._racine;
-                _sCourant = _racine;
-
-                int *val{ new int(0) };
-                nbrSommet(_racine, val);
-                _nbr_sommet = *val;
-                
-                tmp.tout_supprimer();
-
-                delete val;
+                suppression_un_fils(_racine->_filsD);
             }
             
             //si les deux sommets sont non vides on creer une copie de chaque arbre
             //on supprime l'arbre initial et on link l'arbre gauche a la racine.
-
 
             else if (_sCourant->_filsG != nullptr && _sCourant->_filsD != nullptr) {
                 ArbreB<T> tmpG;
@@ -548,8 +530,7 @@
                 _racine = tmpG._racine;
                 _sCourant = _racine;
 
-                while (_sCourant->_filsD != nullptr)
-                {
+                while (_sCourant->_filsD != nullptr) {
                     _sCourant = _sCourant->_filsD;
                 }
                 
@@ -566,52 +547,18 @@
             }
 
             else {
-                /*
-                std::cout j'écris ici pcq t'es con mdr (je deconne mdr, tu as du te faire chier a faire tout cette fonction
-                mais le problème c'est que la suppression est possible ici, c'est juste que l'arbre est vide a là fin.
-                du coup go appeller suppression plutot que de faire une erreur. bisous :)<< "ERR : suppression impossible l'arbre est vide" << std::endl;
-                */
+                tout_supprimer();
             }
         }
-
 
         //si le sommet courant n'est pas la racine de l'arbre, que fils gauche est non
         //null, et que fils droit est null alors ta fonction a l'air bien trop compliqué
         else if (_sCourant->_filsG != nullptr && _sCourant->_filsD == nullptr) {
-            Sommet <T> *tmp = _racine;
-            Sommet <T> *pere = _racine;
-
-            recherchePere(tmp, _sCourant, pere);
-            
-            if (pere->_filsG != nullptr && pere->_filsG->_etiquette == _sCourant->_etiquette) {
-                pere->_filsG = _sCourant->_filsG;
-            }
-
-            else if (pere->_filsD != nullptr && pere->_filsD->_etiquette == _sCourant->_etiquette) {
-                pere->_filsD = _sCourant->_filsG;
-            }
-
-            _sCourant = _racine;
-            _nbr_sommet -= 1;
+            suppression_deux_fils(_sCourant->_filsG);
         }
 
         else if (_sCourant->_filsD != nullptr && _sCourant->_filsG == nullptr) {
-            Sommet <T> *tmp = _racine;
-            Sommet <T> *pere = _racine;
-
-            recherchePere(tmp, _sCourant, pere);
-            
-            if (pere->_filsG != nullptr && pere->_filsG->_etiquette == _sCourant->_etiquette) {
-                pere->_filsG = _sCourant->_filsD;
-            }
-
-            else if (pere->_filsD != nullptr && pere->_filsD->_etiquette == _sCourant->_etiquette) {
-                pere->_filsD = _sCourant->_filsD;
-            }
-
-            delete _sCourant;
-            _sCourant = _racine;
-            _nbr_sommet -= 1;
+            suppression_deux_fils(_sCourant->_filsD);
         }
         
         else if (_sCourant->_filsD == nullptr && _sCourant->_filsG == nullptr) {
@@ -647,8 +594,7 @@
         }
     }
 
-    //supression totale de l'arbre
-
+    /* Supprime totalement l'arbre */
     template<typename T>
     void ArbreB<T>::tout_supprimer() {
         _sCourant = _racine;
@@ -667,6 +613,47 @@
             _sCourant = nullptr;
             _nbr_sommet = 0;
         }
+    }
+
+    /* Permet de copier l'arbre this avec l'abre passer en parametre*/
+    template<typename T>
+    ArbreB<T> &ArbreB<T>::operator=(const ArbreB<T> &arbre) {
+        if (_racine != nullptr) {
+            tout_supprimer();
+        }
+        
+        _racine = copie(arbre._racine);
+        _sCourant = _racine;
+        _nbr_sommet = arbre._nbr_sommet;
+
+        return *this;
+    }
+
+    /* Permet de fusionner un arbre */
+    template<typename T>
+    ArbreB<T> &ArbreB<T>::operator+=(ArbreB<T> &arbre) {
+        Sommet<T> *nouvRacine = new Sommet<T>(_racine->_etiquette + arbre._racine->_etiquette);
+        
+        nouvRacine->_filsG = _racine;  
+        nouvRacine->_filsD = copie(arbre._racine);
+        _racine = nouvRacine;
+        _nbr_sommet += arbre._nbr_sommet + 1;
+        
+        return *this;
+    }
+
+    /* Permet de faire un ajout de sommet gauche */
+    template<typename T>
+    ArbreB<T> &ArbreB<T>::operator<<(const T &val) {
+        ajoutG(val);
+        return *this;
+    }
+
+    /* Permet de faire un ajout de sommet droit */
+    template<typename T>
+    ArbreB<T> &ArbreB<T>::operator>>(const T &val) {
+        ajoutD(val);
+        return *this;
     }
 
 #endif
