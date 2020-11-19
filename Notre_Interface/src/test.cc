@@ -4,8 +4,11 @@
 // déplacer les fonctions test dans un fichiers dédié
 
 void testParcoursArbre() {
-    std::cout<< "\n\t#### Test parcours d'arbre : ####"  << std::endl;
-    ArbreB<int>::ecrire_log("\n\t#### Test parcours d'arbre : ####");
+    std::cout<< "\n#### Test parcours d'arbre : ####" << std::endl;
+    ArbreB<int>::ecrire_log("\n#### Test parcours d'arbre : ####");
+
+    std::cout<< "On créer l'arbre : A" << std::endl;
+    ArbreB<int>::ecrire_log("On créer l'arbre : A");
 
     ArbreB<int> a;
     a.ajoutG(8);
@@ -18,26 +21,32 @@ void testParcoursArbre() {
     a.deplacementG();
     a.ajoutG(4);
 
-    std::cout<< "\nParcours Préfixe A :"  << std::endl;
+    std::cout<< "\nParcours Préfixe A :" << std::endl;
     ArbreB<int>::ecrire_log("\nParcours Préfixe A :");
     a.parcours_prefixe();
 
-    std::cout<< "\nParcours Postfixe A :"  << std::endl;
+    std::cout<< "\nParcours Postfixe A :" << std::endl;
     ArbreB<int>::ecrire_log("\nParcours Postfixe A :");
     a.parcours_postfixe();
 
-    std::cout<< "\nParcours Infixe A :"  << std::endl;
+    std::cout<< "\nParcours Infixe A :" << std::endl;
     ArbreB<int>::ecrire_log("\nParcours Infixe A :");
     a.parcours_infixe();
 }
 
 void testSuppresionArbre() {
-    std::cout<< "\n\t#### Test de la suppresion d'un arbre : ####"  << std::endl;
-    ArbreB<int>::ecrire_log("\n\t#### Test de la suppresion d'un arbre : ####");
+    std::cout<< "\n#### Test de la suppresion d'un arbre : ####" << std::endl;
+    ArbreB<int>::ecrire_log("\n#### Test de la suppresion d'un arbre : ####");
     
+    std::cout<< "On créer l'arbre vide : A" << std::endl;
+    ArbreB<int>::ecrire_log("On créer l'arbre vide : A");
+
     ArbreB<int> a;
     a.estVide() ? std::cout << "L'arbre est vide" << std::endl : std::cout << "L'arbre n'est pas vide" << std::endl;
     a.estVide() ? ArbreB<int>::ecrire_log("L'arbre est vide") : ArbreB<int>::ecrire_log("L'arbre n'est pas vide");
+
+    std::cout<< "On ajoute des sommets à A" << std::endl;
+    ArbreB<int>::ecrire_log("On ajoute des sommets à A");
 
     a.ajoutG(8);
     a.ajoutG(5);
@@ -53,14 +62,19 @@ void testSuppresionArbre() {
     a.estVide() ? std::cout << "L'arbre est vide" << std::endl : std::cout << "L'arbre n'est pas vide" << std::endl;
     a.estVide() ? ArbreB<int>::ecrire_log("L'arbre est vide") : ArbreB<int>::ecrire_log("L'arbre n'est pas vide");
 
+    std::cout<< "On supprime tout les sommets de A" << std::endl;
+    ArbreB<int>::ecrire_log("On supprime tout les sommets de A");
     a.tout_supprimer();
     a.estVide() ? std::cout << "L'arbre est vide" << std::endl : std::cout << "L'arbre n'est pas vide" << std::endl;
     a.estVide() ? ArbreB<int>::ecrire_log("L'arbre est vide") : ArbreB<int>::ecrire_log("L'arbre n'est pas vide");
 }
 
 void testCopieArbre() {
-    std::cout<< "\n\t#### Test de la copie d'arbre : ####"  << std::endl;
-    ArbreB<int>::ecrire_log("\n\t#### Test de la copie d'arbre : ####");
+    std::cout<< "\n#### Test de la copie d'arbre : ####"  << std::endl;
+    ArbreB<int>::ecrire_log("\n#### Test de la copie d'arbre : ####");
+
+    std::cout<< "On créer l'arbre A"  << std::endl;
+    ArbreB<int>::ecrire_log("On créer l'arbre A");
 
     ArbreB<int> a;
     a.ajoutG(8);
@@ -74,6 +88,8 @@ void testCopieArbre() {
     ArbreB<int>::ecrire_log("\nParcours Infixe A :");
     a.parcours_infixe();
 
+    std::cout<< "On créer l'arbre B et on lui affecte A (B = A)"  << std::endl;
+    ArbreB<int>::ecrire_log("On créer l'arbre B et on lui affecte A (B = A)");
     ArbreB<int> b;
     b = a;
 
@@ -81,6 +97,8 @@ void testCopieArbre() {
     ArbreB<int>::ecrire_log("\nParcours Infixe B :");
     b.parcours_infixe();
 
+    std::cout<< "On créer l'arbre C appartir de A (C(A))"  << std::endl;
+    ArbreB<int>::ecrire_log("On créer l'arbre C appartir de A (C(A))");
     ArbreB<int> c(b);
 
     std::cout<< "\nParcours Infixe C :"  << std::endl;
@@ -89,8 +107,11 @@ void testCopieArbre() {
 }
 
 void testFusionArbre() {
-    std::cout<< "\n\t#### Test de la fusion d'arbre : ####"  << std::endl;
-    ArbreB<int>::ecrire_log("\n\t#### Test de la fusion d'arbre : ####");
+    std::cout<< "\n#### Test de la fusion d'arbre : ####"  << std::endl;
+    ArbreB<int>::ecrire_log("\n#### Test de la fusion d'arbre : ####");
+
+    std::cout<< "On créer l'arbre A"  << std::endl;
+    ArbreB<int>::ecrire_log("On créer l'arbre A");
 
     ArbreB<int> a;
     a << 8;
@@ -102,6 +123,9 @@ void testFusionArbre() {
     ArbreB<int>::ecrire_log("\nParcours Postfixe A :");
 
     a.parcours_prefixe();
+
+    std::cout<< "On créer l'arbre B"  << std::endl;
+    ArbreB<int>::ecrire_log("On créer l'arbre B");
 
     ArbreB<int> b;
     b >> 6;
@@ -116,6 +140,8 @@ void testFusionArbre() {
     ArbreB<int>::ecrire_log("\nParcours Prefixe B :");
     b.parcours_prefixe();
 
+    std::cout<< "On fusionne A avec B (A+=B)"  << std::endl;
+    ArbreB<int>::ecrire_log("On fusionne A avec B (A+=B)");
     a += b;
 
     std::cout<< "\nParcours Prefixe A :"  << std::endl;
@@ -124,8 +150,11 @@ void testFusionArbre() {
 }
 
 void testEtiquette() {
-    std::cout<< "\n\t#### Test de la modification d'une étiquette et de sa présence : ####"  << std::endl;
-    ArbreB<int>::ecrire_log("\n\t#### Test de la modification d'une étiquette et de sa présence : ####");
+    std::cout<< "\n#### Test de la modification d'une étiquette et de sa présence : ####"  << std::endl;
+    ArbreB<int>::ecrire_log("\n#### Test de la modification d'une étiquette et de sa présence : ####");
+
+    std::cout<< "On créer l'arbre A" << std::endl;
+    ArbreB<int>::ecrire_log("On créer l'arbre A");
 
     ArbreB<int> a;
     a << 8;
@@ -133,13 +162,17 @@ void testEtiquette() {
     a.remonter_racine();
     a >> 7;
 
-    std::cout<< "\nParcours Prefixe A :"  << std::endl;
+    std::cout<< "\nParcours Prefixe A :" << std::endl;
     ArbreB<int>::ecrire_log("\nParcours Prefixe A :");
     a.parcours_prefixe();
 
     a.remonter_racine();
     a.deplacementD();
     a.setEtiquette(14);
+
+
+    std::cout<< "On modifie la valeur de l'étiquette 7 par 14" << std::endl;
+    ArbreB<int>::ecrire_log("On modifie la valeur de l'étiquette 7 par 14");
 
     std::cout<< "\nParcours Prefixe A :"  << std::endl;
     ArbreB<int>::ecrire_log("\nParcours Prefixe A :");
@@ -155,8 +188,11 @@ void testEtiquette() {
 }
 
 void testDecompositionArbre() {
-    std::cout<< "\n\t#### Test de la décomposition d'un arbre : ####"  << std::endl;
-    ArbreB<int>::ecrire_log("\n\t#### Test de la décomposition d'un arbre : ####");
+    std::cout<< "\n#### Test de la décomposition d'un arbre : ####"  << std::endl;
+    ArbreB<int>::ecrire_log("\n#### Test de la décomposition d'un arbre : ####");
+
+    std::cout<< "On créer l'arbre A" << std::endl;
+    ArbreB<int>::ecrire_log("On créer l'arbre A");
 
     ArbreB<int> a;
     a << 8;
@@ -173,7 +209,12 @@ void testDecompositionArbre() {
     a.remonter_racine();
     a.deplacementG();
 
+    std::cout<< "On créer l'arbre B vide" << std::endl;
+    ArbreB<int>::ecrire_log("On créer l'arbre B vide");
     ArbreB<int> b;
+
+    std::cout<< "On décompose l'arbre A" << std::endl;
+    ArbreB<int>::ecrire_log("On décompose l'arbre A");    
     a.decomposition(b);
 
     std::cout<< "\nParcours Prefixe A :"  << std::endl;
@@ -186,9 +227,11 @@ void testDecompositionArbre() {
 }
 
 void testAjoutAuto() {
-    std::cout<< "\n\t#### Test ajout automatiquement par rapport au poid de l'étiquette : ####"  << std::endl;
-    ArbreB<int>::ecrire_log("\n\t#### Test ajout automatiquement par rapport au poid de l'étiquette : ####");
+    std::cout<< "\n#### Test l'ajout automatiquement par rapport au poid de l'étiquette : ####"  << std::endl;
+    ArbreB<int>::ecrire_log("\n#### Test l'ajout automatiquement par rapport au poid de l'étiquette : ####");
 
+    std::cout<< "On créer l'arbre A" << std::endl;
+    ArbreB<int>::ecrire_log("On créer l'arbre A");
     ArbreB<int> a;
     a.ajoutAuto(5);
     a.ajoutAuto(9);
@@ -212,9 +255,11 @@ void testAjoutAuto() {
 }
 
 void testSuppressionFeuille() {
-    std::cout<< "\n\t#### Test de la suppression d'une feuille dans l'arbre : ####"  << std::endl;
-    ArbreB<int>::ecrire_log("\n\t#### Test de la suppression d'une feuille dans l'arbre : ####");
+    std::cout<< "\n#### Test de la suppression d'une feuille dans l'arbre : ####"  << std::endl;
+    ArbreB<int>::ecrire_log("\n#### Test de la suppression d'une feuille dans l'arbre : ####");
 
+    std::cout<< "On créer l'arbre A" << std::endl;
+    ArbreB<int>::ecrire_log("On créer l'arbre A");
     ArbreB<int> a;
     a.ajoutAuto(5);
     a.ajoutAuto(3);
@@ -228,8 +273,10 @@ void testSuppressionFeuille() {
     a.remonter_racine();
     a.deplacementG();
 
-    // on supprime la feuille : 3
+    std::cout<< "On supprime le sommet 3" << std::endl;
+    ArbreB<int>::ecrire_log("On supprime le sommet 3");
     a.supprimer_feuille();
+
     std::cout<< "\nParcours Préfixe A :"  << std::endl;
     ArbreB<int>::ecrire_log("\nParcours Préfixe A :");
     a.parcours_prefixe();
@@ -238,8 +285,10 @@ void testSuppressionFeuille() {
     a.deplacementD();
     a.deplacementG();
 
-    // on supprime la feuille : 7
+    std::cout<< "On supprime le sommet 7" << std::endl;
+    ArbreB<int>::ecrire_log("On supprime le sommet 7");
     a.supprimer_feuille();
+    
     std::cout<< "\nParcours Préfixe A :"  << std::endl;
     ArbreB<int>::ecrire_log("\nParcours Préfixe A :");
     a.parcours_prefixe();
@@ -247,15 +296,18 @@ void testSuppressionFeuille() {
     a.remonter_racine();
     a.deplacementD();
 
-    // on supprime la feuille : 15
+    std::cout<< "On supprime le sommet 15" << std::endl;
+    ArbreB<int>::ecrire_log("On supprime le sommet 15");
     a.supprimer_feuille();
+    
     std::cout<< "\nParcours Préfixe A :"  << std::endl;
     ArbreB<int>::ecrire_log("\nParcours Préfixe A :");
     a.parcours_prefixe();
 
     a.remonter_racine();
 
-    // on supprime la feuille : racine : 5
+    std::cout<< "On supprime le sommet 5" << std::endl;
+    ArbreB<int>::ecrire_log("On supprime le sommet 5");
     a.supprimer_feuille();
     std::cout<< "\nParcours Préfixe A :"  << std::endl;
     ArbreB<int>::ecrire_log("\nParcours Préfixe A :");
@@ -263,9 +315,11 @@ void testSuppressionFeuille() {
 }
 
 void testSuppressionSommet() {
-    std::cout<< "\n\t#### Test de la suppression d'un Sommet dans l'arbre : ####"  << std::endl;
-    ArbreB<int>::ecrire_log("\n\t#### Test de la suppression d'un Sommet dans l'arbre : ####");
+    std::cout<< "\n#### Test de la suppression d'un Sommet dans l'arbre : ####"  << std::endl;
+    ArbreB<int>::ecrire_log("\n#### Test de la suppression d'un Sommet dans l'arbre : ####");
 
+    std::cout<< "On créer l'arbre C" << std::endl;
+    ArbreB<int>::ecrire_log("On créer l'arbre C");
     ArbreB<int> c;
     c << 1 << 2<< 4;
     c.remonter_racine();
@@ -357,8 +411,6 @@ void testSuppressionSommet() {
     ArbreB<int>::ecrire_log("\nParcours Préfixe C apres suppression de 7 : ");
     c.parcours_prefixe();
 
-
-    // Modifer pour supprimer la racine dernier seul sommet du l'arbre
     c.remonter_racine();
     c.supprimer_sommet();
 
