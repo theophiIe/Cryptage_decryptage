@@ -8,6 +8,7 @@
 #include "ArbreB.hh"
 #include "bouton.hh"
 
+
 class Affichage : public QWidget {
     private:
 
@@ -21,7 +22,8 @@ class Affichage : public QWidget {
         int _racine_x = 600;
         int _racine_y = 100;
 
-       // void paintArbre(ArbreB<T> &arbre);
+        template<typename T>
+        void paintArbre(ArbreB<T> &arbre);
         void paintFils();
         void paintEvent(QPaintEvent *event);
         QSize sizeHint() const;
