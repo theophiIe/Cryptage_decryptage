@@ -22,6 +22,7 @@
             inline bool recherche(Sommet<T> *sommetRacine, const T &val, bool &existe);
             inline void nbrSommet(Sommet<T> *sommetRacine, int *&val);
             inline void recherchePere(Sommet<T> *courant, Sommet<T> *recherche, Sommet<T> *&pere);
+            inline int  profondeur(Sommet<T> *racine);
 
         public:
             ArbreB() : _racine(nullptr), _sCourant(nullptr), _nbr_sommet(0) {}
@@ -32,6 +33,7 @@
             int getEtiquette() const { return _sCourant->_etiquette; }
             void setEtiquette(const T &val) { _sCourant->_etiquette = val; }
             int getNbrSommet() const { return _nbr_sommet; }
+            int get_profondeur() { return profondeur(_racine); }
 
             // parcours de l'arbre
             void parcours_prefixe() { prefixe(_racine); };
@@ -45,8 +47,8 @@
 
             // Pour ce déplacer dans l'arbre
             void remonter_racine() { _sCourant = _racine; }
-            inline void deplacementG();
-            inline void deplacementD();
+            inline bool deplacementG();
+            inline bool deplacementD();
 
 
             bool estPrensent(const T &val) { bool existe = false; return recherche(_racine, val, existe) ? true : false; }
@@ -343,6 +345,30 @@
         }
     }
 
+    template<typename T>
+    int ArbreB<T>::profondeur(Sommet<T> *racine) {
+        if (racine == nullptr) {
+            return 0;
+        }
+
+        if (racine->_filsG == nullptr && racine->_filsD == nullptr) {
+            return 1;
+        }
+
+        else {
+            int fgauche = profondeur(racine->_filsG);
+            int fdroit = profondeur(racine->_filsD);
+
+            if (fgauche > fdroit) {
+                return(fgauche +1);
+            }
+            
+            else {
+                return (fdroit +1);
+            }
+        }
+    }
+
     /* Si la racine n'existe pas on la créer et on lui affecte la valeur passé en parametre 
      * sinon on ajoute val aux fils gauche du sommet courant */
     template<typename T>
@@ -411,27 +437,31 @@
 
     /* Permet de ce déplacer sur le fils gauche du sommet courant */
     template<typename T>
-    void ArbreB<T>::deplacementG() {
+    bool ArbreB<T>::deplacementG() {
         if (_sCourant->_filsG != nullptr) {
             _sCourant = _sCourant->_filsG;
+            return true;
         }
 
         else {
             std::cout << "Impossible de ce déplacer à gauche vous êtes sur une feuille" << std::endl;
             ecrire_log("Impossible de ce déplacer à gauche vous êtes sur une feuille");
+            return false;
         }
     }
 
     /* Permet de ce déplacer sur le fils droit du sommet courant */
     template<typename T>
-    void ArbreB<T>::deplacementD() {
+    bool ArbreB<T>::deplacementD() {
         if (_sCourant->_filsD != nullptr) {
             _sCourant = _sCourant->_filsD;
+            return true;
         }
 
         else {
             std::cout << "Impossible de ce déplacer à droite vous êtes sur une feuille" << std::endl;
             ecrire_log("Impossible de ce déplacer à droite vous êtes sur une feuille");
+            return false;
         }
     }
 
