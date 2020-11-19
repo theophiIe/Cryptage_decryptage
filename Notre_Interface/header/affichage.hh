@@ -24,7 +24,8 @@ class Affichage : public QWidget {
 
         template<typename T>
         void paintArbre(ArbreB<T> &arbre);
-        void paintFils();
+        template<typename T>
+        void paintFils(ArbreB<T> &arbre);
         void paintEvent(QPaintEvent *event);
         QSize sizeHint() const;
 };

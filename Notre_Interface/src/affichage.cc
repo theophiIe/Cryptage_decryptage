@@ -8,29 +8,31 @@ QSize Affichage::sizeHint() const {
     return QSize(3000, 1500);
 }
 
-// void Affichage::paintArbre(ArbreB<T> &arbre) {
-//     QPainter paint(this);
+template<typename T>
+void Affichage::paintArbre(ArbreB<T> &arbre) {
+    QPainter paint(this);
 
-//     int profondeur = a.get_profondeur();    
-//     arbre.remonter_racine();
-//     //appel des conditions avec la recursion via paintFils
-// }
+    int profondeur = arbre.get_profondeur();    
+    arbre.remonter_racine();
+    //appel des conditions avec la recursion via paintFils
+}
 
-void Affichage::paintFils() {
+template<typename T>
+void Affichage::paintFils(ArbreB<T> &arbre) {
     QPainter paint(this);
         
     if (0/*racine null )*/){
         std::cout << "\t\t\tCHEH\n\n";
     }
     //print le sommet
-    if (a.deplacementG()) {
+    if (arbre.deplacementG()) {
         
-        paintFils();
+        paintFils(arbre);
     }
 
-    if (a.deplacementD()) {
+    if (arbre.deplacementD()) {
         
-        paintFils();
+        paintFils(arbre);
     }
 }
 
@@ -61,7 +63,7 @@ void Affichage::paintEvent(QPaintEvent* event) {
     a.deplacementG();
     a.ajoutG(4);
 
-
+    
 }
 
 Affichage::~Affichage() {
