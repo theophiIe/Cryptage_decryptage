@@ -1,32 +1,44 @@
 #include "../header/bouton.hh"
 
 Bouton::Bouton() {
-    layout = new QGridLayout();
-    setLayout(layout);
-    layout->setAlignment(Qt::AlignBottom);
+    layout_englobant = new QGridLayout();
+    setLayout(layout_englobant);
+    layout_englobant->setAlignment(Qt::AlignTop);
 
-    bQuitter = new QPushButton("Quitter", this);
-    bQuitter->show();
-    layout->addWidget(bQuitter, 0, 1);
-    connect(bQuitter, SIGNAL(clicked()), qApp, SLOT(quit()));
+    layout_bouton = new QGridLayout();
+    setLayout(layout_bouton);
+    layout_bouton->setAlignment(Qt::AlignBottom);
+
+    layout_text = new QGridLayout();
+    setLayout(layout_text);
+    layout_text->setAlignment(Qt::AlignTop);
+
+    layout_englobant->addLayout(layout_bouton, 0, 0);
+    layout_englobant->addLayout(layout_text, 1, 0);
 
     texte = new QTextEdit(this);
-    //layout->addWidget(texte);
+    texte->setMinimumSize(450, 400);
+    layout_text->addWidget(texte);
 
     scoller = new QScrollArea();
     scoller->setWidget(texte);
     scoller->show();
-    layout->addWidget(scoller, 0, 0);
-    
+    layout_text->addWidget(scoller, 0, 0);
+
+    bQuitter = new QPushButton("Quitter", this);
+    bQuitter->show();
+    layout_bouton->addWidget(bQuitter, 0, 1);
+    connect(bQuitter, SIGNAL(clicked()), qApp, SLOT(quit()));
+
 
     bTest = new QPushButton("Test", this);
     bTest->show();
-    layout->addWidget(bTest, 0, 2);
+    layout_bouton->addWidget(bTest, 0, 2);
     connect(bTest, SIGNAL(clicked()), this, SLOT(aff_test1()));  
 
     bArbre = new QPushButton("Arbre", this);
     bArbre->show();
-    layout->addWidget(bArbre, 0, 3);
+    layout_bouton->addWidget(bArbre, 0, 3);
 }
 
 Bouton::~Bouton() {
@@ -38,7 +50,7 @@ void Bouton::aff_test1() {
     QFile fichier(chemin);
     fichier.open(QIODevice::ReadOnly);
     QTextStream lire_log(&fichier);
-    QString test = lire_log.readAll();
-    texte->setText(test);
+    QString contenu_fichier = lire_log.readAll();
+    texte->setText(contenu_fichier);
     texte->show();
 }

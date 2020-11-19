@@ -5,6 +5,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGridLayout>
 #include <QtGui/QPainter>
+#include "bouton.hh"
 
 class Affichage : public QWidget {
     private:

@@ -10,6 +10,9 @@ QSize Affichage::sizeHint() const {
 
 void Affichage::paintEvent(QPaintEvent* event) {
     QPainter paint(this);
+    
+    // QRect rect(0, 0, 170, 45);
+    // paint.drawText(rect, Qt::AlignCenter, *Bouton::contenu_fichier);
 
     paint.drawEllipse(100,100,10,10);
     paint.drawEllipse(300,100,10,10);

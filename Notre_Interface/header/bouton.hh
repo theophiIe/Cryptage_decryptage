@@ -16,17 +16,19 @@ class Bouton : public QWidget {
     Q_OBJECT
 
     private:
-        QGridLayout *layout;
+        QGridLayout *layout_bouton;
+        QGridLayout *layout_text;
+        QGridLayout *layout_englobant;
         QPushButton *bQuitter;
         QPushButton *bTest;
         QPushButton *bArbre;
-
         QScrollArea *scoller;
         QTextEdit *texte;
 
     public:
         Bouton();
         ~Bouton();
+        
 
     public slots:
         void aff_test1();
