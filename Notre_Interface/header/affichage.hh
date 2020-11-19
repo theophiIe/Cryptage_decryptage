@@ -21,6 +21,8 @@ class Affichage : public QWidget {
         int _racine_x = 600;
         int _racine_y = 100;
 
+       // void paintArbre(ArbreB<T> &arbre);
+        void paintFils();
         void paintEvent(QPaintEvent *event);
         QSize sizeHint() const;
 };

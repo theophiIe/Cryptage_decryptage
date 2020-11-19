@@ -8,13 +8,39 @@ QSize Affichage::sizeHint() const {
     return QSize(3000, 1500);
 }
 
+// void Affichage::paintArbre(ArbreB<T> &arbre) {
+//     QPainter paint(this);
+
+//     int profondeur = a.get_profondeur();    
+//     arbre.remonter_racine();
+//     //appel des conditions avec la recursion via paintFils
+// }
+
+void Affichage::paintFils() {
+    QPainter paint(this);
+        
+    if (0/*racine null )*/){
+        std::cout << "\t\t\tCHEH\n\n";
+    }
+    //print le sommet
+    if (a.deplacementG()) {
+        
+        paintFils();
+    }
+
+    if (a.deplacementD()) {
+        
+        paintFils();
+    }
+}
+
 void Affichage::paintEvent(QPaintEvent* event) {
     QPainter paint(this);
     
     // QRect rect(0, 0, 170, 45);
     // paint.drawText(rect, Qt::AlignCenter, *Bouton::contenu_fichier);
 
-    // paint.drawEllipse(100,100,10,10);
+     paint.drawEllipse(100,100,10,10);
     // paint.drawEllipse(300,100,10,10);
 
     // paint.drawLine(150,150,260,150);
@@ -34,20 +60,8 @@ void Affichage::paintEvent(QPaintEvent* event) {
     a.remonter_racine();
     a.deplacementG();
     a.ajoutG(4);
-    int profondeur = a.get_profondeur();
 
-    a.remonter_racine();
-    if (0/*racine null )*/){
-        std::cout << "\t\t\tCHEH\n\n";
-    }
 
-    if (a.deplacementG()) {
-        
-    }
-
-    if (a.deplacementD()) {
-        
-    }
 }
 
 Affichage::~Affichage() {
