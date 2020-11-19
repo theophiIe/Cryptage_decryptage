@@ -19,13 +19,13 @@ class Affichage : public QWidget {
         int ecart_feuille = 50;
         int ecart_ordonnee = 50;
         int cercle_size = 35;
-        int _racine_x = 600;
-        int _racine_y = 100;
+        int racineX = 250;
+        int racineY = 100;
 
         template<typename T>
-        void paintArbre(ArbreB<T> &arbre);
+        void paintFils(ArbreB<T> &arbre, int X, int Y);
         template<typename T>
-        void paintFils(ArbreB<T> &arbre);
+        void creer_un_arbre(ArbreB<T> &arbre);
         void paintEvent(QPaintEvent *event);
         QSize sizeHint() const;
 };

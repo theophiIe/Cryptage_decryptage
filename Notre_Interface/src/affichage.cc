@@ -9,31 +9,51 @@ QSize Affichage::sizeHint() const {
 }
 
 template<typename T>
-void Affichage::paintArbre(ArbreB<T> &arbre) {
+void Affichage::paintFils(ArbreB<T> &arbre, int X, int Y) {
     QPainter paint(this);
+        
+    paint.drawEllipse(racineX, racineY,cercle_size,cercle_size);
 
-    int profondeur = arbre.get_profondeur();    
-    arbre.remonter_racine();
-    //appel des conditions avec la recursion via paintFils
+   //  if (arbre.existe_fils_gauche())   {
+        X = X - ecart_feuille;
+        Y = Y + ecart_ordonnee;
+        paint.drawEllipse(X, Y,cercle_size,cercle_size);
+     //   arbre.deplacementG();
+        std::cout<<"print1\n";
+        paintFils(arbre, X, Y);
+         std::cout<<"print\n";
+  //  }
+    X = X + ecart_feuille;
+    Y = Y - ecart_ordonnee;
+
+
+  //   if (arbre.existe_fils_droit())   {
+        X = X + ecart_feuille;
+        Y = Y + ecart_ordonnee;
+        paint.drawEllipse(X, Y,cercle_size,cercle_size);
+       // arbre.deplacementD();
+        std::cout<<"print2\n";
+        paintFils(arbre, X, Y);
+         std::cout<<"print\n";
+   // }
+    X = X - ecart_feuille;
+    Y = Y - ecart_ordonnee;
+    std::cout<<"Remontadaaaaa x\n";
 }
 
 template<typename T>
-void Affichage::paintFils(ArbreB<T> &arbre) {
-    QPainter paint(this);
-        
-    if (0/*racine null )*/){
-        std::cout << "\t\t\tCHEH\n\n";
-    }
-    //print le sommet
-    if (arbre.deplacementG()) {
-        
-        paintFils(arbre);
-    }
+void Affichage::creer_un_arbre(ArbreB<T> &a) {
 
-    if (arbre.deplacementD()) {
-        
-        paintFils(arbre);
-    }
+    a.ajoutG(8);
+    a << 5;
+    a >> 7;
+    a.remonter_racine();
+    a.ajoutD(6);
+    a.ajoutD(1);
+    a.remonter_racine();
+    a.deplacementG();
+    a.ajoutG(4);
+    a.ajoutG(9);
 }
 
 void Affichage::paintEvent(QPaintEvent* event) {
@@ -52,18 +72,6 @@ void Affichage::paintEvent(QPaintEvent* event) {
 
     // paint.drawLine(110,80,90,90);
 
-    ArbreB<int> a;
-    a.ajoutG(8);
-    a << 5;
-    a >> 7;
-    a.remonter_racine();
-    a.ajoutD(6);
-    a.ajoutD(1);
-    a.remonter_racine();
-    a.deplacementG();
-    a.ajoutG(4);
-
-    
 }
 
 Affichage::~Affichage() {
