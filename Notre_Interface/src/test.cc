@@ -34,6 +34,9 @@ void testParcoursArbre() {
     std::cout<< "\nParcours Infixe A :" << std::endl;
     ArbreB<int>::ecrire_log("\nParcours Infixe A :");
     a.parcours_infixe();
+
+    //a.dessin_arbre();
+    a.arbre3D();
 }
 
 void testSuppresionArbre() {
@@ -197,10 +200,10 @@ void testDecompositionArbre() {
     ArbreB<int>::ecrire_log("On créer l'arbre A");
 
     ArbreB<int> a;
-    a << 8;
-    a << 5;
-    a << 3;
-    a << 9;
+    a << 8 << 5 << 3 << 9;
+    a.remonter_racine();
+    a.deplacementG();
+    a >> 4;
     a.remonter_racine();
     a >> 7;
 
@@ -333,6 +336,8 @@ void testSuppressionSommet() {
     c.deplacementG();
     c.deplacementD();
     c << 7;
+
+    c.arbre3D();
 
     std::cout<< "\nParcours Préfixe C : "  << std::endl;
     ArbreB<int>::ecrire_log("\nParcours Préfixe C : ");
