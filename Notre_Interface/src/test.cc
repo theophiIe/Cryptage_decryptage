@@ -337,8 +337,6 @@ void testSuppressionSommet() {
     c.deplacementD();
     c << 7;
 
-    c.arbre3D();
-
     std::cout<< "\nParcours Préfixe C : "  << std::endl;
     ArbreB<int>::ecrire_log("\nParcours Préfixe C : ");
     c.parcours_prefixe();
@@ -424,4 +422,34 @@ void testSuppressionSommet() {
     std::cout<< "\nParcours Préfixe C apres suppression de 5 : "  << std::endl;
     ArbreB<int>::ecrire_log("\nParcours Préfixe C apres suppression de 5 : ");
     c.parcours_prefixe();
+
+
+
+
+
+    ArbreB<int> a;
+    a << 1 << 2 << 3 << 4 << 14;
+    a.remonter_racine();
+    a >> 7 >> 9 >> 12;
+    a.remonter_racine();
+    a.deplacementG();
+    a >> 6;
+    a.remonter_racine();
+    a.deplacementG();
+    a.deplacementG();
+    a >> 5;
+    a.remonter_racine();
+    a.deplacementD();
+    a << 8 << 10;
+    a.remonter_racine();
+    a.deplacementD();
+    a.deplacementD();
+    a << 11;
+    a.remonter_racine();
+    a.deplacementD();
+    a.deplacementD();
+    a.deplacementD();
+    a << 13;
+
+    a.arbre3D();
 }
