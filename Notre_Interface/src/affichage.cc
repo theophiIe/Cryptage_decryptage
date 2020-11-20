@@ -9,7 +9,7 @@ QSize Affichage::sizeHint() const {
     return QSize(3000, 1500);
 }
 int Affichage::lecture_fichier_arbre() {
-    std::ifstream fichier("fichier_arbre.txt");
+    std::ifstream fichier("arbre_interface.txt");
     if (fichier) {
         std::string s = "mot";
         char c;
