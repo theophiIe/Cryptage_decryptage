@@ -13,6 +13,7 @@ template<typename T> class ArbreB {
 
         inline void ajout(const T &val);
         inline void supprimer(Sommet<T> *racine);
+        inline void supprimer_feuille();
         inline void suppression_un_fils(Sommet<T> *sommet);
         inline void suppression_deux_fils(Sommet<T> *sommet);
         inline void prefixe(Sommet<T> *sommetRacine);
@@ -61,7 +62,6 @@ template<typename T> class ArbreB {
 
         inline void decomposition(ArbreB<T> &arbre);
 
-        inline void supprimer_feuille();
         inline void supprimer_sommet();
         inline void tout_supprimer();
         bool estVide() { return (_racine == nullptr && _sCourant == nullptr) ? true : false; }
@@ -198,6 +198,40 @@ void ArbreB<T>::supprimer(Sommet<T> *racine) {
 
         delete racine;
         racine = nullptr;
+    }
+}
+
+/* Permet de supprimer une une feuille de l'arbre */
+template<typename T>
+void ArbreB<T>::supprimer_feuille() {
+    if (_sCourant == _racine && (_sCourant->_filsG == nullptr && _sCourant->_filsD == nullptr)) {
+        delete _racine;
+        _racine = nullptr;
+
+        _nbr_sommet = 0;
+    }
+    
+    else if (_sCourant->_filsG == nullptr && _sCourant->_filsD == nullptr) {
+        Sommet <T> *tmp = _racine;
+        Sommet <T> *pere = _racine;
+
+        recherchePere(tmp, _sCourant, pere);
+        
+        if (pere->_filsG != nullptr && pere->_filsG->_etiquette == _sCourant->_etiquette) {
+            pere->_filsG = nullptr;
+        }
+
+        else if (pere->_filsD != nullptr && pere->_filsD->_etiquette == _sCourant->_etiquette) {
+            pere->_filsD = nullptr;
+        }
+
+        delete _sCourant;
+        _nbr_sommet -= 1;
+    }
+    
+    else {
+        std::cout << "Ce sommet n'est pas une feuille" << std::endl;
+        ecrire_log("Ce sommet n'est pas une feuille");
     }
 }
 
@@ -569,40 +603,6 @@ void ArbreB<T>::decomposition(ArbreB<T> &arbre) {
         std::cout << "Impossible de faire une decomposition depuis la racine" << std::endl;
         ecrire_log("Impossible de faire une decomposition depuis la racine");
         return;
-    }
-}
-
-/* Permet de supprimer une une feuille de l'arbre */
-template<typename T>
-void ArbreB<T>::supprimer_feuille() {
-    if (_sCourant == _racine && (_sCourant->_filsG == nullptr && _sCourant->_filsD == nullptr)) {
-        delete _racine;
-        _racine = nullptr;
-
-        _nbr_sommet = 0;
-    }
-    
-    else if (_sCourant->_filsG == nullptr && _sCourant->_filsD == nullptr) {
-        Sommet <T> *tmp = _racine;
-        Sommet <T> *pere = _racine;
-
-        recherchePere(tmp, _sCourant, pere);
-        
-        if (pere->_filsG != nullptr && pere->_filsG->_etiquette == _sCourant->_etiquette) {
-            pere->_filsG = nullptr;
-        }
-
-        else if (pere->_filsD != nullptr && pere->_filsD->_etiquette == _sCourant->_etiquette) {
-            pere->_filsD = nullptr;
-        }
-
-        delete _sCourant;
-        _nbr_sommet -= 1;
-    }
-    
-    else {
-        std::cout << "Ce sommet n'est pas une feuille" << std::endl;
-        ecrire_log("Ce sommet n'est pas une feuille");
     }
 }
 
