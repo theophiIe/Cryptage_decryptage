@@ -131,7 +131,7 @@
                 ecrire_fichier_arbre(racine->_filsG);
             }
 
-            if (racine->_filsG != nullptr && racine->_filsD != nullptr) {
+            if (racine->_filsG != nullptr) {
                 std::cout << "R" << std::endl;
                 ecrire_arbre_interface("RD");
             }
@@ -142,7 +142,7 @@
                 ecrire_fichier_arbre(racine->_filsD);
             }
 
-            if (racine->_filsG != nullptr && racine->_filsD != nullptr) {
+            if (racine->_filsD != nullptr) {
                 std::cout << "R" << std::endl;
                 ecrire_arbre_interface("RG");
             }
