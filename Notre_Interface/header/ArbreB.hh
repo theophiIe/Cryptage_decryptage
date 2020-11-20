@@ -3,6 +3,8 @@
 
     #include "Sommet.hh"
     #include <fstream>
+    #include <string>
+
 
 
     template<typename T> class ArbreB {   
@@ -18,11 +20,13 @@
             inline void prefixe(Sommet<T> *sommetRacine);
             inline void infixe(Sommet<T> *sommetRacine);
             inline void postfixe(Sommet<T> *sommetRacine);
+            inline void ecriture_arbre(Sommet<T> *sommetRacine);
             inline Sommet<T> *copie(Sommet<T> *sommet);
             inline bool recherche(Sommet<T> *sommetRacine, const T &val, bool &existe);
             inline void nbrSommet(Sommet<T> *sommetRacine, int *&val);
             inline void recherchePere(Sommet<T> *courant, Sommet<T> *recherche, Sommet<T> *&pere);
             inline int  profondeur(Sommet<T> *racine);
+            
 
         public:
             ArbreB() : _racine(nullptr), _sCourant(nullptr), _nbr_sommet(0) {}
@@ -39,6 +43,7 @@
             void parcours_prefixe() { prefixe(_racine); };
             void parcours_infixe() { infixe(_racine); };
             void parcours_postfixe() { postfixe(_racine); };
+            void make_ecriture() { ecriture_arbre(_racine);};
 
             // Ajout d'un sommet à l'arbre
             inline void ajoutG(const T &val);
@@ -267,6 +272,31 @@
             ecrire_log("ERR : parcours impossible l'arbre est vide");
         }
     }
+
+    // Ecriture de l'arbre via un méthode de parcours préfixe
+    template<typename T>
+    void ArbreB<T>::ecriture_arbre(Sommet<T> *sommetRacine) {
+
+
+        if (sommetRacine != nullptr) {
+            std::ofstream myfile;
+	        myfile.open ("arbre.txt");
+	        myfile <<"okniggeria\n";
+            std::cout<<"TABLE\n";
+
+
+            
+
+
+            if (sommetRacine->_filsG != nullptr) {
+                ecriture_arbre(sommetRacine->_filsG);
+            }
+            if (sommetRacine->_filsD != nullptr) {
+                ecriture_arbre(sommetRacine->_filsD);
+            }
+        }
+    }
+
     
     /* Permet de copier un arbre à partir d'un sommet passé en parametre et renvoi la racine de l'arbre copié */
     template<typename T>

@@ -15,7 +15,9 @@ class Affichage : public QWidget {
     public:
         Affichage();
         ~Affichage();
-        
+
+        int lecture_fichier_arbre();
+
         int ecart_feuille = 50;
         int ecart_ordonnee = 50;
         int cercle_size = 35;
