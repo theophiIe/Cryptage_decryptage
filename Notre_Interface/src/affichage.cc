@@ -6,7 +6,7 @@ Affichage::Affichage() {}
 Affichage::~Affichage() {}
 
 QSize Affichage::sizeHint() const {
-    return QSize(3000, 1500);
+    return QSize(1800, 600);
 }
 
 int Affichage::lecture_fichier_arbre() {
