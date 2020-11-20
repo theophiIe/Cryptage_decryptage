@@ -10,5 +10,6 @@ void testDecompositionArbre();
 void testAjoutAuto();
 void testSuppressionFeuille();
 void testSuppressionSommet();
+void testDessinArbre();
 
 #endif

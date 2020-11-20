@@ -419,11 +419,9 @@ void testSuppressionSommet() {
     std::cout<< "\nParcours Préfixe C apres suppression de 5 : "  << std::endl;
     ArbreB<int>::ecrire_log("\nParcours Préfixe C apres suppression de 5 : ");
     c.parcours_prefixe();
+}
 
-
-
-
-
+void testDessinArbre(){
     ArbreB<int> a;
     a << 1 << 2 << 3 << 4 << 14;
     a.remonter_racine();

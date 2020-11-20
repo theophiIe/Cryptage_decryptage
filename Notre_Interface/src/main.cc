@@ -5,8 +5,7 @@
 
 #include "../header/fenetre.hh"
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
 
     std::ofstream mesLog("log.txt");
@@ -27,6 +26,7 @@ int main(int argc, char *argv[])
     testDecompositionArbre();
     testSuppressionFeuille();
     testSuppressionSommet();
+    testDessinArbre();
 
     Fenetre fen;
     fen.show();
