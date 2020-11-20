@@ -20,7 +20,7 @@ class Affichage : public QWidget {
 
         int ecart_feuille = 200;
         int ecart_ordonnee = 100;
-        int cercle_size = 35;
+        int cercle_size = 5;
         int racineX = 400;
         int racineY = 100;
 
