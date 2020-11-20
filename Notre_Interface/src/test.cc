@@ -384,5 +384,5 @@ void testDessinArbre(){
     a.deplacementD();
     a << 13;
 
-    a.arbre3D();
+    a.arbreInterface();
 }

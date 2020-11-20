@@ -68,8 +68,7 @@ template<typename T> class ArbreB {
 
         void dessin_arbre() { affichage_arbre(_racine, 0); }
 
-        inline void ecrire_fichier(Sommet<T> *racine);
-        void arbre3D() { ecrire_fichier_arbre(_racine); }
+        void arbreInterface() { ecrire_fichier_arbre(_racine); }
 
         /* Surcharge des opérateurs */
         inline ArbreB<T> &operator=(const ArbreB<T> &arbre);
