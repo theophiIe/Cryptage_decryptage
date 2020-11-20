@@ -118,28 +118,23 @@ void ArbreB<T>::ecrire_fichier(const std::string &&fichier, const std::string &l
 template<typename T>
 void ArbreB<T>::ecrire_fichier_arbre(Sommet<T> *racine) {
     if (racine != nullptr) {
-        std::cout << racine->_etiquette << std::endl;
         ecrire_arbre_interface(std::to_string(racine->_etiquette));
 
         if (racine->_filsG != nullptr) {
-            std::cout << "G"<< std::endl;
             ecrire_arbre_interface("G");
             ecrire_fichier_arbre(racine->_filsG);
         }
 
         if (racine->_filsG != nullptr) {
-            std::cout << "R" << std::endl;
             ecrire_arbre_interface("RD");
         }
 
         if (racine->_filsD != nullptr) {
-            std::cout << "D" << std::endl;
             ecrire_arbre_interface("D");
             ecrire_fichier_arbre(racine->_filsD);
         }
 
         if (racine->_filsD != nullptr) {
-            std::cout << "R" << std::endl;
             ecrire_arbre_interface("RG");
         }
     }
