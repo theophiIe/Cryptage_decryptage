@@ -80,16 +80,17 @@ void Affichage::affiche_ligne(int tmpX, int tmpY, int X, int Y) {
 }
 void Affichage::affichage_noeud(std::string s, int abs_X, int ord_Y, int taille_C) {
     QPainter paint(this);
-    QPen pen(Qt::red, 70, Qt::SolidLine);
+    QPen pen(Qt::red, 5, Qt::SolidLine);
     paint.setPen(pen);
     paint.setFont(QFont("Calibri", 25));
 
     QString str = QString::fromStdString(s);
     
-    paint.drawEllipse(abs_X, ord_Y, taille_C, taille_C);
+    // paint.drawEllipse(abs_X, ord_Y -10, taille_C, taille_C);
+    paint.drawEllipse(abs_X - 2, ord_Y -2 , taille_C, taille_C);
     QPen pen1(Qt::black, 70, Qt::SolidLine);
     paint.setPen(pen1);
-    paint.drawText(abs_X - 8, ord_Y -4, str);
+    paint.drawText(abs_X - 8, ord_Y -10, str);
 
     
 
