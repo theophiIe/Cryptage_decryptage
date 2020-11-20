@@ -46,7 +46,6 @@ int Affichage::lecture_fichier_arbre() {
                 affiche_ligne(tmpX,tmpY,X,Y);
                 affichage_noeud(s, X, Y, cercle_size);
                 depth++;
-                
             }
 
             else if ( s == "D") {
@@ -58,7 +57,6 @@ int Affichage::lecture_fichier_arbre() {
                 affiche_ligne(tmpX,tmpY,X,Y);
                 affichage_noeud(s, X, Y, cercle_size);
                 depth++;
-               
             }
 
             else {
@@ -73,7 +71,6 @@ int Affichage::lecture_fichier_arbre() {
 void Affichage::affiche_ligne(int tmpX, int tmpY, int X, int Y) {
     QPainter paint(this);
     paint.drawLine(tmpX, tmpY, X, Y);
-    
 }
 
 void Affichage::affichage_noeud(std::string s, int abs_X, int ord_Y, int taille_C) {
