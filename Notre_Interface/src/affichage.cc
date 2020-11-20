@@ -11,34 +11,87 @@ QSize Affichage::sizeHint() const {
 int Affichage::lecture_fichier_arbre() {
     std::ifstream fichier("fichier_arbre.txt");
     if (fichier) {
-        std::string ligne;
+        std::string s = "mot";
         char c;
-        while(getline(fichier, ligne)) {
-            std::cout<<"getline\t";
-            fichier.get(c);
-            switch (c)
-            {
-            case 'R':
-                std::cout<<"remontée\n";
-                break;
+        int X = racineX;
+        int Y = racineY;
+        int tmpX = 0;
+        int tmpY = 0;
+        int depth = 1;
 
-            case 'G':
-                std::cout<<"A gauche !\n";
-                break;
+        // print racine
+        fichier >> s;
+        affichage_noeud(s, X, Y, cercle_size);
+
+        while(fichier >> s) {
+
             
-            case 'D':
-                std::cout<<"A droite !\n";
-                break;
-
-            default :
-                std::cout<<"vide\n";
-                break;
+            if ( s == "RG") {
+                depth--;
+                std::cout<<"remontée\n";
+                X -= (ecart_feuille/depth);
+                Y -= ecart_ordonnee;
+                
             }
-        }
+            else if ( s == "RD") {
+                depth--;
+                std::cout<<"remontée\n";
+                X += (ecart_feuille/depth);
+                Y -= ecart_ordonnee;
+                
+            }
 
-      
+            else if ( s == "G") {
+                fichier >> s;
+                std::cout<<"A gauche : "<<s<<std::endl;
+                tmpX = X;
+                tmpY = Y;
+                X -= (ecart_feuille /depth);
+                Y += ecart_ordonnee;
+                affiche_ligne(tmpX,tmpY,X,Y);
+                affichage_noeud(s, X, Y, cercle_size);
+                depth++;
+                
+            }
+
+            else if ( s == "D") {
+                fichier >> s;
+                std::cout<<"A droite : "<<s<<std::endl;
+                tmpX = X;
+                tmpY = Y;
+                X += (ecart_feuille /depth);
+                Y += ecart_ordonnee;
+                affiche_ligne(tmpX,tmpY,X,Y);
+                affichage_noeud(s, X, Y, cercle_size);
+                depth++;
+               
+            }
+            else {
+                std::cout<<"Mot non reconnu !\n";
+            }  
+        }      
     }
     return 0;
+}
+void Affichage::affiche_ligne(int tmpX, int tmpY, int X, int Y) {
+    QPainter paint(this);
+    paint.drawLine(tmpX, tmpY, X, Y);
+    
+}
+void Affichage::affichage_noeud(std::string s, int abs_X, int ord_Y, int taille_C) {
+    QPainter paint(this);
+    QPen pen(Qt::red, 40, Qt::SolidLine);
+    paint.setPen(pen);
+    paint.setFont(QFont("Arial", 50));
+
+    QString str = QString::fromStdString(s);
+    
+
+    paint.drawText(abs_X, ord_Y, str);
+    QPen pen1(Qt::green, 10, Qt::SolidLine);
+    paint.setPen(pen1);
+    paint.drawEllipse(abs_X, ord_Y, taille_C, taille_C);
+
 }
 
 
@@ -96,7 +149,7 @@ void Affichage::paintEvent(QPaintEvent* event) {
     // QRect rect(0, 0, 170, 45);
     // paint.drawText(rect, Qt::AlignCenter, *Bouton::contenu_fichier);
 
-     paint.drawEllipse(100,100,10,10);
+    // paint.drawEllipse(100,100,10,10);
     // paint.drawEllipse(300,100,10,10);
 
     // paint.drawLine(150,150,260,150);

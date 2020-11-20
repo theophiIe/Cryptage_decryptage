@@ -18,12 +18,15 @@ class Affichage : public QWidget {
 
         int lecture_fichier_arbre();
 
-        int ecart_feuille = 50;
-        int ecart_ordonnee = 50;
+        int ecart_feuille = 200;
+        int ecart_ordonnee = 100;
         int cercle_size = 35;
-        int racineX = 250;
+        int racineX = 400;
         int racineY = 100;
 
+
+        void affiche_ligne(int tmpX, int tmpY, int X, int Y);
+        void affichage_noeud(std::string s, int abs_X, int ord_Y, int taille_C);
         template<typename T>
         void paintFils(ArbreB<T> &arbre, int X, int Y);
         template<typename T>
