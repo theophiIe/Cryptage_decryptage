@@ -11,11 +11,6 @@
 
 class Affichage : public QWidget {
     private:
-
-    public:
-        Affichage();
-        ~Affichage();
-
         int lecture_fichier_arbre();
 
         int ecart_feuille = 300;
@@ -24,13 +19,19 @@ class Affichage : public QWidget {
         int racineX = 800;
         int racineY = 50;
 
-
         void affiche_ligne(int tmpX, int tmpY, int X, int Y);
         void affichage_noeud(std::string s, int abs_X, int ord_Y, int taille_C);
+        
         template<typename T>
         void paintFils(ArbreB<T> &arbre, int X, int Y);
+        
         template<typename T>
         void creer_un_arbre(ArbreB<T> &arbre);
+
+    public:
+        Affichage();
+        ~Affichage();
+
         void paintEvent(QPaintEvent *event);
         QSize sizeHint() const;
 };

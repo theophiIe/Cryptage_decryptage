@@ -21,8 +21,6 @@ void testParcoursArbre() {
     a.deplacementG();
     a.ajoutG(4);
 
-    a.make_ecriture();
-
     std::cout<< "\nParcours Préfixe A :" << std::endl;
     ArbreB<int>::ecrire_log("\nParcours Préfixe A :");
     a.parcours_prefixe();
@@ -35,8 +33,7 @@ void testParcoursArbre() {
     ArbreB<int>::ecrire_log("\nParcours Infixe A :");
     a.parcours_infixe();
 
-    //a.dessin_arbre();
-    a.arbre3D();
+    a.dessin_arbre();
 }
 
 void testSuppresionArbre() {

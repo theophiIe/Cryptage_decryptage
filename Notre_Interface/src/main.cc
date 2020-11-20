@@ -18,14 +18,14 @@ int main(int argc, char *argv[])
     std::ofstream monArbreI("arbre_interface.txt");
     monArbreI.close();
 
-    // testParcoursArbre();
-    // testAjoutAuto();
-    // testSuppresionArbre();
-    // testCopieArbre();
-    // testFusionArbre();
-    // testEtiquette();
-    // testDecompositionArbre();
-    // testSuppressionFeuille();
+    testParcoursArbre();
+    testAjoutAuto();
+    testSuppresionArbre();
+    testCopieArbre();
+    testFusionArbre();
+    testEtiquette();
+    testDecompositionArbre();
+    testSuppressionFeuille();
     testSuppressionSommet();
 
     Fenetre fen;

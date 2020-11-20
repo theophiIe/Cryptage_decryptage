@@ -21,6 +21,4 @@ Fenetre::Fenetre() {
     setMinimumSize(500, 500);    
 }
 
-Fenetre::~Fenetre() {
-
-}
+Fenetre::~Fenetre() {}

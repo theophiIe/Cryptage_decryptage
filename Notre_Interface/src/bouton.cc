@@ -36,9 +36,7 @@ Bouton::Bouton() {
     connect(bTest, SIGNAL(clicked()), this, SLOT(aff_test1()));  
 }
 
-Bouton::~Bouton() {
-
-}
+Bouton::~Bouton() {}
 
 void Bouton::aff_test1() {
     QString chemin = "log.txt";
