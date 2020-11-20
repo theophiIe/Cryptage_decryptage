@@ -17,7 +17,7 @@ Bouton::Bouton() {
     layout_englobant->addLayout(layout_text, 1, 0);
 
     texte = new QTextEdit(this);
-    texte->setMinimumSize(450, 400);
+    texte->setMinimumSize(900, 800);
     layout_text->addWidget(texte);
 
     scoller = new QScrollArea();
@@ -30,15 +30,10 @@ Bouton::Bouton() {
     layout_bouton->addWidget(bQuitter, 0, 1);
     connect(bQuitter, SIGNAL(clicked()), qApp, SLOT(quit()));
 
-
     bTest = new QPushButton("Test", this);
     bTest->show();
     layout_bouton->addWidget(bTest, 0, 2);
     connect(bTest, SIGNAL(clicked()), this, SLOT(aff_test1()));  
-
-    bArbre = new QPushButton("Arbre", this);
-    bArbre->show();
-    layout_bouton->addWidget(bArbre, 0, 3);
 }
 
 Bouton::~Bouton() {

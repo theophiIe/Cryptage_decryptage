@@ -21,7 +21,6 @@ class Bouton : public QWidget {
         QGridLayout *layout_englobant;
         QPushButton *bQuitter;
         QPushButton *bTest;
-        QPushButton *bArbre;
         QScrollArea *scoller;
         QTextEdit *texte;
 

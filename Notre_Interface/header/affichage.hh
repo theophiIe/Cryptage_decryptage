@@ -1,5 +1,5 @@
-#if !defined(__AFFICHAGE__)
-#define __AFFICHAGE__
+#if !defined(AFFICHAGE)
+#define AFFICHAGE
 
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QApplication>
@@ -18,11 +18,11 @@ class Affichage : public QWidget {
 
         int lecture_fichier_arbre();
 
-        int ecart_feuille = 200;
+        int ecart_feuille = 300;
         int ecart_ordonnee = 100;
         int cercle_size = 5;
-        int racineX = 400;
-        int racineY = 100;
+        int racineX = 800;
+        int racineY = 50;
 
 
         void affiche_ligne(int tmpX, int tmpY, int X, int Y);
