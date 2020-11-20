@@ -21,6 +21,8 @@ void testParcoursArbre() {
     a.deplacementG();
     a.ajoutG(4);
 
+    a.make_ecriture();
+
     std::cout<< "\nParcours Préfixe A :" << std::endl;
     ArbreB<int>::ecrire_log("\nParcours Préfixe A :");
     a.parcours_prefixe();

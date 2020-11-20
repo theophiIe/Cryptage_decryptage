@@ -1,5 +1,6 @@
 #include "../header/affichage.hh"
-
+#include <fstream>
+#include <string>
 Affichage::Affichage() {
 
 }
@@ -7,6 +8,39 @@ Affichage::Affichage() {
 QSize Affichage::sizeHint() const {
     return QSize(3000, 1500);
 }
+int Affichage::lecture_fichier_arbre() {
+    std::ifstream fichier("fichier_arbre.txt");
+    if (fichier) {
+        std::string ligne;
+        char c;
+        while(getline(fichier, ligne)) {
+            std::cout<<"getline\t";
+            fichier.get(c);
+            switch (c)
+            {
+            case 'R':
+                std::cout<<"remontée\n";
+                break;
+
+            case 'G':
+                std::cout<<"A gauche !\n";
+                break;
+            
+            case 'D':
+                std::cout<<"A droite !\n";
+                break;
+
+            default :
+                std::cout<<"vide\n";
+                break;
+            }
+        }
+
+      
+    }
+    return 0;
+}
+
 
 template<typename T>
 void Affichage::paintFils(ArbreB<T> &arbre, int X, int Y) {
@@ -71,6 +105,7 @@ void Affichage::paintEvent(QPaintEvent* event) {
     // paint.drawLine(300,160,260,150);
 
     // paint.drawLine(110,80,90,90);
+    lecture_fichier_arbre();
 
 }
 
