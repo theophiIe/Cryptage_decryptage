@@ -1,5 +1,6 @@
 #include "../header/fenetre.hh"
 
+/* Permet de gérer l'affichage global de la fenetre graphique*/
 Fenetre::Fenetre() {
     layout = new  QGridLayout();
     setLayout(layout);

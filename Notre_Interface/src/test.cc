@@ -1,8 +1,6 @@
 #include "../header/test.hh"
 #include "../header/ArbreB.hh"
 
-// déplacer les fonctions test dans un fichiers dédié
-
 void testParcoursArbre() {
     std::cout<< "\n#### Test parcours d'arbre : ####" << std::endl;
     ArbreB<int>::ecrire_log("\n#### Test parcours d'arbre : ####");

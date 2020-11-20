@@ -1,5 +1,6 @@
 #include "../header/bouton.hh"
 
+/* Création des boutons et de l'affichage des tests */
 Bouton::Bouton() {
     layout_englobant = new QGridLayout();
     setLayout(layout_englobant);
@@ -33,12 +34,13 @@ Bouton::Bouton() {
     bTest = new QPushButton("Test", this);
     bTest->show();
     layout_bouton->addWidget(bTest, 0, 2);
-    connect(bTest, SIGNAL(clicked()), this, SLOT(aff_test1()));  
+    connect(bTest, SIGNAL(clicked()), this, SLOT(aff_test()));  
 }
 
 Bouton::~Bouton() {}
 
-void Bouton::aff_test1() {
+/* Permet de récuper les tests du fichier log.txt et les affiches*/
+void Bouton::aff_test() {
     QString chemin = "log.txt";
     QFile fichier(chemin);
     fichier.open(QIODevice::ReadOnly);

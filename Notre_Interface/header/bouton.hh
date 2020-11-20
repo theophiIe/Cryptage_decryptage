@@ -30,7 +30,7 @@ class Bouton : public QWidget {
         
 
     public slots:
-        void aff_test1();
+        void aff_test();
 };
 
 #endif
