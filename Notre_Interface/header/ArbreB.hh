@@ -23,13 +23,19 @@
             inline void nbrSommet(Sommet<T> *sommetRacine, int *&val);
             inline void recherchePere(Sommet<T> *courant, Sommet<T> *recherche, Sommet<T> *&pere);
             inline int  profondeur(Sommet<T> *racine);
+            inline void affichage_arbre(Sommet<T> *racine, int decalage);
+            inline static void ecrire_fichier(const std::string &&fichier, const std::string &log);
+            void ecrire_arbre(const std::string &info) { ecrire_fichier("arbre.txt", info); }
+            void ecrire_arbre_interface(const std::string &info) { ecrire_fichier("arbre_interface.txt", info); }
+            inline void ecrire_fichier_arbre(Sommet<T> *racine);
 
         public:
             ArbreB() : _racine(nullptr), _sCourant(nullptr), _nbr_sommet(0) {}
             inline ArbreB(const ArbreB<T> &arbre);
             inline ~ArbreB();
 
-            inline static void ecrire_log(const std::string &log);
+            static void ecrire_log(const std::string &log) { ArbreB<T>::ecrire_fichier("log.txt", log); }
+
             int getEtiquette() const { return _sCourant->_etiquette; }
             void setEtiquette(const T &val) { _sCourant->_etiquette = val; }
             int getNbrSommet() const { return _nbr_sommet; }
@@ -60,6 +66,11 @@
             inline void tout_supprimer();
             bool estVide() { return (_racine == nullptr && _sCourant == nullptr) ? true : false; }
 
+            void dessin_arbre() { affichage_arbre(_racine, 0); }
+
+            inline void ecrire_fichier(Sommet<T> *racine);
+            void arbre3D() { ecrire_fichier_arbre(_racine); }
+
             /* Surcharge des opérateurs */
             inline ArbreB<T> &operator=(const ArbreB<T> &arbre);
             inline ArbreB<T> &operator+=(ArbreB<T> &arbre);
@@ -86,19 +97,51 @@
         }
     }
 
+    /* Permet d'écrire dans un fichier */
     template<typename T>
-    void ArbreB<T>::ecrire_log(const std::string &log) {
-        std::string const nomFichier("log.txt");
+    void ArbreB<T>::ecrire_fichier(const std::string &&fichier, const std::string &log) {
+        std::string const nomFichier(fichier);
         std::fstream monFlux(nomFichier.c_str());
         monFlux.seekp(0, std::ios::end);
 
         if(monFlux) {
-            monFlux << log << std::endl;
+            fichier == "arbre.txt" ? monFlux << log : monFlux << log << std::endl;
             monFlux.close();
         }
 
         else {
             std::cout << "ERREUR: Impossible d'ouvrir le fichier." << std::endl;
+        }
+    }
+
+    /* Permet d'écrire dans un fichier la représentation de notre arbre pour l'affichage graphique */
+    template<typename T>
+    void ArbreB<T>::ecrire_fichier_arbre(Sommet<T> *racine) {
+        if (racine != nullptr) {
+            std::cout << racine->_etiquette << std::endl;
+            ecrire_arbre_interface(std::to_string(racine->_etiquette));
+
+            if (racine->_filsG != nullptr) {
+                std::cout << "G"<< std::endl;
+                ecrire_arbre_interface("G");
+                ecrire_fichier_arbre(racine->_filsG);
+            }
+
+            if (racine->_filsG != nullptr && racine->_filsD != nullptr) {
+                std::cout << "R" << std::endl;
+                ecrire_arbre_interface("RD");
+            }
+
+            if (racine->_filsD != nullptr) {
+                std::cout << "D" << std::endl;
+                ecrire_arbre_interface("D");
+                ecrire_fichier_arbre(racine->_filsD);
+            }
+
+            if (racine->_filsG != nullptr && racine->_filsD != nullptr) {
+                std::cout << "R" << std::endl;
+                ecrire_arbre_interface("RG");
+            }
         }
     }
 
@@ -345,6 +388,7 @@
         }
     }
 
+    /* Retourne la profondeur de l'arbre */
     template<typename T>
     int ArbreB<T>::profondeur(Sommet<T> *racine) {
         if (racine == nullptr) {
@@ -359,14 +403,35 @@
             int fgauche = profondeur(racine->_filsG);
             int fdroit = profondeur(racine->_filsD);
 
-            if (fgauche > fdroit) {
-                return(fgauche +1);
-            }
-            
-            else {
-                return (fdroit +1);
-            }
+            return fgauche > fdroit ? (fgauche + 1) : (fdroit + 1);
         }
+    }
+
+    /* Permet de faire un affichage textuel de l'arbre pour le terminal */
+    template<typename T>
+    void ArbreB<T>::affichage_arbre(Sommet<T> *racine, int decalage) {
+        if (racine == nullptr) {
+            return;
+        }
+
+        int profondeur = 5;
+
+        decalage += profondeur;
+
+        affichage_arbre(racine->_filsD, decalage);
+
+        std::cout << "\n";
+        ecrire_arbre("\n");
+        
+        for (auto i = profondeur; i < decalage; i++) {
+            std::cout << " ";
+            ecrire_arbre(" ");
+        }
+
+        std::cout << racine->_etiquette << std::endl;
+        ecrire_arbre(std::to_string(racine->_etiquette));
+        
+        affichage_arbre(racine->_filsG, decalage);
     }
 
     /* Si la racine n'existe pas on la créer et on lui affecte la valeur passé en parametre 

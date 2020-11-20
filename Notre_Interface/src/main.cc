@@ -9,17 +9,23 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    std::ofstream monFlux("log.txt");
-    monFlux.close();
+    std::ofstream mesLog("log.txt");
+    mesLog.close();
+
+    std::ofstream monArbre("arbre.txt");
+    monArbre.close();
     
-    testParcoursArbre();
-    testAjoutAuto();
-    testSuppresionArbre();
-    testCopieArbre();
-    testFusionArbre();
-    testEtiquette();
-    testDecompositionArbre();
-    testSuppressionFeuille();
+    std::ofstream monArbreI("arbre_interface.txt");
+    monArbreI.close();
+
+    // testParcoursArbre();
+    // testAjoutAuto();
+    // testSuppresionArbre();
+    // testCopieArbre();
+    // testFusionArbre();
+    // testEtiquette();
+    // testDecompositionArbre();
+    // testSuppressionFeuille();
     testSuppressionSommet();
 
     Fenetre fen;
