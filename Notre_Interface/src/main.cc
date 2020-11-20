@@ -27,7 +27,6 @@ int main(int argc, char *argv[]) {
     testFusionArbre();
     testEtiquette();
     testDecompositionArbre();
-    testSuppressionFeuille();
     testSuppressionSommet();
     testDessinArbre();
 

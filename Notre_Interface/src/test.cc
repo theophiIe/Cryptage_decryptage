@@ -254,66 +254,6 @@ void testAjoutAuto() {
     a.parcours_infixe();
 }
 
-void testSuppressionFeuille() {
-    std::cout<< "\n#### Test de la suppression d'une feuille dans l'arbre : ####"  << std::endl;
-    ArbreB<int>::ecrire_log("\n#### Test de la suppression d'une feuille dans l'arbre : ####");
-
-    std::cout<< "On créer l'arbre A" << std::endl;
-    ArbreB<int>::ecrire_log("On créer l'arbre A");
-    ArbreB<int> a;
-    a.ajoutAuto(5);
-    a.ajoutAuto(3);
-    a.ajoutAuto(15);
-    a.ajoutAuto(7);
-
-    std::cout<< "\nParcours Préfixe A :"  << std::endl;
-    ArbreB<int>::ecrire_log("\nParcours Préfixe A :");
-    a.parcours_prefixe();
-
-    a.remonter_racine();
-    a.deplacementG();
-
-    std::cout<< "On supprime le sommet 3" << std::endl;
-    ArbreB<int>::ecrire_log("On supprime le sommet 3");
-    a.supprimer_feuille();
-
-    std::cout<< "\nParcours Préfixe A :"  << std::endl;
-    ArbreB<int>::ecrire_log("\nParcours Préfixe A :");
-    a.parcours_prefixe();
-
-    a.remonter_racine();
-    a.deplacementD();
-    a.deplacementG();
-
-    std::cout<< "On supprime le sommet 7" << std::endl;
-    ArbreB<int>::ecrire_log("On supprime le sommet 7");
-    a.supprimer_feuille();
-    
-    std::cout<< "\nParcours Préfixe A :"  << std::endl;
-    ArbreB<int>::ecrire_log("\nParcours Préfixe A :");
-    a.parcours_prefixe();
-
-    a.remonter_racine();
-    a.deplacementD();
-
-    std::cout<< "On supprime le sommet 15" << std::endl;
-    ArbreB<int>::ecrire_log("On supprime le sommet 15");
-    a.supprimer_feuille();
-    
-    std::cout<< "\nParcours Préfixe A :"  << std::endl;
-    ArbreB<int>::ecrire_log("\nParcours Préfixe A :");
-    a.parcours_prefixe();
-
-    a.remonter_racine();
-
-    std::cout<< "On supprime le sommet 5" << std::endl;
-    ArbreB<int>::ecrire_log("On supprime le sommet 5");
-    a.supprimer_feuille();
-    std::cout<< "\nParcours Préfixe A :"  << std::endl;
-    ArbreB<int>::ecrire_log("\nParcours Préfixe A :");
-    a.parcours_prefixe();
-}
-
 void testSuppressionSommet() {
     std::cout<< "\n#### Test de la suppression d'un Sommet dans l'arbre : ####"  << std::endl;
     ArbreB<int>::ecrire_log("\n#### Test de la suppression d'un Sommet dans l'arbre : ####");
