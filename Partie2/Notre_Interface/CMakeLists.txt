@@ -17,6 +17,7 @@ set(SRC
     src/fenetre.cc
     src/bouton.cc
     src/affichage.cc
+    src/cryptage.cc
 )
 
 set(HEADER
@@ -26,6 +27,7 @@ set(HEADER
     header/fenetre.hh
     header/bouton.hh
     header/affichage.hh
+    header/cryptage.hh
 )
 
 set(ImageFileReader_HEADERS 
