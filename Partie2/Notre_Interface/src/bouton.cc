@@ -18,7 +18,7 @@ Bouton::Bouton() {
     layout_englobant->addLayout(layout_text, 1, 0);
 
     texte = new QTextEdit(this);
-    texte->setMinimumSize(900, 800);
+    texte->setMinimumSize(400, 200);
     layout_text->addWidget(texte);
 
     scoller = new QScrollArea();
@@ -31,10 +31,10 @@ Bouton::Bouton() {
     layout_bouton->addWidget(bQuitter, 0, 1);
     connect(bQuitter, SIGNAL(clicked()), qApp, SLOT(quit()));
 
-    bTest = new QPushButton("Test", this);
+    bTest = new QPushButton("Crypter", this);
     bTest->show();
     layout_bouton->addWidget(bTest, 0, 2);
-    connect(bTest, SIGNAL(clicked()), this, SLOT(aff_test()));  
+    connect(bTest, SIGNAL(clicked()), this, SLOT(crypter()));  
 }
 
 Bouton::~Bouton() {}
@@ -48,4 +48,16 @@ void Bouton::aff_test() {
     QString contenu_fichier = lire_log.readAll();
     texte->setText(contenu_fichier);
     texte->show();
+}
+
+void Bouton::crypter() {
+    std::string tmp = texte->toPlainText().toStdString();
+
+    std::map<char, int> ma_map = calcul_occurence(tmp);
+
+    ArbreB<int> *a = creation_racines(ma_map);
+
+    for (size_t i = 0; i < ma_map.size(); i++) {
+        std::cout << "test lettre : " << a[i].getLettre() << " test recurrence : " << a[i].getEtiquette() << std::endl;
+    }
 }

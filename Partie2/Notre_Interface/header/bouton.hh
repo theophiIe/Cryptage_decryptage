@@ -12,6 +12,8 @@
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QScrollArea>
 
+#include "cryptage.hh"
+
 class Bouton : public QWidget {
     Q_OBJECT
 
@@ -31,6 +33,7 @@ class Bouton : public QWidget {
 
     public slots:
         void aff_test();
+        void crypter();
 };
 
 #endif
