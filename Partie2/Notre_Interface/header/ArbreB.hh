@@ -38,6 +38,7 @@ template<typename T> class ArbreB {
         static void ecrire_log(const std::string &log) { ArbreB<T>::ecrire_fichier("log.txt", log); }
 
         int getEtiquette() const { return _sCourant->_etiquette; }
+        char getLettre() const { return _sCourant->_lettre; }
         void setEtiquette(const T &val) { _sCourant->_etiquette = val; }
         int getNbrSommet() const { return _nbr_sommet; }
         int get_profondeur() { return profondeur(_racine); }
@@ -51,6 +52,7 @@ template<typename T> class ArbreB {
         inline void ajoutG(const T &val);
         inline void ajoutD(const T &val);
         inline void ajoutAuto(const T &val);
+        inline void ajoutR(const T &val, const char &lettre);
 
         // Pour ce déplacer dans l'arbre
         void remonter_racine() { _sCourant = _racine; }
@@ -525,6 +527,18 @@ void ArbreB<T>::ajoutAuto(const T &val) {
 
     else {
         ajout(val);
+    }
+}
+
+template<typename T>
+void ArbreB<T>::ajoutR(const T &val, const char &lettre) {
+    if (_racine == nullptr) {
+        Sommet<T> *s = new Sommet<T>(val, lettre);
+        _sCourant = s;
+        _sCourant->_etiquette = val;
+         _sCourant->_lettre = lettre;
+        _racine = s;
+        _nbr_sommet++;
     }
 }
 
