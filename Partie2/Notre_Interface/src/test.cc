@@ -1,5 +1,4 @@
 #include "../header/test.hh"
-#include "../header/ArbreB.hh"
 
 void testParcoursArbre() {
     std::cout<< "\n#### Test parcours d'arbre : ####" << std::endl;
@@ -385,4 +384,15 @@ void testDessinArbre(){
     a << 13;
 
     a.arbreInterface();
+}
+
+void testCryptage() {
+    std::string mot = "jeeeee faaaaais un testttt";
+    std::map<char, int> ma_map = calcul_occurence(mot);
+
+    for (auto const& entry: ma_map) {
+        std::cout << entry.first << " occurence : " << entry.second << '\n';
+    }
+
+    creation_racines(ma_map);
 }

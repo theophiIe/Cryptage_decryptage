@@ -20,14 +20,15 @@ int main(int argc, char *argv[]) {
     monArbreI.close();
 
     // Les tests du projet
-    testParcoursArbre();
-    testAjoutAuto();
-    testSuppresionArbre();
-    testCopieArbre();
-    testFusionArbre();
-    testEtiquette();
-    testDecompositionArbre();
-    testSuppressionSommet();
+    // testParcoursArbre();
+    // testAjoutAuto();
+    // testSuppresionArbre();
+    // testCopieArbre();
+    // testFusionArbre();
+    // testEtiquette();
+    // testDecompositionArbre();
+    // testSuppressionSommet();
+    testCryptage();
     testDessinArbre();
 
     // Affichage graphique de l'application

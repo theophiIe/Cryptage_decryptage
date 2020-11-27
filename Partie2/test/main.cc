@@ -8,7 +8,6 @@ int main() {
     std::map<char, int> ma_map;
     for(std::string::size_type i = 0; i < test_code.length(); ++i) {
         c = test_code[i];
-        //std::cout << "mon char : " << c << std::endl;
 
         if(ma_map.insert(std::make_pair(c, 1)).second == false) {
             ma_map[c] += 1;
@@ -18,6 +17,12 @@ int main() {
     for (auto const& entry: ma_map) {
         std::cout << entry.first << " occurence : " << entry.second << '\n';
     }
+
+    std::cout << "taill de la map : " << ma_map.size() << std::endl;
+
+    std::map<char, int>::iterator it = ma_map.begin();
+    it++;
+    std::cout << "val en pos 5 de la map : " << it->first << std::endl;
 
     return 0;
 }
