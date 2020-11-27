@@ -1,0 +1,37 @@
+#include "../header/cryptage.hh"
+
+std::map<char, int> calcul_occurence(std::string &mon_texte) {
+    std::map<char, int> ma_map;
+    char lettre;
+    
+    for(std::string::size_type i = 0; i < mon_texte.length(); ++i) {
+        lettre = mon_texte[i];
+
+        if(ma_map.insert(std::make_pair(lettre, 1)).second == false) {
+            ma_map[lettre] += 1;
+        }
+    }
+
+    return ma_map;
+}
+
+void creation_racines(std::map<char, int> &map) {
+    ArbreB<int> *tabArbre[map.size()];
+
+    std::map<char, int>::iterator it = map.begin();
+
+    for (int i = 0; i < map.size(); i++) {
+        tabArbre[i] = new ArbreB<int>();
+        tabArbre[i]->ajoutR(it->second, it->first);
+        it++;
+    }
+    
+    for (int i = 0; i < map.size(); i++) {
+        std::cout << "Lettre : " << tabArbre[i]->getLettre() << "Occurence : " << tabArbre[i]->getEtiquette() << std::endl;
+    }
+}
+
+template<typename T>
+void fusion_racines(ArbreB<T> *tabArbre) {
+
+}
