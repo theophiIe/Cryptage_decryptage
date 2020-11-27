@@ -41,9 +41,15 @@ cmake_install.cmake
 CMakeFiles
 main_autogen
 test/Makefile
-Notre_Interface/Makefile
-Notre_Interface/header/moc_bouton.cpp
-Notre_Interface/header/moc_bouton.cpp_parameters
+
+Partie1/Notre_Interface/Makefile
+Partie1/Notre_Interface/header/moc_bouton.cpp
+Partie1/Notre_Interface/header/moc_bouton.cpp_parameters
+
+Partie2/Notre_Interface/Makefile
+Partie2/Notre_Interface/header/moc_bouton.cpp
+Partie2/Notre_Interface/header/moc_bouton.cpp_parameters
+
 
 #fichier de log
 log.txt
