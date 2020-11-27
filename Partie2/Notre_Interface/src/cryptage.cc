@@ -15,20 +15,21 @@ std::map<char, int> calcul_occurence(std::string &mon_texte) {
     return ma_map;
 }
 
-void creation_racines(std::map<char, int> &map) {
-    ArbreB<int> *tabArbre[map.size()];
+ArbreB<int> *creation_racines(std::map<char, int> &map) {
+    ArbreB<int> *tabArbre = new ArbreB<int>[map.size()];
 
     std::map<char, int>::iterator it = map.begin();
 
     for (int i = 0; i < map.size(); i++) {
-        tabArbre[i] = new ArbreB<int>();
-        tabArbre[i]->ajoutR(it->second, it->first);
+        tabArbre[i].ajoutR(it->second, it->first);
         it++;
     }
     
     for (int i = 0; i < map.size(); i++) {
-        std::cout << "Lettre : " << tabArbre[i]->getLettre() << "Occurence : " << tabArbre[i]->getEtiquette() << std::endl;
+        std::cout << "Lettre : " << tabArbre[i].getLettre() << "Occurence : " << tabArbre[i].getEtiquette() << std::endl;
     }
+
+    return tabArbre;
 }
 
 template<typename T>
