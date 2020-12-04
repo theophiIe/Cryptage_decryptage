@@ -1,0 +1,30 @@
+Ajout des nouveaux fichiers :
+ - cryptage.cc
+ - cryptage.hh
+
+Suppression des fichiers :
+ - test.cc
+ - test.hh
+
+Les ajouts dans Sommet.hh
+    - Ajout d'un nouveau membre char lettre nous permettant d'assigner une lettre à un Sommet
+      cette lettre correspond à un caractere du texte à encoder.
+    - Ajout d'un nouveau constructeur permettant de setup l'étiquette corespondant au occurence
+      d'une lettre et de setup la lettre attibué au sommet
+
+Les ajouts dans ArbreB.hh
+    - Ajout d'une méthode "char getLettre()" permettant de recupérer la lettre d'un sommet
+    - Ajout d'une méthode "void ajoutR(const T &val, const char &lettre)" permet de créer une racine
+      en paramétrant son l'étiquette et sa lettre avec les paramètres de la méthode
+
+Les méthodes du fichiers cryptage.cc/.hh
+    - Ajout de la fonction "std::map<char, int> calcul_occurence(std::string &mon_texte)" permettant
+      de calculer les occurences de la string passé en paramètres de la fonction. Cette méthode nous
+      retourne un map ayant pour clé la lettre et comme valeur l'occurence de la lettre
+    - Ajout de la fonction "ArbreB<int> *creation_racines(std::map<char, int> &map)" permettant de 
+      créer un tableau d'ArbreB contenant les un arbres avec juste une racine pour chaque caractere
+      avec l'occurence de cette lettre.
+
+Modification bouton.cc/.hh
+    - Création de la méthode "void crypter()" elle permet de récuperer le texte inscrit dans
+      QTextEdit et d'utiliser les méthodes du fichiers cryptage afin de construire l'arbre de huffman
