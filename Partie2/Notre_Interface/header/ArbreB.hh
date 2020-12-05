@@ -4,6 +4,7 @@
 #include "Sommet.hh"
 #include <fstream>
 #include <string>
+#include <map>
 
 template<typename T> class ArbreB {   
     private:
@@ -29,6 +30,8 @@ template<typename T> class ArbreB {
         void ecrire_arbre(const std::string &info) { ecrire_fichier("arbre.txt", info); }
         void ecrire_arbre_interface(const std::string &info) { ecrire_fichier("arbre_interface.txt", info); }
         inline void ecrire_fichier_arbre(Sommet<T> *racine);
+        
+        inline void chemin(Sommet<T> *racine, std::string &parcours ,std::map<char, std::string> *map);
 
     public:
         ArbreB() : _racine(nullptr), _sCourant(nullptr), _nbr_sommet(0) {}
@@ -59,7 +62,6 @@ template<typename T> class ArbreB {
         inline bool deplacementG();
         inline bool deplacementD();
 
-
         bool estPrensent(const T &val) { bool existe = false; return recherche(_racine, val, existe) ? true : false; }
 
         inline void decomposition(ArbreB<T> &arbre);
@@ -71,6 +73,8 @@ template<typename T> class ArbreB {
         void dessin_arbre() { affichage_arbre(_racine, 0); }
 
         void arbreInterface() { ecrire_fichier_arbre(_racine); }
+
+        inline std::map<char, std::string> codage();
 
         /* Surcharge des opérateurs */
         inline ArbreB<T> &operator=(const ArbreB<T> &arbre);
@@ -124,21 +128,38 @@ void ArbreB<T>::ecrire_fichier_arbre(Sommet<T> *racine) {
         if (racine->_filsG != nullptr) {
             ecrire_arbre_interface("G");
             ecrire_fichier_arbre(racine->_filsG);
-        }
-
-        if (racine->_filsG != nullptr) {
             ecrire_arbre_interface("RD");
         }
 
         if (racine->_filsD != nullptr) {
             ecrire_arbre_interface("D");
             ecrire_fichier_arbre(racine->_filsD);
-        }
-
-        if (racine->_filsD != nullptr) {
             ecrire_arbre_interface("RG");
         }
     }
+}
+
+// Codage de chaque lettre
+template<typename T>
+void ArbreB<T>::chemin(Sommet<T> *racine, std::string &parcours ,std::map<char, std::string> *map) {
+    if (racine != nullptr) {
+        if (racine->_filsG == nullptr && racine->_filsD == nullptr) {
+            std::cout << racine->_lettre << " : " << parcours << std::endl;
+            map->insert(std::make_pair(racine->_lettre, parcours)).second;
+        }
+        
+        if (racine->_filsG != nullptr) {
+            parcours += "0";            
+            chemin(racine->_filsG,parcours ,map);
+            parcours.pop_back();
+        }
+
+        if (racine->_filsD != nullptr) {
+            parcours += "1";
+            chemin(racine->_filsD,parcours ,map);
+            parcours.pop_back();
+        }
+    }   
 }
 
 /* Ajout d'une valeur à l'arbre en fonction de son étiquette */
@@ -351,7 +372,7 @@ Sommet<T> *ArbreB<T>::copie(Sommet<T> *sommet) {
     else {
         Sommet<T> *newGauche = copie(sommet->_filsG);
         Sommet<T> *newDroit = copie(sommet->_filsD);
-        Sommet<T> *newSommet = new Sommet<T>(sommet->_etiquette);
+        Sommet<T> *newSommet = new Sommet<T>(sommet->_etiquette, sommet->_lettre);
 
         newSommet->_filsG = newGauche;
         newSommet->_filsD= newDroit;
@@ -729,6 +750,16 @@ void ArbreB<T>::tout_supprimer() {
         _sCourant = nullptr;
         _nbr_sommet = 0;
     }
+}
+
+template<typename T>
+std::map<char, std::string> ArbreB<T>::codage() {
+    std::string parcours = "";
+    std::map<char, std::string> map;
+    
+    chemin(_racine, parcours , &map);
+
+    return map;
 }
 
 /* Permet de copier l'arbre this avec l'abre passer en parametre*/
