@@ -30,6 +30,7 @@ int main(int argc, char *argv[]) {
     // testSuppressionSommet();
     testCryptage();
     testDessinArbre();
+    testCodage();
 
     // Affichage graphique de l'application
     Fenetre fen;
