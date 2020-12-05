@@ -7,11 +7,9 @@ Bouton::Bouton() {
     layout_englobant->setAlignment(Qt::AlignTop);
 
     layout_bouton = new QGridLayout();
-    setLayout(layout_bouton);
     layout_bouton->setAlignment(Qt::AlignBottom);
 
     layout_text = new QGridLayout();
-    setLayout(layout_text);
     layout_text->setAlignment(Qt::AlignTop);
 
     layout_englobant->addLayout(layout_bouton, 0, 0);
