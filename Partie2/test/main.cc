@@ -1,5 +1,6 @@
 #include <iostream>
 #include <map>
+#include <string>
 
 int main() {
     std::string test_code = "je fais juste un test simple!";
@@ -23,6 +24,12 @@ int main() {
     std::map<char, int>::iterator it = ma_map.begin();
     it++;
     std::cout << "val en pos 5 de la map : " << it->first << std::endl;
+
+    std::string tmp = "je fais un test";
+
+    tmp = tmp.substr(0, tmp.size() - 1);
+
+    std::cout << tmp << std::endl;
 
     return 0;
 }
