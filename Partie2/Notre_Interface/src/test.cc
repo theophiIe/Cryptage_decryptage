@@ -400,3 +400,36 @@ void testCryptage() {
         std::cout << "test lettre : " << a[i].getLettre() << " test recurrence : " << a[i].getEtiquette() << std::endl;
     }
 }
+
+void testCodage() {
+    ArbreB<int> u;
+    ArbreB<int> j;
+    ArbreB<int> n;
+    ArbreB<int> B;
+    ArbreB<int> o;
+    ArbreB<int> r;
+
+    u.ajoutR(1, 'u');
+    j.ajoutR(1, 'j');
+    n.ajoutR(1, 'n');
+    B.ajoutR(1, 'B');
+    o.ajoutR(2, 'o');
+    r.ajoutR(1, 'r');
+
+    u += j;
+    n += B;
+    o += r;
+    u += n;
+    u += o;
+
+    std::cout<< "\nParcours Préfixe pour le codage : "  << std::endl;
+    u.parcours_prefixe();
+
+    std::map<char, std::string> map = u.codage();
+
+    std::cout << "taille de la map " << map.size() << std::endl;
+
+    for (auto const& entry: map) {
+        std::cout << entry.first << " codage : " << entry.second << '\n';
+    }
+}
