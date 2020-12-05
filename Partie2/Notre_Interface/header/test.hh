@@ -15,5 +15,6 @@ void testSuppressionSommet();
 void testDessinArbre();
 
 void testCryptage();
+void testCodage();
 
 #endif
