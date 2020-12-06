@@ -28,6 +28,9 @@ Les méthodes du fichiers cryptage.cc/.hh
     - Ajout de la fonction "ArbreB<int> *creation_racines(std::map<char, int> &map)" permettant de 
       créer un tableau d'ArbreB contenant les un arbres avec juste une racine pour chaque caractere
       avec l'occurence de cette lettre.
+    - Ajout d'une méthode "std::string codage(std::string texte, std::map<char, std::string> &map)" qui prend en paramètres
+      le texte à coder, une map avec les lettres et leurs codage, la méthode retourne un string avec le texte codé
+
 
 Modification bouton.cc/.hh
     - Création de la méthode "void crypter()" elle permet de récuperer le texte inscrit dans
