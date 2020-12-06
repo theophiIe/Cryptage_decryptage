@@ -25,6 +25,7 @@ class Bouton : public QWidget {
         QPushButton *bTest;
         QScrollArea *scoller;
         QTextEdit *texte;
+        QTextEdit *codage;
 
     public:
         Bouton();

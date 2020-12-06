@@ -16,13 +16,11 @@ Bouton::Bouton() {
     layout_englobant->addLayout(layout_text, 1, 0);
 
     texte = new QTextEdit(this);
-    texte->setMinimumSize(400, 200);
     layout_text->addWidget(texte);
 
-    scoller = new QScrollArea();
-    scoller->setWidget(texte);
-    scoller->show();
-    layout_text->addWidget(scoller, 0, 0);
+    codage = new QTextEdit(this);
+    codage->setReadOnly(true);
+    layout_text->addWidget(codage);
 
     bQuitter = new QPushButton("Quitter", this);
     bQuitter->show();
