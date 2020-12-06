@@ -16,6 +16,10 @@ Les ajouts dans ArbreB.hh
     - Ajout d'une méthode "char getLettre()" permettant de recupérer la lettre d'un sommet
     - Ajout d'une méthode "void ajoutR(const T &val, const char &lettre)" permet de créer une racine
       en paramétrant son l'étiquette et sa lettre avec les paramètres de la méthode
+    - Ajout d'une méthode "void chemin(Sommet<T> *racine, std::string &parcours ,std::map<char, std::string> *map)"
+      permettant d'avoir une map composé de chaque lettre compossant le texte à coder et le code associer à la lettre
+    - Ajout d'une méthode "std::map<char, std::string> codage()" qui utilise la méthode "chemin" et retourne la map
+      constitué de la lettre avec son codage.
 
 Les méthodes du fichiers cryptage.cc/.hh
     - Ajout de la fonction "std::map<char, int> calcul_occurence(std::string &mon_texte)" permettant
@@ -28,3 +32,5 @@ Les méthodes du fichiers cryptage.cc/.hh
 Modification bouton.cc/.hh
     - Création de la méthode "void crypter()" elle permet de récuperer le texte inscrit dans
       QTextEdit et d'utiliser les méthodes du fichiers cryptage afin de construire l'arbre de huffman
+    - Suppresion de la scroll bare du QTextEdit texte qui est inutile
+    - Ajout d'un nouveau QTextEdit en lecture uniquement pour pouvoir afficher le codage du texte
