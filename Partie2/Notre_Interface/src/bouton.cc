@@ -47,13 +47,28 @@ void Bouton::aff_test() {
 }
 
 void Bouton::crypter() {
-    std::string tmp = texte->toPlainText().toStdString();
+    std::string texte_non_coder = texte->toPlainText().toStdString();
 
-    std::map<char, int> ma_map = calcul_occurence(tmp);
+    std::map<char, int> ma_map = calcul_occurence(texte_non_coder);
 
     ArbreB<int> *a = creation_racines(ma_map);
 
     for (size_t i = 0; i < ma_map.size(); i++) {
         std::cout << "test lettre : " << a[i].getLettre() << " test recurrence : " << a[i].getEtiquette() << std::endl;
     }
+
+    // Affichage du texte codé dans l'interface
+    
+    // std::map<char, std::string> map = arbre.codage();
+
+    // std::cout << "taille de la map " << map.size() << std::endl;
+
+    // for (auto const& entry: map) {
+    //     std::cout << entry.first << " codage : " << entry.second << '\n';
+    // }
+
+    // std::string texte_code = codage_texte(texte_non_coder, map);
+
+    // QString code = QString::fromStdString(texte_code);
+    // codage->setText(code);
 }
