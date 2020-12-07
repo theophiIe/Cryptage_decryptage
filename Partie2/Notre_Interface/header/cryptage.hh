@@ -12,6 +12,6 @@ ArbreB<int> *creation_racines(std::map<char, int> &map);
 template<typename T>
 void fusion_racines(ArbreB<T> *tabArbre);
 
-std::string codage(std::string texte, std::map<char, std::string> &map);
+std::string codage_texte(std::string &texte, std::map<char, std::string> &map);
 
 #endif

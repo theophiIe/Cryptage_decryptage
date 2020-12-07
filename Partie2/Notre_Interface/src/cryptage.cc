@@ -38,7 +38,7 @@ void fusion_racines(ArbreB<T> *tabArbre) {
 
 }
 
-std::string codage(std::string texte, std::map<char, std::string> &map) {
+std::string codage_texte(std::string &texte, std::map<char, std::string> &map) {
     std::string code;
 
     for(std::string::size_type i = 0; i < texte.length(); i++) {
