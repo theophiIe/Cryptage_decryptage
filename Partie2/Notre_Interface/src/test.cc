@@ -394,7 +394,8 @@ void testCryptage() {
         std::cout << entry.first << " occurence : " << entry.second << '\n';
     }
 
-    ArbreB<int> *a = creation_racines(ma_map);
+    // ArbreB<int> *a = creation_racines(ma_map);
+    std::vector<ArbreB<int>> a = creation_racines(ma_map);
 
     for (size_t i = 0; i < ma_map.size(); i++) {
         std::cout << "test lettre : " << a[i].getLettre() << " test recurrence : " << a[i].getEtiquette() << std::endl;

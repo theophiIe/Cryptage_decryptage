@@ -15,21 +15,23 @@ std::map<char, int> calcul_occurence(std::string &mon_texte) {
     return ma_map;
 }
 
-ArbreB<int> *creation_racines(std::map<char, int> &map) {
-    ArbreB<int> *tabArbre = new ArbreB<int>[map.size()];
+std::vector<ArbreB<int>> creation_racines(std::map<char, int> &map) {
+    std::vector<ArbreB<int>> vec_arbre;
 
     std::map<char, int>::iterator it = map.begin();
 
     for (int i = 0; i < map.size(); i++) {
-        tabArbre[i].ajoutR(it->second, it->first);
+        ArbreB<int> arbre;
+        arbre.ajoutR(it->second, it->first);   
+        vec_arbre.emplace_back(arbre);
         it++;
     }
     
     for (int i = 0; i < map.size(); i++) {
-        std::cout << "Lettre : " << tabArbre[i].getLettre() << "Occurence : " << tabArbre[i].getEtiquette() << std::endl;
+        std::cout << "Lettre : " << vec_arbre[i].getLettre() << "Occurence : " << vec_arbre[i].getEtiquette() << std::endl;
     }
 
-    return tabArbre;
+    return vec_arbre;
 }
 
 // A faire 
@@ -49,7 +51,7 @@ void fusion_racines(ArbreB<int> *tabArbre) {
 
     
     // }
-    std::cout << "Occurence min : " << tabArbre[j].getEtiquette() << std::endl; // problème sur let abArbre[j]
+    // std::cout << "Occurence min : " << tabArbre[j].getEtiquette() << std::endl; // problème sur let abArbre[j]
 }
 
 std::string codage_texte(std::string &texte, std::map<char, std::string> &map) {
