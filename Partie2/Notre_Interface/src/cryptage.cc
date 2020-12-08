@@ -33,9 +33,23 @@ ArbreB<int> *creation_racines(std::map<char, int> &map) {
 }
 
 // A faire 
-template<typename T>
-void fusion_racines(ArbreB<T> *tabArbre) {
+void fusion_racines(ArbreB<int> *tabArbre) {
+    int j = 4;
+    std::cout << "Size of tabArbre : " << sizeof(tabArbre) <<std::endl; // probablment mal transféré, ici tabArbre = 8 au lieu de 6
 
+    // for (int i = 0; i < sizeof(tabArbre); i++) {
+    //         std::cout << "Occurence mialelv,qn : " << tabArbre[j].getEtiquette() << std::endl;
+
+    //     if ( tabArbre[i].getEtiquette() < tabArbre[j].getEtiquette()) {
+    //             std::cout << "Occurence mi: " << tabArbre[j].getEtiquette() << std::endl;
+
+    //         j=i;
+    //     }
+    //         std::cout << "Occurecap,l: " << tabArbre[j].getEtiquette() << std::endl;
+
+    
+    // }
+    std::cout << "Occurence min : " << tabArbre[j].getEtiquette() << std::endl; // problème sur let abArbre[j]
 }
 
 std::string codage_texte(std::string &texte, std::map<char, std::string> &map) {

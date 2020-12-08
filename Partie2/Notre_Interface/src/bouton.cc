@@ -54,8 +54,10 @@ void Bouton::crypter() {
     ArbreB<int> *a = creation_racines(ma_map);
 
     for (size_t i = 0; i < ma_map.size(); i++) {
-        std::cout << "test lettre : " << a[i].getLettre() << " test recurrence : " << a[i].getEtiquette() << std::endl;
+        std::cout << "test lettre : " << a[i].getLettre() << "\ttest recurrence : " << a[i].getEtiquette() << std::endl;
     }
+
+    fusion_racines(a);
 
     // Affichage du texte codé dans l'interface
     
