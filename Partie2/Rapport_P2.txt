@@ -25,12 +25,11 @@ Les méthodes du fichiers cryptage.cc/.hh
     - Ajout de la fonction "std::map<char, int> calcul_occurence(std::string &mon_texte)" permettant
       de calculer les occurences de la string passé en paramètres de la fonction. Cette méthode nous
       retourne un map ayant pour clé la lettre et comme valeur l'occurence de la lettre.
-    - Ajout de la fonction "ArbreB<int> *creation_racines(std::map<char, int> &map)" permettant de 
-      créer un tableau d'ArbreB contenant les un arbres avec juste une racine pour chaque caractere
+    - Ajout de la fonction "std::vector<ArbreB<int>> creation_racines(std::map<char, int> &map)" permettant de 
+      créer un vecteur d'ArbreB contenant les arbres avec juste une racine pour chaque caractere
       avec l'occurence de cette lettre.
     - Ajout d'une méthode "std::string codage_texte(std::string &texte, std::map<char, std::string> &map)" qui prend en paramètres
       le texte à coder, une map avec les lettres et leurs codage, la méthode retourne un string avec le texte codé.
-
 
 Modification bouton.cc/.hh
     - Création de la méthode "void crypter()" elle permet de récuperer le texte inscrit dans
