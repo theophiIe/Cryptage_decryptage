@@ -7,7 +7,7 @@ Affichage::~Affichage() {}
 
 /* Permet de gérer la taille de la zone de dessin de l'arbre */
 QSize Affichage::sizeHint() const {
-    return QSize(1800, 600);
+    return QSize(1800, 1000);
 }
 
 /* Lecture du fichier contenant les informations sur l'arbre à dessiner 
@@ -15,8 +15,7 @@ QSize Affichage::sizeHint() const {
 int Affichage::lecture_fichier_arbre() {
     std::ifstream fichier("arbre_interface.txt");
     if (fichier) {
-        std::string s = "mot";
-        char c;
+        std::string s = "";
         int X = racineX;
         int Y = racineY;
         int tmpX = 0;
@@ -25,8 +24,10 @@ int Affichage::lecture_fichier_arbre() {
 
         // print racine
         fichier >> s;
-        affichage_noeud(s, X, Y, cercle_size);
-
+        if (s != "") {
+            affichage_noeud(s, X, Y, cercle_size);
+        }
+        
         while(fichier >> s) {            
             if ( s == "RG") {
                 depth--;
@@ -68,6 +69,8 @@ int Affichage::lecture_fichier_arbre() {
         }      
     }
 
+    fichier.close();
+
     return 0;
 }
 
@@ -94,7 +97,10 @@ void Affichage::affichage_noeud(std::string s, int abs_X, int ord_Y, int taille_
 
 /* Permet de faire l'affichage de l'arbre */
 void Affichage::paintEvent(QPaintEvent* event) {
+    const QRect &rect = event->rect();
     QPainter paint(this);
+    paint.eraseRect(rect);
+    paint.setRenderHint(QPainter::Antialiasing);
     lecture_fichier_arbre();
 }
 
