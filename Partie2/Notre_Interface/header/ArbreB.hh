@@ -13,25 +13,25 @@ template<typename T> class ArbreB {
         int _nbr_sommet;
 
         inline void ajout(const T &val);
-        inline void supprimer(Sommet<T> *racine);
+        inline void supprimer(Sommet<T> *&racine);
         inline void supprimer_feuille();
-        inline void suppression_un_fils(Sommet<T> *sommet);
-        inline void suppression_deux_fils(Sommet<T> *sommet);
-        inline void prefixe(Sommet<T> *sommetRacine);
-        inline void infixe(Sommet<T> *sommetRacine);
-        inline void postfixe(Sommet<T> *sommetRacine);
+        inline void suppression_un_fils(Sommet<T> *&sommet);
+        inline void suppression_deux_fils(Sommet<T> *&sommet);
+        inline void prefixe(Sommet<T> *&sommetRacine);
+        inline void infixe(Sommet<T> *&sommetRacine);
+        inline void postfixe(Sommet<T> *&sommetRacine);
         inline Sommet<T> *copie(Sommet<T> *sommet);
-        inline bool recherche(Sommet<T> *sommetRacine, const T &val, bool &existe);
-        inline void nbrSommet(Sommet<T> *sommetRacine, int *&val);
-        inline void recherchePere(Sommet<T> *courant, Sommet<T> *recherche, Sommet<T> *&pere);
-        inline int  profondeur(Sommet<T> *racine);
-        inline void affichage_arbre(Sommet<T> *racine, int decalage);
+        inline bool recherche(Sommet<T> *&sommetRacine, const T &val, bool &existe);
+        inline void nbrSommet(Sommet<T> *&sommetRacine, int *&val);
+        inline void recherchePere(Sommet<T> *&courant, Sommet<T> *recherche, Sommet<T> *&pere);
+        inline int  profondeur(Sommet<T> *&racine);
+        inline void affichage_arbre(Sommet<T> *&racine, int decalage);
         inline static void ecrire_fichier(const std::string &&fichier, const std::string &log);
         void ecrire_arbre(const std::string &info) { ecrire_fichier("arbre.txt", info); }
         void ecrire_arbre_interface(const std::string &info) { ecrire_fichier("arbre_interface.txt", info); }
-        inline void ecrire_fichier_arbre(Sommet<T> *racine);
+        inline void ecrire_fichier_arbre(Sommet<T> *&racine);
         
-        inline void chemin(Sommet<T> *racine, std::string &parcours ,std::map<char, std::string> *map);
+        inline void chemin(Sommet<T> *&racine, std::string &parcours ,std::map<char, std::string> &map);
 
     public:
         ArbreB() : _racine(nullptr), _sCourant(nullptr), _nbr_sommet(0) {}
@@ -121,7 +121,7 @@ void ArbreB<T>::ecrire_fichier(const std::string &&fichier, const std::string &l
 
 /* Permet d'écrire dans un fichier la représentation de notre arbre pour l'affichage graphique */
 template<typename T>
-void ArbreB<T>::ecrire_fichier_arbre(Sommet<T> *racine) {
+void ArbreB<T>::ecrire_fichier_arbre(Sommet<T> *&racine) {
     if (racine != nullptr) {
         ecrire_arbre_interface(std::to_string(racine->_etiquette));
 
@@ -141,15 +141,15 @@ void ArbreB<T>::ecrire_fichier_arbre(Sommet<T> *racine) {
 
 // Codage de chaque lettre
 template<typename T>
-void ArbreB<T>::chemin(Sommet<T> *racine, std::string &parcours ,std::map<char, std::string> *map) {
+void ArbreB<T>::chemin(Sommet<T> *&racine, std::string &parcours ,std::map<char, std::string> &map) {
     if (racine != nullptr) {
         if (racine->_filsG == nullptr && racine->_filsD == nullptr) {
             std::cout << racine->_lettre << " : " << parcours << std::endl;
-            map->insert(std::make_pair(racine->_lettre, parcours)).second;
+            map.insert(std::make_pair(racine->_lettre, parcours)).second;
         }
         
         if (racine->_filsG != nullptr) {
-            parcours += "0";            
+            parcours += "0";
             chemin(racine->_filsG,parcours ,map);
             parcours.pop_back();
         }
@@ -208,7 +208,7 @@ void ArbreB<T>::ajout(const T &val) {
 
 /* Suppression d'un sommet */
 template<typename T>
-void ArbreB<T>::supprimer(Sommet<T> *racine) {
+void ArbreB<T>::supprimer(Sommet<T> *&racine) {
     if (racine != nullptr) {
         if (racine->_filsG != nullptr) {
             supprimer(racine->_filsG);
@@ -259,7 +259,7 @@ void ArbreB<T>::supprimer_feuille() {
 
 /* Supprime un sommet avec seulement un fils */
 template<typename T>
-void ArbreB<T>::suppression_un_fils(Sommet<T> *sommet) {
+void ArbreB<T>::suppression_un_fils(Sommet<T> *&sommet) {
     ArbreB<T> tmp;
     tmp._racine = copie(sommet);
     
@@ -278,7 +278,7 @@ void ArbreB<T>::suppression_un_fils(Sommet<T> *sommet) {
 
 /* Supprime un sommet avec deux fils */
 template<typename T>
-void ArbreB<T>::suppression_deux_fils(Sommet<T> *sommet) {
+void ArbreB<T>::suppression_deux_fils(Sommet<T> *&sommet) {
     Sommet <T> *tmp = _racine;
     Sommet <T> *pere = _racine;
 
@@ -299,7 +299,7 @@ void ArbreB<T>::suppression_deux_fils(Sommet<T> *sommet) {
 
 /* Parcours préfixe de l'arbre, on doit passer la racine en parametre */
 template<typename T>
-void ArbreB<T>::prefixe(Sommet<T> *sommetRacine) {
+void ArbreB<T>::prefixe(Sommet<T> *&sommetRacine) {
     if (sommetRacine != nullptr) {
         std::cout << "Etiquette : " << sommetRacine->_etiquette << std::endl;
         ecrire_log("Etiquette : " + std::to_string(sommetRacine->_etiquette));
@@ -320,7 +320,7 @@ void ArbreB<T>::prefixe(Sommet<T> *sommetRacine) {
 
 /* Parcours infixe de l'arbre, on doit passer la racine en parametre */
 template<typename T>
-void ArbreB<T>::infixe(Sommet<T> *sommetRacine) {
+void ArbreB<T>::infixe(Sommet<T> *&sommetRacine) {
     if (sommetRacine != nullptr) {
         if (sommetRacine->_filsG != nullptr) {
             infixe(sommetRacine->_filsG);
@@ -342,7 +342,7 @@ void ArbreB<T>::infixe(Sommet<T> *sommetRacine) {
 
 /* Parcours postfixe de l'arbre, on doit passer la racine en parametre */
 template<typename T>
-void ArbreB<T>::postfixe(Sommet<T> *sommetRacine) {
+void ArbreB<T>::postfixe(Sommet<T> *&sommetRacine) {
     if (sommetRacine != nullptr) {
         if (sommetRacine->_filsG != nullptr) {
             postfixe(sommetRacine->_filsG);
@@ -385,7 +385,7 @@ Sommet<T> *ArbreB<T>::copie(Sommet<T> *sommet) {
 /*  La méthode recherche va rechercher à partir du sommet passé en parametre une valeur
     *   elle aussi passé en parametre et renvoir true si la valeur et trouvé sinon false */
 template<typename T>
-bool ArbreB<T>::recherche(Sommet<T> *sommetRacine, const T &val, bool &existe) {
+bool ArbreB<T>::recherche(Sommet<T> *&sommetRacine, const T &val, bool &existe) {
     if (sommetRacine->_filsG != nullptr) {
         recherche(sommetRacine->_filsG, val, existe);
     }
@@ -403,7 +403,7 @@ bool ArbreB<T>::recherche(Sommet<T> *sommetRacine, const T &val, bool &existe) {
 
 /* La méthode va incrémenter la valeur val passé en parametre en fonction du nombre de sommet dans l'arbre*/
 template<typename T>
-void ArbreB<T>::nbrSommet(Sommet<T> *sommetRacine, int *&val) {
+void ArbreB<T>::nbrSommet(Sommet<T> *&sommetRacine, int *&val) {
     *val += 1;
 
     if (sommetRacine->_filsG != nullptr) {
@@ -417,7 +417,7 @@ void ArbreB<T>::nbrSommet(Sommet<T> *sommetRacine, int *&val) {
 
 /* Permet de récuperer le sommet père du sommet courant */
 template<typename T>
-void ArbreB<T>::recherchePere(Sommet<T> *courant, Sommet<T> *recherche, Sommet<T> *&pere) {
+void ArbreB<T>::recherchePere(Sommet<T> *&courant, Sommet<T> *recherche, Sommet<T> *&pere) {
     if (courant->_filsG != nullptr) {
         if (courant->_filsG->_etiquette != recherche->_etiquette) {
             recherchePere(courant->_filsG, recherche, pere);
@@ -441,7 +441,7 @@ void ArbreB<T>::recherchePere(Sommet<T> *courant, Sommet<T> *recherche, Sommet<T
 
 /* Retourne la profondeur de l'arbre */
 template<typename T>
-int ArbreB<T>::profondeur(Sommet<T> *racine) {
+int ArbreB<T>::profondeur(Sommet<T> *&racine) {
     if (racine == nullptr) {
         return 0;
     }
@@ -460,7 +460,7 @@ int ArbreB<T>::profondeur(Sommet<T> *racine) {
 
 /* Permet de faire un affichage textuel de l'arbre pour le terminal */
 template<typename T>
-void ArbreB<T>::affichage_arbre(Sommet<T> *racine, int decalage) {
+void ArbreB<T>::affichage_arbre(Sommet<T> *&racine, int decalage) {
     if (racine == nullptr) {
         return;
     }
@@ -757,7 +757,7 @@ std::map<char, std::string> ArbreB<T>::codage() {
     std::string parcours = "";
     std::map<char, std::string> map;
     
-    chemin(_racine, parcours , &map);
+    chemin(_racine, parcours , map);
 
     return map;
 }
