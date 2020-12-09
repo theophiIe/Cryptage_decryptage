@@ -5,6 +5,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGridLayout>
 #include <QtGui/QPainter>
+#include <QtGui/QPaintEvent>
 #include "ArbreB.hh"
 #include "bouton.hh"
 
