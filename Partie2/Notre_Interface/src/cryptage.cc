@@ -26,10 +26,6 @@ std::vector<ArbreB<int>> creation_racines(std::map<char, int> &map) {
         vec_arbre.emplace_back(arbre);
         it++;
     }
-    
-    for (int i = 0; i < map.size(); i++) {
-        std::cout << "Lettre : " << vec_arbre[i].getLettre() << "Occurence : " << vec_arbre[i].getEtiquette() << std::endl;
-    }
 
     return vec_arbre;
 }
