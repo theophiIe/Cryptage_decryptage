@@ -13,6 +13,7 @@ Les ajouts dans Sommet.hh
       d'une lettre et de setup la lettre attibué au sommet.
 
 Les ajouts dans ArbreB.hh
+    - Ajout de reference pour chaque méthode ayant en parametre un pointeur
     - Ajout d'une méthode "char getLettre()" permettant de recupérer la lettre d'un sommet.
     - Ajout d'une méthode "void ajoutR(const T &val, const char &lettre)" permet de créer une racine
       en paramétrant son l'étiquette et sa lettre avec les paramètres de la méthode.
