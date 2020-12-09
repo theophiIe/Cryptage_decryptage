@@ -144,7 +144,6 @@ template<typename T>
 void ArbreB<T>::chemin(Sommet<T> *&racine, std::string &parcours ,std::map<char, std::string> &map) {
     if (racine != nullptr) {
         if (racine->_filsG == nullptr && racine->_filsD == nullptr) {
-            std::cout << racine->_lettre << " : " << parcours << std::endl;
             map.insert(std::make_pair(racine->_lettre, parcours)).second;
         }
         
