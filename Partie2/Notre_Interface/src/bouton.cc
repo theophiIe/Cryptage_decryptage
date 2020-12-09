@@ -30,7 +30,7 @@ Bouton::Bouton() {
     bTest = new QPushButton("Crypter", this);
     bTest->show();
     layout_bouton->addWidget(bTest, 0, 2);
-    connect(bTest, SIGNAL(clicked()), this, SLOT(crypter()));  
+    connect(bTest, SIGNAL(clicked()), this, SLOT(crypter()));
 }
 
 Bouton::~Bouton() {}
@@ -61,7 +61,6 @@ void Bouton::crypter() {
     //fusion_racines(a);
 
     // Affichage du texte codé dans l'interface
-    
     // std::map<char, std::string> map = arbre.codage();
 
     // std::cout << "taille de la map " << map.size() << std::endl;
@@ -71,6 +70,10 @@ void Bouton::crypter() {
     // }
 
     // std::string texte_code = codage_texte(texte_non_coder, map);
+
+    // std::ofstream monArbreI("arbre_interface.txt");
+    // monArbreI.close();
+    // arbre.arbreInterface();
 
     // QString code = QString::fromStdString(texte_code);
     // codage->setText(code);
