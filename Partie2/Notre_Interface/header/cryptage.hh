@@ -12,7 +12,7 @@ std::vector<ArbreB<int>> creation_racines(std::map<char, int> &map);
 
 // void fusion_racines(ArbreB<int> *tabArbre);
 
-void fusion_racines(std::vector<ArbreB<int>>);
+void fusion_racines(std::vector<ArbreB<int>> &vec_arbre);
 
 std::string codage_texte(std::string &texte, std::map<char, std::string> &map);
 

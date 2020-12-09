@@ -56,7 +56,7 @@ std::vector<ArbreB<int>> creation_racines(std::map<char, int> &map) {
 
 
 // Méthode avec le vecteur et pas le tab d'arbre
-void fusion_racines(std::vector<ArbreB<int>>) {
+void fusion_racines(std::vector<ArbreB<int>> &vec_arbre) {
 
 }
 
