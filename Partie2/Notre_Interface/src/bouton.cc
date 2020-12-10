@@ -57,8 +57,10 @@ void Bouton::crypter() {
     for (size_t i = 0; i < ma_map.size(); i++) {
         std::cout << "test lettre : " << a[i].getLettre() << "\ttest recurrence : " << a[i].getEtiquette() << std::endl;
     }
+    std::cout<<"Vector size bouton : ";
+    std::cout<< a.size()<<std::endl;
 
-    //fusion_racines(a);
+    fusion_racines(a);
 
     // Affichage du texte codé dans l'interface
     // std::map<char, std::string> map = arbre.codage();

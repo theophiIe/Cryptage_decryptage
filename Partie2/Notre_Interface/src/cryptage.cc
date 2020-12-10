@@ -53,7 +53,10 @@ std::vector<ArbreB<int>> creation_racines(std::map<char, int> &map) {
 
 // Méthode avec le vecteur et pas le tab d'arbre
 void fusion_racines(std::vector<ArbreB<int>> &vec_arbre) {
-
+    std::cout<<"Encryptage !\n";
+    std::cout<<"Vector size : ";
+    std::cout<< vec_arbre.size()<<std::endl;
+    std::cout<< vec_arbre[4].getEtiquette() <<std::endl;
 }
 
 std::string codage_texte(std::string &texte, std::map<char, std::string> &map) {
