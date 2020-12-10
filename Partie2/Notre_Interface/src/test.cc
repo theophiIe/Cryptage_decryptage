@@ -395,10 +395,12 @@ void testCryptage() {
     }
 
     // ArbreB<int> *a = creation_racines(ma_map);
-    std::vector<ArbreB<int>> a = creation_racines(ma_map);
+    std::vector<ArbreB<int>> vec_arbre = creation_racines(ma_map);
 
-    for (size_t i = 0; i < ma_map.size(); i++) {
-        std::cout << "test lettre : " << a[i].getLettre() << " test recurrence : " << a[i].getEtiquette() << std::endl;
+    std::cout << "taille du vector : " << vec_arbre.size() << std::endl;
+
+    for (size_t i = 0; i < vec_arbre.size(); i++) {
+        std::cout << "test lettre : " << vec_arbre[i].getLettre() << " test recurrence : " << vec_arbre[i].getEtiquette() << std::endl;
     }
 }
 

@@ -30,27 +30,6 @@ std::vector<ArbreB<int>> creation_racines(std::map<char, int> &map) {
     return vec_arbre;
 }
 
-// // A faire 
-// void fusion_racines(ArbreB<int> *tabArbre) {
-//     int j = 4;
-//     std::cout << "Size of tabArbre : " << sizeof(tabArbre) <<std::endl; // probablment mal transféré, ici tabArbre = 8 au lieu de 6
-
-//     // for (int i = 0; i < sizeof(tabArbre); i++) {
-//     //         std::cout << "Occurence mialelv,qn : " << tabArbre[j].getEtiquette() << std::endl;
-
-//     //     if ( tabArbre[i].getEtiquette() < tabArbre[j].getEtiquette()) {
-//     //             std::cout << "Occurence mi: " << tabArbre[j].getEtiquette() << std::endl;
-
-//     //         j=i;
-//     //     }
-//     //         std::cout << "Occurecap,l: " << tabArbre[j].getEtiquette() << std::endl;
-
-    
-//     // }
-//     // std::cout << "Occurence min : " << tabArbre[j].getEtiquette() << std::endl; // problème sur let abArbre[j]
-// }
-
-
 // Méthode avec le vecteur et pas le tab d'arbre
 void fusion_racines(std::vector<ArbreB<int>> &vec_arbre) {
     std::cout<<"Encryptage !\n";
