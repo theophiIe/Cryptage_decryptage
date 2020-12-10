@@ -54,7 +54,7 @@ void Bouton::crypter() {
     //ArbreB<int> *a = creation_racines(ma_map);
     std::vector<ArbreB<int>> a = creation_racines(ma_map);
 
-    for (size_t i = 0; i < ma_map.size(); i++) {
+    for (size_t i = 0; i < a.size(); i++) {
         std::cout << "test lettre : " << a[i].getLettre() << "\ttest recurrence : " << a[i].getEtiquette() << std::endl;
     }
     std::cout<<"Vector size bouton : ";
