@@ -38,12 +38,9 @@ void fusion_racines(std::vector<ArbreB<int>> &vec_arbre) {
     for (int i = 0; i < vec_arbre.size(); i++) {
         if (vec_arbre[i].getEtiquette() < vec_arbre[j].getEtiquette()) {
             std::cout<<"Plus petit ! "<< vec_arbre[i].getEtiquette() << vec_arbre[j].getEtiquette()<<std::endl;
-            j = i;
-            
-           
+            j = i;           
         }
-        std::cout<< vec_arbre[i].getLettre() <<std::endl;
-        
+        std::cout<< vec_arbre[i].getLettre() <<std::endl;        
     }
 
     plus_petite = j;
@@ -52,12 +49,9 @@ void fusion_racines(std::vector<ArbreB<int>> &vec_arbre) {
     for (int i = 0; i < vec_arbre.size(); i++) {
         if (vec_arbre[i].getEtiquette() <= vec_arbre[j].getEtiquette() && (i != plus_petite)) {
             std::cout<<"Plus petit ! "<< vec_arbre[i].getEtiquette() << vec_arbre[j].getEtiquette()<<std::endl;
-            j = i;
-            
-           
+            j = i;  
         }
-        std::cout<< vec_arbre[i].getLettre() <<std::endl;
-        
+        std::cout<< vec_arbre[i].getLettre() << " occu " << vec_arbre[i].getEtiquette() <<std::endl; 
     }
     
     std::cout<< "les deux valeurs les plus petites sont sur les lettres : " << vec_arbre[plus_petite].getLettre() << " " << vec_arbre[j].getLettre() <<std::endl;
@@ -65,13 +59,17 @@ void fusion_racines(std::vector<ArbreB<int>> &vec_arbre) {
     // On cherche donc le dexieme plus petit qui pourra etre = a j au superieur
     // imma
 
-   // vec_arbre[pp] += vec_arbre[dpp];
-    //vec_arbre.erase(vec_arbre.begin() + j);
-    
+    vec_arbre[plus_petite] += vec_arbre[j];
+    vec_arbre.erase(vec_arbre.begin() + j);
+    std::cout<<"New size of vector : "<<vec_arbre.size()<<std::endl;
 
-    //std::cout<<"Plus petite occurence j : " <<vec_arbre[j].getLettre() <<std::endl;
-    //std::cout<<"Plus petite occurence k : " <<vec_arbre[k].getLettre() <<std::endl;
-    
+    for (int i = 0; i < vec_arbre.size(); i++) {
+        // if (vec_arbre[i].getEtiquette() < vec_arbre[j].getEtiquette()) {
+        //     std::cout<<"Plus petit ! "<< vec_arbre[i].getEtiquette() << vec_arbre[j].getEtiquette()<<std::endl;
+        //     j = i;           
+        // }
+        std::cout<< vec_arbre[i].getLettre() << " occu " << vec_arbre[i].getEtiquette() <<std::endl; 
+    }    
 }
 
 std::string codage_texte(std::string &texte, std::map<char, std::string> &map) {
