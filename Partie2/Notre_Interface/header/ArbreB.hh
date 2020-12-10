@@ -783,6 +783,7 @@ ArbreB<T> &ArbreB<T>::operator+=(ArbreB<T> &arbre) {
     nouvRacine->_filsG = _racine;  
     nouvRacine->_filsD = copie(arbre._racine);
     _racine = nouvRacine;
+    _sCourant = _racine;
     _nbr_sommet += arbre._nbr_sommet + 1;
     
     return *this;
