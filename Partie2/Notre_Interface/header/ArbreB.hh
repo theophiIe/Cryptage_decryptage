@@ -72,7 +72,7 @@ template<typename T> class ArbreB {
 
         void dessin_arbre() { affichage_arbre(_racine, 0); }
 
-        void arbreInterface() { ecrire_fichier_arbre(_racine); }
+        void arbreInterface() { ecrire_arbre_interface(std::to_string(get_profondeur())); ecrire_fichier_arbre(_racine); }
 
         inline std::map<char, std::string> codage();
 
