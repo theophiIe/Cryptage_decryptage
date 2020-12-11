@@ -7,27 +7,111 @@ Affichage::~Affichage() {}
 
 /* Permet de gérer la taille de la zone de dessin de l'arbre */
 QSize Affichage::sizeHint() const {
-    return QSize(4000, 1000);
+    return QSize(5000, 2000);
 }
 
 void Affichage::settings_according_depth() {
-    
-    if(profondeur <= 5) {
-        ecart_feuille = 100;
-        ecart_ordonnee = 100;
-        cercle_size = 5;
-        racineX = 900;
-        racineY = 40;
-    }
-    //6  ef 80 et decal racinex
-    else if(profondeur > 11) {
-        ecart_feuille = 5;
-        ecart_ordonnee = 50;
-        cercle_size = 5;
-        racineX = 2000;
-        racineY = 40;
-    }
+    switch (profondeur) {
+        case 2:
+            ecart_feuille = 100;
+            ecart_ordonnee = 100;
+            cercle_size = 5;
+            racineX = 200;
+            racineY = 40;
+            break;
 
+        case 3:
+            ecart_feuille = 100;
+            ecart_ordonnee = 100;
+            cercle_size = 5;
+            racineX = 200;
+            racineY = 40;
+            break;
+
+        case 4:
+            ecart_feuille = 75;
+            ecart_ordonnee = 60;
+            cercle_size = 5;
+            racineX = 290;
+            racineY = 40;
+            break;
+
+        case 5:
+            ecart_feuille = 60;
+            ecart_ordonnee = 70;
+            cercle_size = 5;
+            racineX = 500;
+            racineY = 40;
+            break;
+
+        case 6:
+            ecart_feuille = 50;
+            ecart_ordonnee = 65;
+            cercle_size = 5;
+            racineX = 800;
+            racineY = 40;
+            break;
+
+        case 7:
+            ecart_feuille = 40;
+            ecart_ordonnee = 48;
+            cercle_size = 5;
+            racineX = 1300;
+            racineY = 40;
+            break;
+
+        // Pas encore testé apres
+        case 8:
+            ecart_feuille = 12;
+            ecart_ordonnee = 200;
+            cercle_size = 5;
+            racineX = 2000;
+            racineY = 40;
+            break;
+
+        case 9:
+            ecart_feuille = 12;
+            ecart_ordonnee = 200;
+            cercle_size = 5;
+            racineX = 2000;
+            racineY = 40;
+            break;
+
+        case 10:
+            ecart_feuille = 12;
+            ecart_ordonnee = 200;
+            cercle_size = 5;
+            racineX = 2000;
+            racineY = 40;
+            break;
+        
+        case 11:
+            ecart_feuille = 12;
+            ecart_ordonnee = 200;
+            cercle_size = 5;
+            racineX = 2000;
+            racineY = 40;
+            break;
+
+        case 12:
+            ecart_feuille = 12;
+            ecart_ordonnee = 200;
+            cercle_size = 5;
+            racineX = 2000;
+            racineY = 40;
+            break;
+        
+        case 13:
+            ecart_feuille = 12;
+            ecart_ordonnee = 200;
+            cercle_size = 5;
+            racineX = 2000;
+            racineY = 40;
+            break;
+
+        default:
+            break;
+    }
 }
 
 /* Lecture du fichier contenant les informations sur l'arbre à dessiner 
@@ -113,7 +197,7 @@ void Affichage::affichage_noeud(std::string s, int abs_X, int ord_Y, int taille_
     QPainter paint(this);
     QPen pen(Qt::red, 5, Qt::SolidLine);
     paint.setPen(pen);
-    paint.setFont(QFont("Calibri", 15));
+    paint.setFont(QFont("Calibri", 13));
 
     QString str = QString::fromStdString(s);
     
