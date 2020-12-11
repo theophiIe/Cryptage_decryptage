@@ -48,6 +48,9 @@ void Bouton::aff_test() {
 
 void Bouton::crypter() {
     std::string texte_non_coder = texte->toPlainText().toStdString();
+    if (texte_non_coder == "") {
+        return;
+    }
 
     std::map<char, int> ma_map = calcul_occurence(texte_non_coder);
 
