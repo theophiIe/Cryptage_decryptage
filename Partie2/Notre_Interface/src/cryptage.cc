@@ -55,7 +55,7 @@ ArbreB<int> fusion_racines(std::vector<ArbreB<int>> &vec_arbre) {
         ArbreB<int> tmp1 = la_plus_petite(vec_arbre);
         ArbreB<int> tmp2 = la_plus_petite(vec_arbre);
 
-        vec_arbre.insert(vec_arbre.begin(), tmp1 += tmp2);
+        vec_arbre.push_back(tmp1 += tmp2);
     }
 
     return vec_arbre[0];
