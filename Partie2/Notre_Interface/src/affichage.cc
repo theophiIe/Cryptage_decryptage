@@ -12,15 +12,15 @@ QSize Affichage::sizeHint() const {
 
 void Affichage::settings_according_depth() {
     
-    if(profondeur >= 5) {
-        ecart_feuille = 35;
-        ecart_ordonnee = 50;
+    if(profondeur <= 5) {
+        ecart_feuille = 100;
+        ecart_ordonnee = 100;
         cercle_size = 5;
-        racineX = 1000;
+        racineX = 900;
         racineY = 40;
     }
-
-    else if(profondeur < 11) {
+    //6  ef 80 et decal racinex
+    else if(profondeur > 11) {
         ecart_feuille = 5;
         ecart_ordonnee = 50;
         cercle_size = 5;
@@ -47,7 +47,6 @@ void Affichage::lecture_fichier_arbre() {
         if (s != "") {
             profondeur = std::stoi(s);
             settings_according_depth();
-            std::cout<<"AHHHHHHHHHHHHHHHHHHHH\t"<<s<<std::endl;
         }
 
         else {
