@@ -7,7 +7,7 @@ Affichage::~Affichage() {}
 
 /* Permet de gérer la taille de la zone de dessin de l'arbre */
 QSize Affichage::sizeHint() const {
-    return QSize(1800, 1000);
+    return QSize(2000, 1000);
 }
 
 /* Lecture du fichier contenant les informations sur l'arbre à dessiner 

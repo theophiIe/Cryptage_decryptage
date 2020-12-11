@@ -18,7 +18,7 @@ class Affichage : public QWidget {
         int ecart_feuille = 30;
         int ecart_ordonnee = 50;
         int cercle_size = 5;
-        int racineX = 800;
+        int racineX = 1000;
         int racineY = 50;
 
         void affiche_ligne(int tmpX, int tmpY, int X, int Y);

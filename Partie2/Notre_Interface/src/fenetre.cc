@@ -15,7 +15,7 @@ Fenetre::Fenetre() {
     zone_scoll = new QScrollArea();
     zone_scoll->setWidget(dessin);
     zone_scoll->show();
-    layout->addWidget(zone_scoll, 0, 1);
+    layout->addWidget(zone_scoll, 1, 0);
 
     setWindowTitle(tr("Projet IN505 : Partie 1"));
     setMinimumSize(500, 500);    
