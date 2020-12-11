@@ -28,9 +28,9 @@ int main(int argc, char *argv[]) {
     // testEtiquette();
     // testDecompositionArbre();
     // testSuppressionSommet();
-    //testCryptage();
-    testDessinArbre();
-    //testCodage();
+    // testCryptage();
+    // testDessinArbre();
+    // testCodage();
 
     // Affichage graphique de l'application
     Fenetre fen;

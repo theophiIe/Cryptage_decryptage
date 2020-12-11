@@ -22,7 +22,7 @@ std::vector<ArbreB<int>> creation_racines(std::map<char, int> &map) {
 
     for (int i = 0; i < map.size(); i++) {
         ArbreB<int> arbre;
-        arbre.ajoutR(it->second, it->first);   
+        arbre.ajoutR(it->second, it->first);
         vec_arbre.emplace_back(arbre);
         it++;
     }

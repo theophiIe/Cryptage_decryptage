@@ -123,7 +123,19 @@ void ArbreB<T>::ecrire_fichier(const std::string &&fichier, const std::string &l
 template<typename T>
 void ArbreB<T>::ecrire_fichier_arbre(Sommet<T> *&racine) {
     if (racine != nullptr) {
-        ecrire_arbre_interface(std::to_string(racine->_etiquette));
+        if (racine->_filsG == nullptr && racine->_filsD == nullptr) {
+            std::string texte;
+            texte.push_back(racine->_lettre);
+            texte.push_back(':');
+            texte += std::to_string(racine->_etiquette);
+            ecrire_arbre_interface(texte);
+        }
+        
+        else {
+            ecrire_arbre_interface(std::to_string(racine->_etiquette));
+        }
+        
+        //ecrire_arbre_interface(std::to_string(racine->_etiquette));
 
         if (racine->_filsG != nullptr) {
             ecrire_arbre_interface("G");
