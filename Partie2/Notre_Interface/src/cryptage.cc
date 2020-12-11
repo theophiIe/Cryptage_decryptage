@@ -55,7 +55,7 @@ int la_deuxieme_plus_petite(std::vector<ArbreB<int>> &vec_arbre, int laplusp) {
 }
 
 //Méthode avec le vecteur et pas le tab d'arbre
-void fusion_racines(std::vector<ArbreB<int>> &vec_arbre) {
+ArbreB<int> fusion_racines(std::vector<ArbreB<int>> &vec_arbre) {
     
     int j = 0, laplusp, ladeuxplusp;
 
@@ -76,7 +76,9 @@ void fusion_racines(std::vector<ArbreB<int>> &vec_arbre) {
         for (int i = 0; i < vec_arbre.size(); i++) {
             std::cout<< vec_arbre[i].getLettre() << " occu " << vec_arbre[i].getEtiquette() <<std::endl; 
         }   
-    } 
+    }
+
+    return vec_arbre[0];
 }
 
 std::string codage_texte(std::string &texte, std::map<char, std::string> &map) {

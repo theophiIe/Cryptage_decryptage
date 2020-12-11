@@ -60,23 +60,23 @@ void Bouton::crypter() {
     std::cout<<"Vector size bouton : ";
     std::cout<< a.size()<<std::endl;
 
-    fusion_racines(a);
+    ArbreB<int> arbre = fusion_racines(a);
 
     // Affichage du texte codé dans l'interface
-    // std::map<char, std::string> map = arbre.codage();
+    std::map<char, std::string> map = arbre.codage();
 
-    // std::cout << "taille de la map " << map.size() << std::endl;
+    std::cout << "taille de la map " << map.size() << std::endl;
 
-    // for (auto const& entry: map) {
-    //     std::cout << entry.first << " codage : " << entry.second << '\n';
-    // }
+    for (auto const& entry: map) {
+        std::cout << entry.first << " codage : " << entry.second << '\n';
+    }
 
-    // std::string texte_code = codage_texte(texte_non_coder, map);
+    std::string texte_code = codage_texte(texte_non_coder, map);
 
-    // std::ofstream monArbreI("arbre_interface.txt");
-    // monArbreI.close();
-    // arbre.arbreInterface();
+    std::ofstream monArbreI("arbre_interface.txt");
+    monArbreI.close();
+    arbre.arbreInterface();
 
-    // QString code = QString::fromStdString(texte_code);
-    // codage->setText(code);
+    QString code = QString::fromStdString(texte_code);
+    codage->setText(code);
 }
