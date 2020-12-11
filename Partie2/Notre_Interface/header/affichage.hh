@@ -13,13 +13,15 @@
 
 class Affichage : public QWidget {
     private:
-        int lecture_fichier_arbre();
+        void lecture_fichier_arbre();
+        void settings_according_depth();
 
-        int ecart_feuille = 30;
+        int ecart_feuille = 5;
         int ecart_ordonnee = 50;
         int cercle_size = 5;
-        int racineX = 1000;
-        int racineY = 50;
+        int racineX = 2000;
+        int racineY = 40;
+        int profondeur = 0;
 
         void affiche_ligne(int tmpX, int tmpY, int X, int Y);
         void affichage_noeud(std::string s, int abs_X, int ord_Y, int taille_C);

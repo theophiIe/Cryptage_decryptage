@@ -7,12 +7,32 @@ Affichage::~Affichage() {}
 
 /* Permet de gérer la taille de la zone de dessin de l'arbre */
 QSize Affichage::sizeHint() const {
-    return QSize(2000, 1000);
+    return QSize(4000, 1000);
+}
+
+void Affichage::settings_according_depth() {
+    
+    if(profondeur >= 5) {
+        ecart_feuille = 35;
+        ecart_ordonnee = 50;
+        cercle_size = 5;
+        racineX = 1000;
+        racineY = 40;
+    }
+
+    else if(profondeur < 11) {
+        ecart_feuille = 5;
+        ecart_ordonnee = 50;
+        cercle_size = 5;
+        racineX = 2000;
+        racineY = 40;
+    }
+
 }
 
 /* Lecture du fichier contenant les informations sur l'arbre à dessiner 
    + appel des fonctions permettant de dessiner l'arbre */
-int Affichage::lecture_fichier_arbre() {
+void Affichage::lecture_fichier_arbre() {
     std::ifstream fichier("arbre_interface.txt");
     if (fichier) {
         std::string s = "";
@@ -21,23 +41,34 @@ int Affichage::lecture_fichier_arbre() {
         int tmpX = 0;
         int tmpY = 0;
         int depth = 1;
+        
+
+        fichier >> s;
+        if (s != "") {
+            profondeur = std::stoi(s);
+            settings_according_depth();
+            std::cout<<"AHHHHHHHHHHHHHHHHHHHH\t"<<s<<std::endl;
+        }
+
+        else {
+            fichier.close();
+            return;
+        }
 
         // print racine
         fichier >> s;
-        if (s != "") {
-            affichage_noeud(s, X, Y, cercle_size);
-        }
+        affichage_noeud(s, X, Y, cercle_size);
         
         while(fichier >> s) {            
             if ( s == "RG") {
                 depth--;
-                X -= (ecart_feuille*pow(2, 5-depth));
+                X -= (ecart_feuille*pow(2,(profondeur-depth)-2));
                 Y -= ecart_ordonnee;
             }
 
             else if ( s == "RD") {
                 depth--;
-                X += (ecart_feuille*pow(2,5-depth));
+                X += (ecart_feuille*pow(2,(profondeur-depth)-2));
                 Y -= ecart_ordonnee;
             }
 
@@ -45,7 +76,7 @@ int Affichage::lecture_fichier_arbre() {
                 fichier >> s;
                 tmpX = X;
                 tmpY = Y;
-                X -= (ecart_feuille*pow(2, 5-depth));
+                X -= (ecart_feuille*pow(2,(profondeur-depth)-2));
                 Y += ecart_ordonnee;
                 affiche_ligne(tmpX,tmpY,X,Y);
                 affichage_noeud(s, X, Y, cercle_size);
@@ -56,7 +87,7 @@ int Affichage::lecture_fichier_arbre() {
                 fichier >> s;
                 tmpX = X;
                 tmpY = Y;
-                X += (ecart_feuille*pow(2,5-depth));
+                X += (ecart_feuille*pow(2,(profondeur-depth)-2));
                 Y += ecart_ordonnee;
                 affiche_ligne(tmpX,tmpY,X,Y);
                 affichage_noeud(s, X, Y, cercle_size);
@@ -70,8 +101,6 @@ int Affichage::lecture_fichier_arbre() {
     }
 
     fichier.close();
-
-    return 0;
 }
 
 /* Permet d'afficher les arêtes de l'arbre */
@@ -85,7 +114,7 @@ void Affichage::affichage_noeud(std::string s, int abs_X, int ord_Y, int taille_
     QPainter paint(this);
     QPen pen(Qt::red, 5, Qt::SolidLine);
     paint.setPen(pen);
-    paint.setFont(QFont("Calibri", 25));
+    paint.setFont(QFont("Calibri", 15));
 
     QString str = QString::fromStdString(s);
     
