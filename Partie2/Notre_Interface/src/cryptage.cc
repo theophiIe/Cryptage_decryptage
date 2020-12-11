@@ -30,8 +30,11 @@ std::vector<ArbreB<int>> creation_racines(std::map<char, int> &map) {
     return vec_arbre;
 }
 
+
+
 // Méthode avec le vecteur et pas le tab d'arbre
 void fusion_racines(std::vector<ArbreB<int>> &vec_arbre) {
+    while (vec_arbre.size() != 1) {
     int j = 0, plus_petite = 0;
     std::cout<<"Vector size : "<< vec_arbre.size()<<std::endl;
 
@@ -55,21 +58,15 @@ void fusion_racines(std::vector<ArbreB<int>> &vec_arbre) {
     }
     
     std::cout<< "les deux valeurs les plus petites sont sur les lettres : " << vec_arbre[plus_petite].getLettre() << " " << vec_arbre[j].getLettre() <<std::endl;
-    // j est le plus petit.
-    // On cherche donc le dexieme plus petit qui pourra etre = a j au superieur
-    // imma
-
     vec_arbre[plus_petite] += vec_arbre[j];
     vec_arbre.erase(vec_arbre.begin() + j);
+
     std::cout<<"New size of vector : "<<vec_arbre.size()<<std::endl;
 
     for (int i = 0; i < vec_arbre.size(); i++) {
-        // if (vec_arbre[i].getEtiquette() < vec_arbre[j].getEtiquette()) {
-        //     std::cout<<"Plus petit ! "<< vec_arbre[i].getEtiquette() << vec_arbre[j].getEtiquette()<<std::endl;
-        //     j = i;           
-        // }
         std::cout<< vec_arbre[i].getLettre() << " occu " << vec_arbre[i].getEtiquette() <<std::endl; 
-    }    
+    }   
+    } 
 }
 
 std::string codage_texte(std::string &texte, std::map<char, std::string> &map) {
