@@ -10,9 +10,7 @@ std::map<char, int> calcul_occurence(std::string &mon_texte);
 
 std::vector<ArbreB<int>> creation_racines(std::map<char, int> &map);
 
-int la_plus_petite(std::vector<ArbreB<int>> &vect_arbre);
-
-int la_deuxieme_plus_petite(std::vector<ArbreB<int>> &vec_arbre, int laplusp);
+ArbreB<int> la_plus_petite(std::vector<ArbreB<int>> &vect_arbre);
 
 ArbreB<int> fusion_racines(std::vector<ArbreB<int>> &vec_arbre);
 

@@ -30,28 +30,19 @@ std::vector<ArbreB<int>> creation_racines(std::map<char, int> &map) {
     return vec_arbre;
 }
 
-int la_plus_petite(std::vector<ArbreB<int>> &vec_arbre) {
+ArbreB<int> la_plus_petite(std::vector<ArbreB<int>> &vec_arbre) {
     int j = 0;
+
     for (int i = 0; i < vec_arbre.size(); i++) {
         if (vec_arbre[i].getEtiquette() < vec_arbre[j].getEtiquette()) {
-            // std::cout<<"Plus petit ! "<< vec_arbre[i].getEtiquette() << vec_arbre[j].getEtiquette()<<std::endl;
             j = i;           
         }
-        std::cout<< vec_arbre[i].getLettre() <<std::endl;        
     }
-    return j;
-}
 
-int la_deuxieme_plus_petite(std::vector<ArbreB<int>> &vec_arbre, int laplusp) {
-    int j = 0;
-    for (int i = 0; i < vec_arbre.size(); i++) {
-        if (vec_arbre[i].getEtiquette() <= vec_arbre[j].getEtiquette() && (i != laplusp)) {
-            // std::cout<<"Plus petit ! "<< vec_arbre[i].getEtiquette() << vec_arbre[j].getEtiquette()<<std::endl;
-            j = i;  
-        }
-        // std::cout<< vec_arbre[i].getLettre() << " occu " << vec_arbre[i].getEtiquette() <<std::endl; 
-    }
-    return j;
+    ArbreB<int> tmp;
+    tmp = vec_arbre[j];
+    vec_arbre.erase(vec_arbre.begin() + j);
+    return tmp;
 }
 
 //Méthode avec le vecteur et pas le tab d'arbre
@@ -61,21 +52,10 @@ ArbreB<int> fusion_racines(std::vector<ArbreB<int>> &vec_arbre) {
 
     while (vec_arbre.size() != 1) {
 
-        std::cout<<"Vector size : "<< vec_arbre.size()<<std::endl;
+        ArbreB<int> tmp1 = la_plus_petite(vec_arbre);
+        ArbreB<int> tmp2 = la_plus_petite(vec_arbre);
 
-        laplusp = la_plus_petite(vec_arbre);
-        ladeuxplusp = la_deuxieme_plus_petite(vec_arbre, laplusp);
-    
-        std::cout<< "les deux valeurs les plus petites sont sur les lettres : " << vec_arbre[laplusp].getLettre() << " " << vec_arbre[ladeuxplusp].getLettre() <<std::endl;
-    
-        vec_arbre[laplusp] += vec_arbre[ladeuxplusp];
-        vec_arbre.erase(vec_arbre.begin() + ladeuxplusp);
-
-        std::cout<<"New size of vector : "<<vec_arbre.size()<<std::endl;
-
-        for (int i = 0; i < vec_arbre.size(); i++) {
-            std::cout<< vec_arbre[i].getLettre() << " occu " << vec_arbre[i].getEtiquette() <<std::endl; 
-        }   
+        vec_arbre.insert(vec_arbre.begin(), tmp1 += tmp2);
     }
 
     return vec_arbre[0];
