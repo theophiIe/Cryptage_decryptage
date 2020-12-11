@@ -47,11 +47,9 @@ ArbreB<int> la_plus_petite(std::vector<ArbreB<int>> &vec_arbre) {
 
 //Méthode avec le vecteur et pas le tab d'arbre
 ArbreB<int> fusion_racines(std::vector<ArbreB<int>> &vec_arbre) {
-    
-    int j = 0, laplusp, ladeuxplusp;
+    int j = 0;
 
     while (vec_arbre.size() != 1) {
-
         ArbreB<int> tmp1 = la_plus_petite(vec_arbre);
         ArbreB<int> tmp2 = la_plus_petite(vec_arbre);
 
