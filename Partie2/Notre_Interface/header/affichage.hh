@@ -6,6 +6,7 @@
 #include <QtWidgets/QGridLayout>
 #include <QtGui/QPainter>
 #include <QtGui/QPaintEvent>
+#include <math.h>
 #include "ArbreB.hh"
 #include "bouton.hh"
 
@@ -14,8 +15,8 @@ class Affichage : public QWidget {
     private:
         int lecture_fichier_arbre();
 
-        int ecart_feuille = 300;
-        int ecart_ordonnee = 100;
+        int ecart_feuille = 30;
+        int ecart_ordonnee = 50;
         int cercle_size = 5;
         int racineX = 800;
         int racineY = 50;

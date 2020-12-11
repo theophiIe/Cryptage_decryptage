@@ -31,13 +31,13 @@ int Affichage::lecture_fichier_arbre() {
         while(fichier >> s) {            
             if ( s == "RG") {
                 depth--;
-                X -= (ecart_feuille/depth);
+                X -= (ecart_feuille*pow(2, 5-depth));
                 Y -= ecart_ordonnee;
             }
 
             else if ( s == "RD") {
                 depth--;
-                X += (ecart_feuille/depth);
+                X += (ecart_feuille*pow(2,5-depth));
                 Y -= ecart_ordonnee;
             }
 
@@ -45,7 +45,7 @@ int Affichage::lecture_fichier_arbre() {
                 fichier >> s;
                 tmpX = X;
                 tmpY = Y;
-                X -= (ecart_feuille /depth);
+                X -= (ecart_feuille*pow(2, 5-depth));
                 Y += ecart_ordonnee;
                 affiche_ligne(tmpX,tmpY,X,Y);
                 affichage_noeud(s, X, Y, cercle_size);
@@ -56,7 +56,7 @@ int Affichage::lecture_fichier_arbre() {
                 fichier >> s;
                 tmpX = X;
                 tmpY = Y;
-                X += (ecart_feuille /depth);
+                X += (ecart_feuille*pow(2,5-depth));
                 Y += ecart_ordonnee;
                 affiche_ligne(tmpX,tmpY,X,Y);
                 affichage_noeud(s, X, Y, cercle_size);
