@@ -65,7 +65,7 @@ void Bouton::crypter() {
         ctint = (int)lettre;
         if (ctint > 255 || ctint < 0) {
             std::string char_non_valide = "Impossible de compresser le texte.\n Le caratere en position : " 
-                                        + std::to_string(i) + " ne fait pas parti du code ascii merci de le modifier ou le supprimer.";
+                                        + std::to_string(i+1) + " ne fait pas parti du code ascii merci de le modifier ou le supprimer.";
             QString code = QString::fromStdString(char_non_valide);
             codage->setText(code);
             std::ofstream monArbreI("arbre_interface.txt");
