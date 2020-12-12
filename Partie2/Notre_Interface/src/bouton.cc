@@ -27,10 +27,10 @@ Bouton::Bouton() {
     layout_bouton->addWidget(bQuitter, 0, 1);
     connect(bQuitter, SIGNAL(clicked()), qApp, SLOT(quit()));
 
-    bTest = new QPushButton("Crypter", this);
-    bTest->show();
-    layout_bouton->addWidget(bTest, 0, 2);
-    connect(bTest, SIGNAL(clicked()), this, SLOT(crypter()));
+    bCrypter = new QPushButton("Crypter", this);
+    bCrypter->show();
+    layout_bouton->addWidget(bCrypter, 0, 2);
+    connect(bCrypter, SIGNAL(clicked()), this, SLOT(crypter()));
 }
 
 Bouton::~Bouton() {}
