@@ -82,21 +82,21 @@ void Bouton::crypter() {
         nombre_occurence += a[i].getEtiquette();
     }
 
-    std::cout<<"\n\n\n\n\t=============== Nouveau cyptage ===============\n "<<std::endl;
-    std::cout<<"\n\t~#~ Les occurences ~#~\n "<<std::endl;
-    std::cout<<"Nombre d'occurence : "<< nombre_occurence <<std::endl;
+    std::cout << "\n\n\n\n\t=============== Nouveau cyptage ===============\n " << std::endl;
+    std::cout << "\n\t~#~ Les occurences ~#~\n " << std::endl;
+    std::cout << "Nombre d'occurence : " << nombre_occurence <<std::endl;
 
     for (size_t i = 0; i < a.size(); i++) {
         float ghpd= (float)(a[i].getEtiquette()) / (float)nombre_occurence;
-        std::cout << "Caractère : "  << a[i].getLettre() << "\t Nombre d'occurence : " << a[i].getEtiquette() << "\t Pourcentage d'occurence : " << ghpd*100 << "%" <<std::endl;
+        std::cout << "Caractère : "  << a[i].getLettre() << "\t Nombre d'occurence : " << a[i].getEtiquette() << "\t Pourcentage d'occurence : " << ghpd*100 << "%" << std::endl;
     }
 
     ArbreB<int> arbre = fusion_racines(a);
 
     std::map<char, std::string> map = arbre.codage();
-    std::cout<<"\n\t~#~ Encodage de Huffman ~#~\n" << std::endl;
+    std::cout << "\n\t~#~ Encodage de Huffman ~#~\n" << std::endl;
     for (auto const& entry: map) {
-        std::cout << entry.first << " codage : " << entry.second << '\n';
+        std::cout << entry.first << " codage : " << entry.second << std::endl;
     }
 
     std::string texte_code = codage_texte(texte_non_coder, map);

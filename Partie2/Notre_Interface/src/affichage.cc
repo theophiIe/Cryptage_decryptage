@@ -10,9 +10,9 @@ QSize Affichage::sizeHint() const {
     return QSize(10000, 2000);
 }
 
+/* Permet de gerer la position de l'arbre dans la fenetre graphique*/
 void Affichage::settings_according_depth() {
     switch (profondeur) {
-        
         case 2:
             ecart_feuille = 100;
             ecart_ordonnee = 100;
@@ -88,7 +88,6 @@ void Affichage::lecture_fichier_arbre() {
         int tmpY = 0;
         int depth = 1;
         
-
         fichier >> s;
         if (s != "") {
             profondeur = std::stoi(s);
@@ -140,7 +139,7 @@ void Affichage::lecture_fichier_arbre() {
             }
 
             else {
-                std::cout<<"Mot non reconnu !\n";
+                std::cout << "Mot non reconnu !" << std::endl;
             }  
         }      
     }

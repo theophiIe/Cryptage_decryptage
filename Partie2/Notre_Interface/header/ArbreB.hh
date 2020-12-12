@@ -6,7 +6,7 @@
 #include <string>
 #include <map>
 
-template<typename T> class ArbreB {   
+template<typename T> class ArbreB {
     private:
         Sommet<T> *_racine;
         Sommet<T> *_sCourant;
@@ -420,7 +420,7 @@ void ArbreB<T>::nbrSommet(Sommet<T> *&sommetRacine, int *&val) {
 
     if (sommetRacine->_filsD != nullptr) {
         nbrSommet(sommetRacine->_filsD, val);
-    }        
+    }
 }
 
 /* Permet de récuperer le sommet père du sommet courant */

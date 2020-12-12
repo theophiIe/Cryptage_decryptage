@@ -36,7 +36,7 @@ ArbreB<int> la_plus_petite(std::vector<ArbreB<int>> &vec_arbre) {
     
     for (int i = 0; i < vec_arbre.size(); i++) {
         if (vec_arbre[i].getEtiquette() < vec_arbre[j].getEtiquette()) {
-            j = i;           
+            j = i;
         }
     }
 
