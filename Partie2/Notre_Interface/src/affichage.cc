@@ -119,6 +119,7 @@ void Affichage::settings_according_depth() {
 void Affichage::lecture_fichier_arbre() {
     std::ifstream fichier("arbre_interface.txt");
     if (fichier) {
+        update();
         std::string s = "";
         int X = racineX;
         int Y = racineY;

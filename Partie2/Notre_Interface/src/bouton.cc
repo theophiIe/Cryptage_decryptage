@@ -59,7 +59,9 @@ void Bouton::crypter() {
         lettre = texte_non_coder[i];
         ctint = (int)lettre;
         if (ctint > 255 || ctint < 0) {
-            QString code = QString::fromStdString("Un caractère présent ne fait pas parti du code ascii merci de le modifié ou le supprimer.");
+            std::string char_non_valide = "Impossible de compresser le texte.\n Le caratere en position : " 
+                                        + std::to_string(i) + " ne fait pas parti du code ascii merci de le modifier ou le supprimer.";
+            QString code = QString::fromStdString(char_non_valide);
             codage->setText(code);
             return;
         }
