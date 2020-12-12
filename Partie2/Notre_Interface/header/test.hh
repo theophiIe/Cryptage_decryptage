@@ -13,7 +13,6 @@ void testDecompositionArbre();
 void testAjoutAuto();
 void testSuppressionSommet();
 void testDessinArbre();
-
 void testCryptage();
 void testCodage();
 

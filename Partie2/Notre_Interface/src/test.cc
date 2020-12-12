@@ -394,7 +394,6 @@ void testCryptage() {
         std::cout << entry.first << " occurence : " << entry.second << '\n';
     }
 
-    // ArbreB<int> *a = creation_racines(ma_map);
     std::vector<ArbreB<int>> vec_arbre = creation_racines(ma_map);
 
     std::cout << "taille du vector : " << vec_arbre.size() << std::endl;

@@ -23,14 +23,13 @@ template<typename T> class ArbreB {
         inline Sommet<T> *copie(Sommet<T> *sommet);
         inline bool recherche(Sommet<T> *&sommetRacine, const T &val, bool &existe);
         inline void nbrSommet(Sommet<T> *&sommetRacine, int *&val);
-        inline void recherchePere(Sommet<T> *&courant, Sommet<T> *recherche, Sommet<T> *&pere);
+        inline void recherchePere(Sommet<T> *&courant, Sommet<T> *&recherche, Sommet<T> *&pere);
         inline int  profondeur(Sommet<T> *&racine);
         inline void affichage_arbre(Sommet<T> *&racine, int decalage);
         inline static void ecrire_fichier(const std::string &&fichier, const std::string &log);
         void ecrire_arbre(const std::string &info) { ecrire_fichier("arbre.txt", info); }
         void ecrire_arbre_interface(const std::string &info) { ecrire_fichier("arbre_interface.txt", info); }
         inline void ecrire_fichier_arbre(Sommet<T> *&racine);
-        
         inline void chemin(Sommet<T> *&racine, std::string &parcours ,std::map<char, std::string> &map);
 
     public:
@@ -134,8 +133,6 @@ void ArbreB<T>::ecrire_fichier_arbre(Sommet<T> *&racine) {
         else {
             ecrire_arbre_interface(std::to_string(racine->_etiquette));
         }
-        
-        //ecrire_arbre_interface(std::to_string(racine->_etiquette));
 
         if (racine->_filsG != nullptr) {
             ecrire_arbre_interface("G");
@@ -170,7 +167,7 @@ void ArbreB<T>::chemin(Sommet<T> *&racine, std::string &parcours ,std::map<char,
             chemin(racine->_filsD,parcours ,map);
             parcours.pop_back();
         }
-    }   
+    }
 }
 
 /* Ajout d'une valeur à l'arbre en fonction de son étiquette */
@@ -240,7 +237,6 @@ void ArbreB<T>::supprimer_feuille() {
     if (_sCourant == _racine && (_sCourant->_filsG == nullptr && _sCourant->_filsD == nullptr)) {
         delete _racine;
         _racine = nullptr;
-
         _nbr_sommet = 0;
     }
     
@@ -318,6 +314,7 @@ void ArbreB<T>::prefixe(Sommet<T> *&sommetRacine) {
         if (sommetRacine->_filsG != nullptr) {
             prefixe(sommetRacine->_filsG);
         }
+        
         if (sommetRacine->_filsD != nullptr) {
             prefixe(sommetRacine->_filsD);
         }
@@ -428,7 +425,7 @@ void ArbreB<T>::nbrSommet(Sommet<T> *&sommetRacine, int *&val) {
 
 /* Permet de récuperer le sommet père du sommet courant */
 template<typename T>
-void ArbreB<T>::recherchePere(Sommet<T> *&courant, Sommet<T> *recherche, Sommet<T> *&pere) {
+void ArbreB<T>::recherchePere(Sommet<T> *&courant, Sommet<T> *&recherche, Sommet<T> *&pere) {
     if (courant->_filsG != nullptr) {
         if (courant->_filsG->_etiquette != recherche->_etiquette) {
             recherchePere(courant->_filsG, recherche, pere);

@@ -19,20 +19,6 @@ int main(int argc, char *argv[]) {
     std::ofstream monArbreI("arbre_interface.txt");
     monArbreI.close();
 
-    // Les tests du projet
-    // testParcoursArbre();
-    // testAjoutAuto();
-    // testSuppresionArbre();
-    // testCopieArbre();
-    // testFusionArbre();
-    // testEtiquette();
-    // testDecompositionArbre();
-    // testSuppressionSommet();
-    // testCryptage();
-    // testDessinArbre();
-    // testCodage();
-
-    // Affichage graphique de l'application
     Fenetre fen;
     fen.show();
 
