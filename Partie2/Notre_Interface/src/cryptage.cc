@@ -1,5 +1,6 @@
 #include "../header/cryptage.hh"
 
+// Permet de calculer les occurences du texte à compresser
 std::map<char, int> calcul_occurence(std::string &mon_texte) {
     std::map<char, int> ma_map;
     char lettre;
@@ -14,6 +15,7 @@ std::map<char, int> calcul_occurence(std::string &mon_texte) {
     return ma_map;
 }
 
+// Permet de créer une racine par caractère du texte à compresser
 std::vector<ArbreB<int>> creation_racines(std::map<char, int> &map) {
     std::vector<ArbreB<int>> vec_arbre;
     std::map<char, int>::iterator it = map.begin();
@@ -28,6 +30,7 @@ std::vector<ArbreB<int>> creation_racines(std::map<char, int> &map) {
     return vec_arbre;
 }
 
+// Permet de return l'arbre avec le moins d'occurence à sa racine
 ArbreB<int> la_plus_petite(std::vector<ArbreB<int>> &vec_arbre) {
     int j = 0;
     
@@ -43,7 +46,7 @@ ArbreB<int> la_plus_petite(std::vector<ArbreB<int>> &vec_arbre) {
     return tmp;
 }
 
-//Méthode avec le vecteur et pas le tab d'arbre
+// Permet de fusionner tout les arbers afin d'avoir l'arbre d'huffman
 ArbreB<int> fusion_racines(std::vector<ArbreB<int>> &vec_arbre) {
     int j = 0;
 
@@ -57,6 +60,7 @@ ArbreB<int> fusion_racines(std::vector<ArbreB<int>> &vec_arbre) {
     return vec_arbre[0];
 }
 
+// Méthode qui retourne un string avec le texte compressé
 std::string codage_texte(std::string &texte, std::map<char, std::string> &map) {
     std::string code;
 
