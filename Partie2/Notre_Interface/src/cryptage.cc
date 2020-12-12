@@ -3,9 +3,16 @@
 std::map<char, int> calcul_occurence(std::string &mon_texte) {
     std::map<char, int> ma_map;
     char lettre;
-    
+    int ctint =-1;
     for(std::string::size_type i = 0; i < mon_texte.length(); i++) {
+
         lettre = mon_texte[i];
+        ctint = (int)lettre;
+        if (ctint < 255) {
+            std::cout<<"Un caractère présent ne fait pas parti du code ascii !"<<std::endl;
+            return ; //faut retourner une erreur mais la j'ai la flemme de chercher, et oui y a une erreur expres pour que tu trouves plus vite :)
+        }
+        std::cout<<"int du char : "<<ctint<<std::endl;
 
         if(ma_map.insert(std::make_pair(lettre, 1)).second == false) {
             ma_map[lettre] += 1;
