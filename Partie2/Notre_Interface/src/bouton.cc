@@ -81,20 +81,20 @@ void Bouton::crypter() {
     for (size_t i = 0; i < a.size(); i++) {
         nombre_occurence += a[i].getEtiquette();
     }
-    
-    std::cout<<"Nb d'occurence ttl : "<< nombre_occurence <<std::endl;
+
+    std::cout<<"\n\n\n\n\t=============== Nouveau cyptage ===============\n "<<std::endl;
+    std::cout<<"\n\t~#~ Les occurences ~#~\n "<<std::endl;
+    std::cout<<"Nombre d'occurence : "<< nombre_occurence <<std::endl;
 
     for (size_t i = 0; i < a.size(); i++) {
         float ghpd= (float)(a[i].getEtiquette()) / (float)nombre_occurence;
-        std::cout << "test lettre : " << a[i].getLettre() << "\ttest pourcentage : " << ghpd*100 << "%\ttest occurence : " << a[i].getEtiquette() <<std::endl;
+        std::cout << "Caractère : "  << a[i].getLettre() << "\t Nombre d'occurence : " << a[i].getEtiquette() << "\t Pourcentage d'occurence : " << ghpd*100 << "%" <<std::endl;
     }
-
-    std::cout<<"Vector size bouton : "<< a.size()<<std::endl;
 
     ArbreB<int> arbre = fusion_racines(a);
 
     std::map<char, std::string> map = arbre.codage();
-
+    std::cout<<"\n\t~#~ Encodage de Huffman ~#~\n" << std::endl;
     for (auto const& entry: map) {
         std::cout << entry.first << " codage : " << entry.second << '\n';
     }

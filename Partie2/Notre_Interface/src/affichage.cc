@@ -7,17 +7,17 @@ Affichage::~Affichage() {}
 
 /* Permet de gérer la taille de la zone de dessin de l'arbre */
 QSize Affichage::sizeHint() const {
-    return QSize(5000, 2000);
+    return QSize(10000, 2000);
 }
 
 void Affichage::settings_according_depth() {
     switch (profondeur) {
+        
         case 2:
             ecart_feuille = 100;
             ecart_ordonnee = 100;
             cercle_size = 5;
             racineX = 200;
-            racineY = 40;
             break;
 
         case 3:
@@ -25,7 +25,6 @@ void Affichage::settings_according_depth() {
             ecart_ordonnee = 100;
             cercle_size = 5;
             racineX = 200;
-            racineY = 40;
             break;
 
         case 4:
@@ -33,7 +32,6 @@ void Affichage::settings_according_depth() {
             ecart_ordonnee = 60;
             cercle_size = 5;
             racineX = 290;
-            racineY = 40;
             break;
 
         case 5:
@@ -41,7 +39,6 @@ void Affichage::settings_according_depth() {
             ecart_ordonnee = 70;
             cercle_size = 5;
             racineX = 500;
-            racineY = 40;
             break;
 
         case 6:
@@ -49,7 +46,6 @@ void Affichage::settings_according_depth() {
             ecart_ordonnee = 65;
             cercle_size = 5;
             racineX = 800;
-            racineY = 40;
             break;
 
         case 7:
@@ -57,59 +53,34 @@ void Affichage::settings_according_depth() {
             ecart_ordonnee = 48;
             cercle_size = 5;
             racineX = 1300;
-            racineY = 40;
             break;
 
-        // Pas encore testé apres
         case 8:
-            ecart_feuille = 12;
-            ecart_ordonnee = 200;
+            ecart_feuille = 30;
+            ecart_ordonnee = 75;
             cercle_size = 5;
             racineX = 2000;
-            racineY = 40;
             break;
 
         case 9:
-            ecart_feuille = 12;
-            ecart_ordonnee = 200;
+            ecart_feuille = 30;
+            ecart_ordonnee = 75;
             cercle_size = 5;
-            racineX = 2000;
-            racineY = 40;
+            racineX = 5000;
             break;
 
         case 10:
-            ecart_feuille = 12;
-            ecart_ordonnee = 200;
+            ecart_feuille = 19;
+            ecart_ordonnee = 75;
             cercle_size = 5;
-            racineX = 2000;
-            racineY = 40;
-            break;
-        
-        case 11:
-            ecart_feuille = 12;
-            ecart_ordonnee = 200;
-            cercle_size = 5;
-            racineX = 2000;
-            racineY = 40;
-            break;
-
-        case 12:
-            ecart_feuille = 12;
-            ecart_ordonnee = 200;
-            cercle_size = 5;
-            racineX = 2000;
-            racineY = 40;
-            break;
-        
-        case 13:
-            ecart_feuille = 12;
-            ecart_ordonnee = 200;
-            cercle_size = 5;
-            racineX = 2000;
-            racineY = 40;
+            racineX = 5000;
             break;
 
         default:
+            ecart_feuille = 1;
+            ecart_ordonnee = 75;
+            cercle_size = 5;
+            racineX = 5000;
             break;
     }
 }
