@@ -47,6 +47,7 @@ void Bouton::aff_test() {
 }
 
 void Bouton::crypter() {
+    int nombre_occurence = 0;
     std::string texte_non_coder = texte->toPlainText().toStdString();
     if (texte_non_coder == "") {
         return;
@@ -56,12 +57,20 @@ void Bouton::crypter() {
 
     //ArbreB<int> *a = creation_racines(ma_map);
     std::vector<ArbreB<int>> a = creation_racines(ma_map);
+    
+    for (size_t i = 0; i < a.size(); i++) {
+        nombre_occurence += a[i].getEtiquette();
+    }
+    
+    std::cout<<"Nb d'occurence ttl : "<< nombre_occurence <<std::endl;
+
 
     for (size_t i = 0; i < a.size(); i++) {
-        std::cout << "test lettre : " << a[i].getLettre() << "\ttest recurrence : " << a[i].getEtiquette() << std::endl;
+        float ghpd= (float)(a[i].getEtiquette()) / (float)nombre_occurence;
+        std::cout << "test lettre : " << a[i].getLettre() << "\ttest pourcentage : " << ghpd*100 << "\ttest occurence : " << a[i].getEtiquette() <<std::endl;
     }
-    std::cout<<"Vector size bouton : ";
-    std::cout<< a.size()<<std::endl;
+
+    std::cout<<"Vector size bouton : "<< a.size()<<std::endl;
 
     ArbreB<int> arbre = fusion_racines(a);
 
