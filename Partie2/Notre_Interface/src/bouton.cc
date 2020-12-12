@@ -53,9 +53,20 @@ void Bouton::crypter() {
         return;
     }
 
+    char lettre;
+    int ctint =-1;
+    for(std::string::size_type i = 0; i < texte_non_coder.length(); i++) {
+        lettre = texte_non_coder[i];
+        ctint = (int)lettre;
+        if (ctint > 255 || ctint < 0) {
+            QString code = QString::fromStdString("Un caractère présent ne fait pas parti du code ascii merci de le modifié ou le supprimer.");
+            codage->setText(code);
+            return;
+        }
+    }
+
     std::map<char, int> ma_map = calcul_occurence(texte_non_coder);
 
-    //ArbreB<int> *a = creation_racines(ma_map);
     std::vector<ArbreB<int>> a = creation_racines(ma_map);
     
     for (size_t i = 0; i < a.size(); i++) {
@@ -64,20 +75,16 @@ void Bouton::crypter() {
     
     std::cout<<"Nb d'occurence ttl : "<< nombre_occurence <<std::endl;
 
-
     for (size_t i = 0; i < a.size(); i++) {
         float ghpd= (float)(a[i].getEtiquette()) / (float)nombre_occurence;
-        std::cout << "test lettre : " << a[i].getLettre() << "\ttest pourcentage : " << ghpd*100 << "\ttest occurence : " << a[i].getEtiquette() <<std::endl;
+        std::cout << "test lettre : " << a[i].getLettre() << "\ttest pourcentage : " << ghpd*100 << "%\ttest occurence : " << a[i].getEtiquette() <<std::endl;
     }
 
     std::cout<<"Vector size bouton : "<< a.size()<<std::endl;
 
     ArbreB<int> arbre = fusion_racines(a);
 
-    // Affichage du texte codé dans l'interface
     std::map<char, std::string> map = arbre.codage();
-
-    std::cout << "taille de la map " << map.size() << std::endl;
 
     for (auto const& entry: map) {
         std::cout << entry.first << " codage : " << entry.second << '\n';
