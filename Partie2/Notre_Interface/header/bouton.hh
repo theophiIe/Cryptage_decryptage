@@ -10,7 +10,6 @@
 #include <QtCore/QTextStream>
 #include <QtCore/QFile>
 #include <QtWidgets/QTextEdit>
-#include <QtWidgets/QScrollArea>
 
 #include "cryptage.hh"
 

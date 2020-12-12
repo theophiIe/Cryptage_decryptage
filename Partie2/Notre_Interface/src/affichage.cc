@@ -16,70 +16,60 @@ void Affichage::settings_according_depth() {
         case 2:
             ecart_feuille = 100;
             ecart_ordonnee = 100;
-            cercle_size = 5;
             racineX = 200;
             break;
 
         case 3:
             ecart_feuille = 100;
             ecart_ordonnee = 100;
-            cercle_size = 5;
             racineX = 200;
             break;
 
         case 4:
             ecart_feuille = 75;
             ecart_ordonnee = 60;
-            cercle_size = 5;
             racineX = 290;
             break;
 
         case 5:
             ecart_feuille = 60;
             ecart_ordonnee = 70;
-            cercle_size = 5;
             racineX = 500;
             break;
 
         case 6:
             ecart_feuille = 50;
             ecart_ordonnee = 65;
-            cercle_size = 5;
             racineX = 800;
             break;
 
         case 7:
             ecart_feuille = 40;
             ecart_ordonnee = 48;
-            cercle_size = 5;
             racineX = 1300;
             break;
 
         case 8:
             ecart_feuille = 30;
             ecart_ordonnee = 75;
-            cercle_size = 5;
             racineX = 2000;
             break;
 
         case 9:
             ecart_feuille = 30;
             ecart_ordonnee = 75;
-            cercle_size = 5;
             racineX = 5000;
             break;
 
         case 10:
             ecart_feuille = 19;
             ecart_ordonnee = 75;
-            cercle_size = 5;
             racineX = 5000;
             break;
 
         default:
             ecart_feuille = 1;
             ecart_ordonnee = 75;
-            cercle_size = 5;
             racineX = 5000;
             break;
     }
