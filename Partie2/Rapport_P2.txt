@@ -2,7 +2,7 @@ Ajout des nouveaux fichiers :
  - cryptage.cc
  - cryptage.hh
 
-Suppression des fichiers :
+Suppression des fichiers (fichiés pas utilises pour la P2) :
  - test.cc
  - test.hh
 
@@ -29,6 +29,10 @@ Les méthodes du fichiers cryptage.cc/.hh
     - Ajout de la fonction "std::vector<ArbreB<int>> creation_racines(std::map<char, int> &map)" permettant de 
       créer un vecteur d'ArbreB contenant les arbres avec juste une racine pour chaque caractere
       avec l'occurence de cette lettre.
+    - Ajout d'une méthode "ArbreB<int> la_plus_petite(std::vector<ArbreB<int>> &vec_arbre)" qui prend en parametre un vecteur
+      composé d'ArbreB<int> et qui retourne l'arbre ayant la plus petite étiquette à la racine.
+    - Ajout d'une méthode "ArbreB<int> fusion_racines(std::vector<ArbreB<int>> &vec_arbre)" qui prend en parametre un vecteur
+      composé d'ArbreB<int> et qui retourne l'arbre d'huffman.
     - Ajout d'une méthode "std::string codage_texte(std::string &texte, std::map<char, std::string> &map)" qui prend en paramètres
       le texte à coder, une map avec les lettres et leurs codage, la méthode retourne un string avec le texte codé.
 
@@ -38,3 +42,7 @@ Modification bouton.cc/.hh
       permet également de remplir le QTextEdit avec le codage du texte.
     - Suppresion de la scroll bare du QTextEdit texte qui est inutile.
     - Ajout d'un nouveau QTextEdit en lecture uniquement pour pouvoir afficher le codage du texte.
+
+Modification affichage.cc/.hh
+    - Ajout de la méthode "void Affichage::settings_according_depth()" qui permet d'ajuster le positionnement de l'arbre
+      d'huffman en fonction de sa profondeur.
