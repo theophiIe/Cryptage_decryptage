@@ -88,7 +88,13 @@ void Bouton::crypter() {
 
     for (size_t i = 0; i < a.size(); i++) {
         float ghpd= (float)(a[i].getEtiquette()) / (float)nombre_occurence;
-        std::cout << "Caractère : "  << a[i].getLettre() << "\t Nombre d'occurence : " << a[i].getEtiquette() << "\t Pourcentage d'occurence : " << ghpd*100 << "%" << std::endl;
+        if (a[i].getLettre() == '\n') {
+            std::cout << "Caractère : \\n\t Nombre d'occurence : " << a[i].getEtiquette() << "\t Pourcentage d'occurence : " << ghpd*100 << "%" << std::endl;
+        }
+        
+        else {
+            std::cout << "Caractère : "  << a[i].getLettre() << "\t Nombre d'occurence : " << a[i].getEtiquette() << "\t Pourcentage d'occurence : " << ghpd*100 << "%" << std::endl;   
+        }
     }
 
     ArbreB<int> arbre = fusion_racines(a);
@@ -96,7 +102,13 @@ void Bouton::crypter() {
     std::map<char, std::string> map = arbre.codage();
     std::cout << "\n\t~#~ Encodage de Huffman ~#~\n" << std::endl;
     for (auto const& entry: map) {
-        std::cout << entry.first << " codage : " << entry.second << std::endl;
+        if (entry.first == '\n') {
+            std::cout << "\\n codage : " << entry.second << std::endl;
+        }
+        
+        else {
+            std::cout << entry.first << " codage : " << entry.second << std::endl;
+        }
     }
 
     std::string texte_code = codage_texte(texte_non_coder, map);
