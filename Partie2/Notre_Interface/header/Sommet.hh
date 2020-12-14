@@ -17,5 +17,5 @@ template<class T> class Sommet {
         Sommet(const T &etiquette) : _filsG(nullptr), _filsD(nullptr), _etiquette(etiquette), _lettre('\0') {}
         Sommet(const T &etiquette, const char &lettre) : _filsG(nullptr), _filsD(nullptr), _etiquette(etiquette), _lettre(lettre) {}
 };
- 
+
 #endif

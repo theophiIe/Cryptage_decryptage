@@ -27,10 +27,10 @@ Bouton::Bouton() {
     layout_bouton->addWidget(bQuitter, 0, 1);
     connect(bQuitter, SIGNAL(clicked()), qApp, SLOT(quit()));
 
-    bTest = new QPushButton("Crypter", this);
-    bTest->show();
-    layout_bouton->addWidget(bTest, 0, 2);
-    connect(bTest, SIGNAL(clicked()), this, SLOT(crypter()));
+    bCrypter = new QPushButton("Crypter", this);
+    bCrypter->show();
+    layout_bouton->addWidget(bCrypter, 0, 2);
+    connect(bCrypter, SIGNAL(clicked()), this, SLOT(crypter()));
 }
 
 Bouton::~Bouton() {}
@@ -65,7 +65,7 @@ void Bouton::crypter() {
         ctint = (int)lettre;
         if (ctint > 255 || ctint < 0) {
             std::string char_non_valide = "Impossible de compresser le texte.\n Le caratere en position : " 
-                                        + std::to_string(i) + " ne fait pas parti du code ascii merci de le modifier ou le supprimer.";
+                                        + std::to_string(i+1) + " ne fait pas parti du code ascii merci de le modifier ou le supprimer.";
             QString code = QString::fromStdString(char_non_valide);
             codage->setText(code);
             std::ofstream monArbreI("arbre_interface.txt");
@@ -82,21 +82,21 @@ void Bouton::crypter() {
         nombre_occurence += a[i].getEtiquette();
     }
 
-    std::cout<<"\n\n\n\n\t=============== Nouveau cyptage ===============\n "<<std::endl;
-    std::cout<<"\n\t~#~ Les occurences ~#~\n "<<std::endl;
-    std::cout<<"Nombre d'occurence : "<< nombre_occurence <<std::endl;
+    std::cout << "\n\n\n\n\t=============== Nouveau cyptage ===============\n " << std::endl;
+    std::cout << "\n\t~#~ Les occurences ~#~\n " << std::endl;
+    std::cout << "Nombre d'occurence : " << nombre_occurence <<std::endl;
 
     for (size_t i = 0; i < a.size(); i++) {
         float ghpd= (float)(a[i].getEtiquette()) / (float)nombre_occurence;
-        std::cout << "Caractère : "  << a[i].getLettre() << "\t Nombre d'occurence : " << a[i].getEtiquette() << "\t Pourcentage d'occurence : " << ghpd*100 << "%" <<std::endl;
+        std::cout << "Caractère : "  << a[i].getLettre() << "\t Nombre d'occurence : " << a[i].getEtiquette() << "\t Pourcentage d'occurence : " << ghpd*100 << "%" << std::endl;
     }
 
     ArbreB<int> arbre = fusion_racines(a);
 
     std::map<char, std::string> map = arbre.codage();
-    std::cout<<"\n\t~#~ Encodage de Huffman ~#~\n" << std::endl;
+    std::cout << "\n\t~#~ Encodage de Huffman ~#~\n" << std::endl;
     for (auto const& entry: map) {
-        std::cout << entry.first << " codage : " << entry.second << '\n';
+        std::cout << entry.first << " codage : " << entry.second << std::endl;
     }
 
     std::string texte_code = codage_texte(texte_non_coder, map);

@@ -10,7 +10,6 @@
 #include <QtCore/QTextStream>
 #include <QtCore/QFile>
 #include <QtWidgets/QTextEdit>
-#include <QtWidgets/QScrollArea>
 
 #include "cryptage.hh"
 
@@ -22,7 +21,7 @@ class Bouton : public QWidget {
         QGridLayout *layout_text;
         QGridLayout *layout_englobant;
         QPushButton *bQuitter;
-        QPushButton *bTest;
+        QPushButton *bCrypter;
         QTextEdit *texte;
         QTextEdit *codage;
 

@@ -17,7 +17,7 @@ Fenetre::Fenetre() {
     zone_scoll->show();
     layout->addWidget(zone_scoll, 1, 0);
 
-    setWindowTitle(tr("Projet IN505 : Partie 1"));
+    setWindowTitle(tr("Projet IN505 : Partie 2"));
     setMinimumSize(500, 500);    
 }
 
