@@ -1,0 +1,8 @@
+Modification des scripts possible de les exécuter en faisant ./
+
+bouton.cc/bouton.hh :
+ - Création d'un nouveau Bouton décrypter
+ - Création de la méthode "void decrypter()" permettant de décrypter le texte apres avoir utilisé le bouton
+
+decryptage.cc/decryptage.hh :
+ - Création de la méthode "bool verif_syntaxique(std::string &texte)" vérifie si le texte est conforme syntaxiquement (composé de 0 et de 1 uniquement)
