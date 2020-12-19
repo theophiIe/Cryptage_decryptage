@@ -50,6 +50,9 @@ Partie2/Notre_Interface/Makefile
 Partie2/Notre_Interface/header/moc_bouton.cpp
 Partie2/Notre_Interface/header/moc_bouton.cpp_parameters
 
+Partie3/Notre_Interface/Makefile
+Partie3/Notre_Interface/header/moc_bouton.cpp
+Partie3/Notre_Interface/header/moc_bouton.cpp_parameters
 
 #fichier de log
 log.txt
