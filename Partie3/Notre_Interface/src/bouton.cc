@@ -102,9 +102,9 @@ void Bouton::crypter() {
         }
     }
 
-    ArbreB<int> arbre = fusion_racines(a);
+    _arbre = fusion_racines(a);
 
-    std::map<char, std::string> map = arbre.codage();
+    std::map<char, std::string> map = _arbre.codage();
     std::cout << "\n\t~#~ Encodage de Huffman ~#~\n" << std::endl;
     for (auto const& entry: map) {
         if (entry.first == '\n') {
@@ -120,7 +120,7 @@ void Bouton::crypter() {
 
     std::ofstream monArbreI("arbre_interface.txt");
     monArbreI.close();
-    arbre.arbreInterface();
+    _arbre.arbreInterface();
 
     QString code = QString::fromStdString(texte_code);
     codage->setText(code);
@@ -133,8 +133,11 @@ void Bouton::decrypter() {
         std::string char_non_valide = "Le texte à decoder est invalide";
         QString code = QString::fromStdString(char_non_valide);
         codage->setText(code);
-        std::ofstream monArbreI("arbre_interface.txt");
-        monArbreI.close();
         return;
     }
+
+    std::string texte_decoder = decodage_texte(_arbre, texte_non_coder);
+
+    QString code = QString::fromStdString(texte_decoder);
+    codage->setText(code);
 }

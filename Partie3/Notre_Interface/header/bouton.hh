@@ -27,6 +27,8 @@ class Bouton : public QWidget {
         QTextEdit *texte;
         QTextEdit *codage;
 
+        ArbreB<int> _arbre;
+
     public:
         Bouton();
         ~Bouton();
