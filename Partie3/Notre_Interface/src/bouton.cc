@@ -92,7 +92,7 @@ void Bouton::crypter() {
     std::cout << "Nombre d'occurence : " << nombre_occurence <<std::endl;
 
     for (size_t i = 0; i < a.size(); i++) {
-        float ghpd= (float)(a[i].getEtiquette()) / (float)nombre_occurence;
+        float ghpd = (float)(a[i].getEtiquette()) / (float)nombre_occurence;
         if (a[i].getLettre() == '\n') {
             std::cout << "Caractère : \\n\t Nombre d'occurence : " << a[i].getEtiquette() << "\t Pourcentage d'occurence : " << ghpd*100 << "%" << std::endl;
         }
@@ -129,14 +129,12 @@ void Bouton::crypter() {
 void Bouton::decrypter() {
     std::string texte_non_coder = texte->toPlainText().toStdString();
 
-    for(std::string::size_type i = 0; i < texte_non_coder.length(); i++) {
-        if (texte_non_coder[i] != '1' && texte_non_coder[i] != '0') {
-            std::string char_non_valide = "Le texte à decoder est invalide";
-            QString code = QString::fromStdString(char_non_valide);
-            codage->setText(code);
-            std::ofstream monArbreI("arbre_interface.txt");
-            monArbreI.close();
-            return;
-        }
+    if (!verif_syntaxique(texte_non_coder)) {
+        std::string char_non_valide = "Le texte à decoder est invalide";
+        QString code = QString::fromStdString(char_non_valide);
+        codage->setText(code);
+        std::ofstream monArbreI("arbre_interface.txt");
+        monArbreI.close();
+        return;
     }
 }

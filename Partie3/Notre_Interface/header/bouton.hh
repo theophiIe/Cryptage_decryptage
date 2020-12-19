@@ -12,6 +12,7 @@
 #include <QtWidgets/QTextEdit>
 
 #include "cryptage.hh"
+#include "decryptage.hh"
 
 class Bouton : public QWidget {
     Q_OBJECT
