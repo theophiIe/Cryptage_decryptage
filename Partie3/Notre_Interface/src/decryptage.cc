@@ -19,10 +19,12 @@ std::string decodage_texte(ArbreB<int> &arbre, std::string &code) {
             code[i] == '0' ? arbre.deplacementG() : arbre.deplacementD();
             if (arbre.getLettre() != '\0') {
                 decode.push_back(arbre.getLettre());
-                arbre.remonter_racine();
+                if (i != code.length() - 1) {
+                    arbre.remonter_racine();
+                }
             }
         }
     }
 
-    return decode;
+    return arbre.getLettre() != '\0' ? decode : (decode = "Erreur le code est incorrecte");
 }
