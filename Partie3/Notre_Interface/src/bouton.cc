@@ -31,6 +31,11 @@ Bouton::Bouton() {
     bCrypter->show();
     layout_bouton->addWidget(bCrypter, 0, 2);
     connect(bCrypter, SIGNAL(clicked()), this, SLOT(crypter()));
+
+    bDecrypter = new QPushButton("Decrypter", this);
+    bDecrypter->show();
+    layout_bouton->addWidget(bDecrypter, 0, 3);
+    connect(bDecrypter, SIGNAL(clicked()), this, SLOT(decrypter()));
 }
 
 Bouton::~Bouton() {}
@@ -119,4 +124,19 @@ void Bouton::crypter() {
 
     QString code = QString::fromStdString(texte_code);
     codage->setText(code);
+}
+
+void Bouton::decrypter() {
+    std::string texte_non_coder = texte->toPlainText().toStdString();
+
+    for(std::string::size_type i = 0; i < texte_non_coder.length(); i++) {
+        if (texte_non_coder[i] != '1' && texte_non_coder[i] != '0') {
+            std::string char_non_valide = "Le texte à decoder est invalide";
+            QString code = QString::fromStdString(char_non_valide);
+            codage->setText(code);
+            std::ofstream monArbreI("arbre_interface.txt");
+            monArbreI.close();
+            return;
+        }
+    }
 }
