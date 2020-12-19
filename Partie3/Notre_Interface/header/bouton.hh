@@ -22,6 +22,7 @@ class Bouton : public QWidget {
         QGridLayout *layout_englobant;
         QPushButton *bQuitter;
         QPushButton *bCrypter;
+        QPushButton *bDecrypter;
         QTextEdit *texte;
         QTextEdit *codage;
 
@@ -33,6 +34,7 @@ class Bouton : public QWidget {
     public slots:
         void aff_test();
         void crypter();
+        void decrypter();
 };
 
 #endif
