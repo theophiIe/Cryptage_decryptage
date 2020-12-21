@@ -7,7 +7,7 @@ bool verif_syntaxique(std::string &texte) {
         }
     }
 
-    return true;
+    return texte.empty() ? false : true;
 }
 
 std::string decodage_texte(ArbreB<int> &arbre, std::string &code) {
@@ -26,5 +26,5 @@ std::string decodage_texte(ArbreB<int> &arbre, std::string &code) {
         }
     }
 
-    return arbre.getLettre() != '\0' ? decode : (decode = "Erreur le code est incorrecte");
+    return arbre.getLettre() != '\0' ? decode : (decode = "Erreur le code est incorrect");
 }
