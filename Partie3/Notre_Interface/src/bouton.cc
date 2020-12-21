@@ -75,6 +75,7 @@ void Bouton::crypter() {
             codage->setText(code);
             std::ofstream monArbreI("arbre_interface.txt");
             monArbreI.close();
+            _arbre.tout_supprimer();
             return;
         }
     }

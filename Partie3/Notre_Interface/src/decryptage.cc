@@ -12,6 +12,10 @@ bool verif_syntaxique(std::string &texte) {
 
 std::string decodage_texte(ArbreB<int> &arbre, std::string &code) {
     std::string decode = "";
+
+    if (arbre.estVide())
+        return decode = "Il n'y a pas d'arbre de creer merci de crypter un texte avant de le decrypter";
+    
     arbre.remonter_racine();
 
     for(std::string::size_type i = 0; i < code.length(); i++) {
