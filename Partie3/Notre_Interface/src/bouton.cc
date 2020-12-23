@@ -40,7 +40,7 @@ Bouton::Bouton() {
 
 Bouton::~Bouton() {}
 
-/* Permet de récuper les tests du fichier log.txt et les affiches*/
+/* Permet de récuper les tests du fichier log.txt et les affiches */
 void Bouton::aff_test() {
     QString chemin = "log.txt";
     QFile fichier(chemin);
@@ -51,6 +51,7 @@ void Bouton::aff_test() {
     texte->show();
 }
 
+/* Permet de crypter un texte et d'afficher l'arbre d'huffman correspondant */
 void Bouton::crypter() {
     int nombre_occurence = 0;
     std::string texte_non_coder = texte->toPlainText().toStdString();
@@ -127,6 +128,7 @@ void Bouton::crypter() {
     codage->setText(code);
 }
 
+/* Permet de decrypter un texte */
 void Bouton::decrypter() {
     std::string texte_non_coder = texte->toPlainText().toStdString();
 

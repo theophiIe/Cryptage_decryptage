@@ -1,5 +1,6 @@
 #include "../header/decryptage.hh"
 
+/* Permet de vérifier que le texte passé en parametre est composé uniquement de 0 et de 1 */
 bool verif_syntaxique(std::string &texte) {
     for(std::string::size_type i = 0; i < texte.length(); i++) {
         if (texte[i] != '1' && texte[i] != '0') {
@@ -10,12 +11,13 @@ bool verif_syntaxique(std::string &texte) {
     return texte.empty() ? false : true;
 }
 
+/* Permet de décoder le texte passé en parametre à l'aide de l'arbre passé en parametre */
 std::string decodage_texte(ArbreB<int> &arbre, std::string &code) {
-    std::string decode = "";
+    if (arbre.estVide()){
+        return "Il n'y a pas d'arbre de creer merci de crypter un texte avant de le decrypter";
+    }
 
-    if (arbre.estVide())
-        return decode = "Il n'y a pas d'arbre de creer merci de crypter un texte avant de le decrypter";
-    
+    std::string decode = "";
     arbre.remonter_racine();
 
     for(std::string::size_type i = 0; i < code.length(); i++) {
@@ -30,5 +32,5 @@ std::string decodage_texte(ArbreB<int> &arbre, std::string &code) {
         }
     }
 
-    return arbre.getLettre() != '\0' ? decode : (decode = "Erreur le code est incorrect");
+    return arbre.getLettre() != '\0' ? decode : "Erreur le code est incorrect";
 }
